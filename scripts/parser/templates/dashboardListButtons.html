@@ -1,0 +1,15 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<ul data-inset="true" data-corners="false" data-icon="false" data-role="listview" data-theme="c">
+		<li data-pastload-module="simpletext" data-pastload-field="myprofileRowButton" data-userid="<%= page_vars.query_vars.userid %>"></li>
+		<li data-pastload-module="simpletext" data-pastload-field="learningstreamRowButton" data-userid="<%= page_vars.query_vars.userid %>"></li>
+		<li data-pastload-module="simpletext" data-pastload-field="videosRowButton" data-userid="<%= page_vars.query_vars.userid %>"></li>
+		<li data-pastload-module="simpletext" data-pastload-field="cardsRowButton" data-userid="<%= page_vars.query_vars.userid %>"></li>
+		<li data-pastload-module="simpletext" data-pastload-field="messagesRowButton" data-userid="<%= page_vars.query_vars.userid %>"></li>
+		<% if (checkAppConfig("events")==true) { %>
+			<li data-pastload-module="simpletext" data-pastload-field="eventsRowButton" data-userid="<%= page_vars.query_vars.userid %>"></li>
+		<% } %>
+		<% if (checkRole("provider")==true) { %>
+			<li data-pastload-module="simpletext" data-pastload-field="usersRowButton" data-userid="<%= page_vars.query_vars.userid %>"></li>
+		<% } %>
+	</ul>
+<% }); %>

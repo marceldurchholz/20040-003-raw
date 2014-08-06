@@ -1,0 +1,8 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<% if (checkAppConfig("messages")==true) { %>
+		<a href="#messages">
+		<img style="padding:10px 0px 0px 10px;" src="images/icon-message-<% if(window.me.newmsgs>0) { %>unread<% } else { %>read<% } %>-60.png">
+		<h2>Nachrichten <% if(window.me.newmsgs>0) { %>(<%= window.me.newmsgs %>) <% } %></h2>
+		<p>Mitteilungen an und von Wissensanbieter</p></a>
+	<% } %>
+<% }); %>

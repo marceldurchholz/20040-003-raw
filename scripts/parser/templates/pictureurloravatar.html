@@ -1,0 +1,7 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<% if (user.pictureurl && user.pictureurl!="") { %>
+		<%= user.pictureurl %>
+	<% } else { %>
+		images/avatar.jpg
+	<% } %>
+<% }); %>

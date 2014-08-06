@@ -1,0 +1,19 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<ul data-role="listview" data-inset="true" data-theme="a" data-icon="false" data-corners="false" data-shadow="false">
+		<li style="white-space:normal;">
+			<a style="white-space:normal;">
+				<span style="width:100%;" data-pastload-module="simpletext" data-pastload-field="fullname_edit"></span>
+				<span style="width:100%;" data-pastload-module="simpletext" data-pastload-field="slogan_edit"></span>
+			</a>
+		</li>
+	</ul>
+	<ul data-role="listview" data-inset="true" data-theme="a" data-icon="false" data-corners="false" data-shadow="false">
+		<li>
+			<a>
+				<p>
+					<img style="width:100%;" data-pastload-module="simpletext"  data-pastload-field="pictureurl" data-pastload-tag="src" src="<% if (user.pictureurl && user.pictureurl!="") { %><%= user.pictureurl %><% } else { %>images/avatar.jpg<% } %>">
+				</p>
+			</a>
+		</li>
+	</ul>
+<% }); %>

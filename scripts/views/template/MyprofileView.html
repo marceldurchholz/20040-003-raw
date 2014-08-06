@@ -1,0 +1,94 @@
+<div data-theme="h" data-role="header" data-position="fixed">
+    <a id="btnBack" data-ajax="false" rel="external" href="#" data-icon="back" data-iconpos="notext">Zurück</a>
+    <h1><%= page_vars.header_vars.title %></h1>
+    <% if(checkRole("user")==true) { %>
+		<a data-ajax="true" href="#panel_right" data-icon="gear" data-iconpos="notext">Funktionen</a>
+	<% } else { %>
+		<a data-ajax="true" href="#panel_right" data-icon="gear" data-iconpos="notext">Login</a>
+	<% } %>
+</div>
+
+<div data-role="content">
+
+	<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+		<ul data-role="listview" data-inset="true" data-theme="a" data-icon="false" data-corners="false" data-shadow="false">
+			<li>
+				<a href="#userphoto?userid=<%= user.id %>">
+					<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+						<% if (user.pictureurl && user.pictureurl!="") { %><%= user.pictureurl %><% } else { %>images/avatar.jpg<% } %>
+					<% }); %>
+					<h2>
+						<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+							<% if (user.fullname && user.fullname!="") { %><%= user.fullname %><% } else { %><%= user.username %><% } %>
+						<% }); %>
+					</h2>
+					<p>
+						<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+							<% if (user.slogan && user.slogan!="") { %><%= user.slogan %><% } else { %>Noch kein Slogan...<% } %>
+						<% }); %>
+					</p>
+				</a>
+			</li>
+		</ul>
+	<% }); %>
+	
+	<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+		<ul data-role="listview" data-inset="true" data-theme="a" data-corners="false" data-shadow="false">
+			<li>
+				<a href="#userinformations?userid=<%= user.id %>">
+					<p>
+						<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+							<% if (user.perstext && user.perstext!="") { %><%= user.perstext %><% } else { %>Noch kein Profiltext...<% } %>
+						<% }); %>
+					</p>
+				</a>
+			</li>
+		</ul>
+	<% }); %>
+	
+	<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+		<ul data-role="listview" data-inset="true" data-theme="a" data-corners="false" data-shadow="false" data-divider-theme="h">
+			<li data-role="list-divider" data-topic="Informationen">Informationen<!--<span class="ui-li-count">2</span>--></li>
+			<li><a href="#userinterests?userid=<%= user.id %>" data-topic="Informationen"><p>Interessen</p><span class="ui-li-count"><%= user.interests.length %></span></a></li>
+			<!-- <li><a class="showUserPurchasesLink" href="#"><p>Einkäufe / Abonnements</p></a></li> -->
+		</ul>
+	<% }); %>
+		
+	<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+		<ul data-role="listview" data-inset="true" data-inset="true" data-theme="a" data-corners="false" data-shadow="false" data-divider-theme="h">
+			<li data-role="list-divider">Kontaktdaten<!--<span class="ui-li-count">2</span>--></li>
+			<li>
+				<a href="#usercontact?userid=<%= user.id %>">
+					<% if ( ((user.companyname || "") + (user.fullname || "") + (user.street || "") + (user.zip || "") + (user.city || "")) =="" ) { %><p>Noch keine Kontaktdaten...</p><% } %>
+					<p>
+						<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+							<% if (user.companyname && user.companyname!="") { %>
+								<%= user.companyname %>
+							<% } else { %>
+								<% if(user.fullname && user.fullname!="") { %>
+									<%= user.fullname %>
+								<% } %>
+							<% } %>
+						<% }); %>
+					</p>
+					<p>
+						<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+							<% if (user.zip && user.zip!="") { %>
+								<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+									<% if (user.zip && user.zip!="") { %><%= user.zip %><% } else { %><% } %>
+								<% }); %>
+							<% } %>
+							<% if (user.city && user.city!="") { %>
+								<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+									<% if (user.city && user.city!="") { %><%= user.city %><% } else { %><% } %>
+								<% }); %>
+							<% } %>
+						<% }); %>
+					</p>
+					<% if (user.street && user.street!="") { %><p><%= user.street %></p><% } else { %><% } %>
+				</a>
+			</li>
+		</ul>
+	<% }); %>
+	
+</div>

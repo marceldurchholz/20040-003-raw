@@ -1,0 +1,8 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<% if (checkAppConfig("cards")==true) { %>
+		<a href="#cards">
+		<img style="padding:10px 0px 0px 10px;" src="images/icon-cards-60.png">
+		<h2>Lernsets</h2>
+		<p>Lernkarten zum interaktiven Lernen</p></a>
+	<% } %>
+<% }); %>

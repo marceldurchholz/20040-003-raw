@@ -1,0 +1,8 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<% if (checkAppConfig("videos")==true) { %>		
+		<a href="#videos">
+		<img style="padding:10px 0px 0px 10px;" src="images/icon-multimedia-60.png">
+		<h2>Mediathek</h2>
+		<p>Multimediainhalte (nach Kategorien gelistet)</p></a>
+	<% } %>
+<% }); %>

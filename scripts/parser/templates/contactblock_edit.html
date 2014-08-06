@@ -1,0 +1,53 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<ul data-role="listview" data-inset="true" data-theme="a" data-icon="false" data-corners="false" data-shadow="false" data-divider-theme="h">
+		<li data-role="list-divider">Kontaktdaten</li>
+		<li style="white-space:normal;">
+			<a style="white-space:normal;">
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><div>
+						<p><b>Firma/Anschrift</b></p>
+					</div></div>
+					<div class="ui-block-b"><div>
+						<span data-pastload-module="simpletext" data-pastload-field="companyname_edit"></span>
+					</div></div>
+				</div>
+			</a>
+		</li>
+		<li style="white-space:normal;">
+			<a style="white-space:normal;">
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><div>
+						<p><b>Postleitzahl</b></p>
+					</div></div>
+					<div class="ui-block-b"><div>
+						<span data-pastload-module="simpletext" data-pastload-field="zip_edit"></span>
+					</div></div>
+				</div>
+			</a>
+		</li>
+		<li style="white-space:normal;">
+			<a style="white-space:normal;">
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><div>
+						<p><b>Ort</b></p>
+					</div></div>
+					<div class="ui-block-b"><div>
+						<span data-pastload-module="simpletext" data-pastload-field="city_edit"></span>
+					</div></div>
+				</div>
+			</a>
+		</li>
+		<li style="white-space:normal;">
+			<a style="white-space:normal;">
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><div>
+						<p><b>Straße</b></p>
+					</div></div>
+					<div class="ui-block-b"><div>
+						<span data-pastload-module="simpletext" data-pastload-field="street_edit"></span>
+					</div></div>
+				</div>
+			</a>
+		</li>
+	</ul>
+<% }); %>

@@ -1,0 +1,7 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<ul data-role="listview" data-inset="true" data-theme="a" data-corners="false" data-shadow="false" data-divider-theme="h">
+		<li data-role="list-divider" data-topic="Informationen">Informationen<!--<span class="ui-li-count">2</span>--></li>
+		<li><a href="#userinterests?userid=<%= user.id %>" data-topic="Informationen"><p>Interessen</p><span class="ui-li-count"><%= user.interests.length %></span></a></li>
+		<!-- <li><a class="showUserPurchasesLink" href="#"><p>Einkäufe / Abonnements</p></a></li> -->
+	</ul>
+<% }); %>

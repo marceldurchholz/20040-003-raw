@@ -1,0 +1,13 @@
+<ul id="videosListView" data-hide-dividers="true" data-filter="true" data-filter-placeholder="Suchfilter..." data-filter-theme="a" data-role="listview" data-theme="a" data-divider-theme="h" data-autodividers="true" data-pastload-sort="true">
+	<% if (page_vars.streamData.videosArray) _.each(page_vars.streamData.videosArray, function(video) { %>
+		<% if (video.active==true || window.me.id == video.uploader) { %>
+			<li data-dbtype="video" class="<% if(window.me.id == video.uploader) { %>swipetodeletetd<% } %>" data-devider-topic="<%= video.topic %>">
+				<a href="#videodetails?videoid=<%= video.id %>">
+					<h3 <% if(video.active!=true) { %>style="color:red;"<% } %>><%= video.title %></h3>
+						<p><% if(video.title && video.title!="") { %><%= video.title %><% } else { %>Kein Titel<% } %><% if(video.price!="" && video.price!=undefined) { %>(<%= video.price %> <%= window.system.currency %>)<% } %></p>
+					<p><% if (video.uploaderdata && video.uploaderdata.fullname) { %><%= video.uploaderdata.fullname %><% } else { %>Autor unbekannt<% } %></p>
+				</a>
+			</li>
+		<% } %>
+	<% }); %>
+</ul>

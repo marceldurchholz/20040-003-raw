@@ -1,0 +1,9 @@
+.likeLink:hover, .messageLink:hover, .forwardLink:hover {
+	text-decoration:none !important;
+}
+.likeLinkActive:hover {
+	text-decoration:none !important;
+}
+.likeCountTextLink:hover {
+	text-decoration:none !important;
+}

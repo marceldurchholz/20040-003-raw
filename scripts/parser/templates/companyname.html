@@ -1,0 +1,3 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<% if (user.companyname && user.companyname!="") { %><%= user.companyname %><% } else { %><%= user.fullname %><% } %>
+<% }); %>

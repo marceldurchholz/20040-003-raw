@@ -1,0 +1,5 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<span style="width:100%;" data-placeholder="Noch kein Profiltext..." data-posteditable="true" data-postedittype="textarea"  data-postfield="perstext" data-posturl="<%= window.dpd_server+"users/?id="+user.id+"" %>">
+		<p data-pastload-url="simpletext" data-pastload-field="perstext" style="white-space:normal;width:100%;"><% if (user.perstext && user.perstext!="") { %><%= user.perstext %><% } else { %><% } %></p>
+	</span>
+<% }); %>

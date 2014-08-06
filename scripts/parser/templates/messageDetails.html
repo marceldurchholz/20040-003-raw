@@ -1,0 +1,22 @@
+<% console.log(page_vars.streamData) %>
+<% if (page_vars.streamData.messageArray) _.each(page_vars.streamData.messageArray, function(message) { %>
+	<ul data-role="listview" data-inset="true" data-theme="a" data-icon="false" data-corners="true" data-shadow="true">
+		<li style="m/in-height:80px !important;">
+			<a style="m/in-height:80px !important;width:auto !important;" data-ajax="true" href="#messagedetails?messageid=<%= message.id %>">
+				<img src="<% if(message.senderdata.pictureurl && message.senderdata.pictureurl!="") { %><%= message.senderdata.pictureurl %><% } else { %>images/avatar.jpg<% } %>" style="padding:20px !important;height:60px !important;width:60px !important;">
+				<h2><% if(message.senderdata.fullname && message.senderdata.fullname!="") { %><%= message.senderdata.fullname %><% } else { %><%= message.senderdata.username %><% } %></h2>
+				<p style="white-space:pre-line;"><%= message.content %><div style="clear:both:float:right;right:0px;bottom:5px;position:inherit;text-align:right;color:#bbb;font-size:0.7em;padding-left:20px;width:auto !important;">15:45</div></p>
+			</a>
+		</li>
+	</ul>
+<% }); %>
+
+
+<ul data-role="listview" data-inset="false" data-theme="a" data-icon="false" data-corners="false" data-shadow="false" style="position:inherit;bottom:0;left:0;right:0;margin-bottom:0px !important;padding-top:16px !important;" id="sendMessage" class="sendMessage" >
+	<li style="m/in-height:80px !important;padding-top:0px !important;padding-bottom:0px !important;background-color: rgb(240, 240, 240) !important;" class="sendMessage_leftbox">
+		<form class="messageForm resizetext" data-inset="false">
+			<a name="sendLink" style="margin:0px !important;position:absolute;bottom:16px;right:16px;margin-bottom:0px !important;" data-mini="true" data-role="button" data-enhance="false" data-shadow="false" data-role="none" href="#" data-ajax="true">Senden</a>
+			<textarea placeholder="Nachricht..." style="padding:8px 4px !important;margin:16px !important; margin-left:0px !important; border:1px solid #dedede !important;background-color: rgb(249, 249, 249) !important;max-height:200px !important;" data-id="myMsgBox" id="myMsgBox" name="message" data-role="none"></textarea>
+		</form>
+	</li>
+</ul>

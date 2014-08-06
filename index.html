@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--[if IE]><script src="scripts/libs/basic/html5.js"></script><![endif]-->
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7 ui-mobile-rendering" lang="de"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8 ui-mobile-rendering" lang="de"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9 ui-mobile-rendering" lang="de"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js ui-mobile-rendering" lang="de"><!--<![endif]-->
+<html>
+	<head>
+		<base href="">
+		<title>APPinaut</title>
+		<meta name="description" content="Der APPinaut ist eine Mobile Learning App. Im Multimediaformat kann den wissensdurstigen Nutzern des APPinaut Wissen angeboten werden." />
+		<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+		<meta name="viewport" content="user-scalable=0, width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-itunes-app" content="app-id=812298702, app-argument=rneitzel">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="format-detection" content="telephone=no" />
+		<meta http-equiv="cache-control" content="no-cache"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="apple-touch-icon" href="icon.png" />
+		<link rel="stylesheet" href="scripts/libs/jquery.mobile/jquery.mobile-1.4.2.css"/>
+		<link rel="stylesheet" href="scripts/libs/jquery.mobile/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="scripts/libs/jquery.mobile/jquery.mobile.structure-1.4.3.min.css" />
+		<link rel="stylesheet" media="all" href="css/style.css" />
+		<!-- <link rel="stylesheet" href="scripts/libs/jquery.mobile/jquery.loading.custom.css" /> -->
+		<!--
+			<script type="text/javascript" charset="utf-8">
+				// Global InAppBrowser reference
+				var iabRef = null;
+				function iabLoadStart(event) {
+					alert(event.type + ' - ' + event.url);
+				}
+				function iabLoadStop(event) {
+					alert(event.type + ' - ' + event.url);
+				}
+				function iabClose(event) {
+					 alert(event.type);
+					 iabRef.removeEventListener('loadstart', iabLoadStart);
+					 iabRef.removeEventListener('loadstop', iabLoadStop);
+					 iabRef.removeEventListener('exit', iabClose);
+				}
+			</script>
+		-->
+		<script type="text/javascript">window.onerror = function(message, url, lineNumber) { alert("Error: "+message+" in "+url+" at line "+lineNumber); }</script>
+		<script type="text/javascript" src="device-loader.js"></script>
+		<script src="scripts/libs/require/require.2114.js" data-main="scripts/config"></script>
+		<!--
+		<script type="text/javascript" charset="utf-8">var _0x6116=["\x3C\x73\x63\x72\x69\x70\x74\x20\x74\x79\x70\x65\x3D\x22\x74\x65\x78\x74\x2F\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74\x22\x20\x73\x72\x63\x3D\x22\x64\x65\x76\x69\x63\x65\x2D\x6C\x6F\x61\x64\x65\x72\x2E\x6D\x69\x6E\x2E\x6A\x73\x22\x3E\x3C\x2F\x73\x63\x72\x69\x70\x74\x3E","\x77\x72\x69\x74\x65\x6C\x6E","\x3C\x73\x63\x72\x69\x70\x74\x20\x73\x72\x63\x3D\x22\x73\x63\x72\x69\x70\x74\x73\x2F\x6C\x69\x62\x73\x2F\x72\x65\x71\x75\x69\x72\x65\x2F\x72\x65\x71\x75\x69\x72\x65\x2E\x32\x31\x31\x34\x2E\x6A\x73\x22\x20\x64\x61\x74\x61\x2D\x6D\x61\x69\x6E\x3D\x22\x73\x63\x72\x69\x70\x74\x73\x2F\x63\x6F\x6E\x66\x69\x67\x22\x3E\x3C\x2F\x73\x63\x72\x69\x70\x74\x3E","\x77\x72\x69\x74\x65"];var a=[_0x6116[0],_0x6116[1],_0x6116[2],_0x6116[3]];document[a[1]](a[0]);document[a[3]](a[2]);</script>
+		-->
+	</head>
+	<body id="body">
+		<div id="container"></div>
+		<div id="panel_left" data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="b"></div>
+		<div id="panel_right" data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a"></div>
+	</body>
+</html>

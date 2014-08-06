@@ -1,0 +1,15 @@
+<div data-role="header" data-theme="h" data-position="fixed">
+    <a data-ajax="true" href="#panel_left" data-icon="grid" data-iconpos="notext">Menü</a>
+    <h1><%= window.system.owner.companyname %></h1>
+    <% if(checkRole("user")==true) { %>
+		<a data-ajax="true" href="#panel_right" data-icon="gear" data-iconpos="notext">Funktionen</a>
+	<% } else { %>
+		<a data-ajax="true" href="#panel_right" data-icon="gear" data-iconpos="notext">Login</a>
+	<% } %>
+</div>
+
+<div data-role="content">
+
+	restoreView HardcodedLine
+
+</div>

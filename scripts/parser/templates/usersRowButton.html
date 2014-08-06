@@ -1,0 +1,6 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<a href="#users?userid=<%= window.me.id %>">
+	<img style="padding:10px 0px 0px 10px;" src="images/icon-usergroup-60.png">
+	<h2>Nutzerverwaltung</h2>
+	<p>Benutzer dieses Personal APPinaut&reg;</p></a>
+<% }); %>

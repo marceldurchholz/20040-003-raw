@@ -1,0 +1,57 @@
+<ul id="learningstreamListView" data-icon="false" data-inset="true" data-corners="false" data-filter="true" data-filter-placeholder="Suchfilter..." data-shadow="false" data-filter-theme="a" data-role="listview" data-theme="i" data-divider-theme="i" data-autodividers="true" data-pastload-sort="true">
+	<% if (page_vars.streamData.learningstreamArray) _.each(page_vars.streamData.learningstreamArray, function(learningstream) { %>
+		<% if (learningstream.active==true || window.me.id == learningstream.uploader) { %>
+			<li class="learningstreamSubheading" data-learningstreamid="<%= learningstream.id %>" style="padding-top:0px;padding-bottom:4px;margin-top:0px;" role="subheading" data-devider-topic="<%= learningstream.uploaderdata.fullname %>">
+				<!--
+				<span class="ui-link linkCdate" data-ajax="true" style="font-weight:normal;" data-theme="b"><% if (learningstream.cdate && learningstream.cdate!="") { %><%= dateYmdHisToGerman(learningstream.cdate) %><% } else { %><% } %></span>
+				-->
+				<span class="ui-link linkCdate" data-ajax="true" style="font-weight:normal;" data-theme="b"><time datetime="<%= dateYmdHisToTimestamp(learningstream.cdate) %>" class="age"><%= dateYmdHisToGerman(learningstream.cdate) %></time></span>
+				<span class="ui-link linkCdate" data-ajax="true" style="font-weight:normal;" data-theme="b"><% if (learningstream.cdate && learningstream.cdate!="") { %> am <%= dateYmdHisToGerman(learningstream.cdate) %><% } else { %><% } %></span>
+				<!-- <p style="width:100% !important;float:left;clear:both;padding:0;margin:0;">blablabla</p> -->
+			</li>
+			<li role="content" class="<% if(window.me.id == learningstream.uploader) { %>swipetodeletetd<% } %>">
+				<% if(learningstream.ccat=="video") { %><a href="#videodetails?videoid=<%= learningstream.id %>"><% } else if (learningstream.ccat=="card") { %><a href="#carddetails?cardid=<%= learningstream.id %>"><% } else { %><a href="notsetted"><!--type not setted--><% } %>
+					<img style="width:50px;height:50px;padding:20px !important;" src="<% if (learningstream.icon && learningstream.icon!="") { %><%= learningstream.icon %><% } else { %>images/avatar.jpg<% } %>">
+					<p class="listviewTextUnderThumbnbailLeft"><% if(learningstream.price!=undefined && learningstream.price!="" && parseInt(learningstream.price)>0) { %><%= accounting.formatNumber(parseInt(learningstream.price), 0, ".", ",") %><% } else { %><!--kostenlos--><% }%></p>
+					<p><strong style="<% if(learningstream.active!=true) { %>color:red;<% } %>"><% if(learningstream.title && learningstream.title!="") { %><%= learningstream.title %><% } else { %>Titel unbekannt<% } %></strong></p>
+					<p><% if(learningstream.description!="" && learningstream.description!=undefined) { %><%= learningstream.description %><% }%></p>
+					<p><% if (learningstream.topic && learningstream.topic!="") { %><%= learningstream.topic %><% } else { %>Interessengebiet unbekannt<% } %></p>
+					<!--
+					<% if (window.system.owner.master==true) { %>
+						<p><% if (learningstream.uploaderdata && learningstream.uploaderdata.fullname) { %><%= learningstream.uploaderdata.fullname %><% } else { %>Autor unbekannt<% } %></p>
+					<% } %>
+					<p class="ui-li-aside"><% if(learningstream.price!="" && learningstream.price!=undefined) { %><%= accounting.formatNumber(parseInt(learningstream.price), 0, ".", ",") %><% } else { %>kostenlos<% }%></p>
+					-->
+				</a>
+			</li>
+			<li class="learningstreamFunctionArea" role="learningstreamFunctionArea">
+				<span><a class="ui-link likeLink<% if(learningstream.likes.filter(checkMyId).length>0) { %>Active<% } %>" data-ajax="true" style="font-weight:normal;" href="#like?id=<%= learningstream.id %>" data-theme="b"><% if(learningstream.likes.filter(checkMyId).length>0) { %>Empfohlen<% } else { %>Empfehlen<% } %></a></span> 
+				&middot; <span><a class="ui-link forwardLink" data-ajax="true" style="font-weight:normal;" href="#forward?id=<%= learningstream.id %>" data-theme="b">Weiterleiten</a></span> 
+				&middot; <span><a class="ui-link messageLink" data-ajax="true" style="font-weight:normal;" href="#comment?id=<%= learningstream.id %>" data-theme="b">Fragen?</a></span> 
+				<span class="<% if(learningstream.likes && learningstream.likes.length>0) { %><% } else { %>hidden<% } %>"> &middot; 
+					<a class="ui-link likeCountLink" data-ajax="true" style="font-weight:normal;" href="#likeCount?id=<%= learningstream.id %>" data-theme="b">
+						<img src="images/icon-star-gold-10x10.png"><span class="linkCountLength" data-learningstreamid="<%= learningstream.id %>"><%= learningstream.likes.length %></span>
+					</a>
+				 </span>
+			</li>
+			<li class="learningstreamCommentArea <% if(learningstream.likes && learningstream.likes.length>0) { %><% } else { %>hidden<% } %>" role="learningstreamCommentArea" data-learningstreamid="<%= learningstream.id %>">
+				<ul id="commentListView" data-icon="false" data-inset="false" data-corners="false" data-shadow="false" data-theme="k">
+					<li>
+						<span class="<% if(learningstream.likes && learningstream.likes.length>0) { %><% } else { %>hidden<% } %>">
+							<a class="ui-link likeCountTextLink" data-ajax="true" href="#like?id=<%= learningstream.id %>" data-theme="b">
+								<img src="images/icon-star-gold-10x10.png"> von <span class="linkCountLength" data-learningstreamid="<%= learningstream.id %>"><%= learningstream.likes.length %></span> Nutzer/n empfohlen
+							</a>
+						</span> 
+					</li>
+					<li>
+						<form class="commentForm">
+							<input name="comment_input_learningstream_<%= learningstream.id %>"  id="comment_input_learningstream_<%= learningstream.id %>" class="commentInput input_classic" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-learningstreamid="<%= learningstream.id %>" placeholder="Stelle eine Frage..." type="text" data-shadow="false" data-corners="false" data-mini="true" data-role="none" value="">
+						</form>
+					</li>
+				</ul>
+			</li>
+			<li class="learningstreamGapArea">
+			</li>
+		<% } %>
+	<% }); %>
+</ul>

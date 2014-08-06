@@ -1,0 +1,5 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<span data-placeholder="Noch kein Slogan..." data-posteditable="true" data-postfield="slogan" data-posturl="<%= window.dpd_server+"users/?id="+user.id+"" %>">
+		<p data-pastload-url="simpletext" data-pastload-field="slogan" style="white-space:normal;"><% if (user.slogan && user.slogan!="") { %><%= user.slogan %><% } else { %><% } %></p>
+	</span>
+<% }); %>

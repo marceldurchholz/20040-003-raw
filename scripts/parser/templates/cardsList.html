@@ -1,0 +1,13 @@
+<ul id="cardsListView" data-filter="true" data-filter-placeholder="Suchfilter..." data-filter-theme="a" data-role="listview" data-theme="a" data-divider-theme="j" data-autodividers="true" data-pastload-sort="true">
+	<% if (page_vars.streamData.cardsArray) _.each(page_vars.streamData.cardsArray, function(card) { %>
+		<% if (card.active==true || window.me.id == card.uploader) { %>
+			<li data-dbtype="card" class="<% if(window.me.id == card.uploader) { %>swipetodeletetd<% } %>" data-devider-topic="<%= card.topic %>">
+				<a href="#carddetails?cardid=<%= card.id %>">
+					<h3 <% if(card.active!=true) { %>style="color:red;"<% } %>><%= card.title %></h3>
+						<p><% if(card.title && card.title!="") { %><%= card.title %><% } else { %>Kein Titel<% } %><% if(card.price!="" && card.price!=undefined) { %>(<%= card.price %> <%= window.system.currency %>)<% } %></p>
+					<p><% if (card.uploaderdata && card.uploaderdata.fullname) { %><%= card.uploaderdata.fullname %><% } else { %>Autor unbekannt<% } %></p>
+				</a>
+			</li>
+		<% } %>
+	<% }); %>
+</ul>

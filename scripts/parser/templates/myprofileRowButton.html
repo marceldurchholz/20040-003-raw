@@ -1,0 +1,7 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<a href="#user">
+		<img style="width:60px;height:60px;padding:10px 0px 0px 10px;" src="<% if (user.pictureurl && user.pictureurl!="") { %><%= user.pictureurl %><% } else { %>images/avatar.jpg<% } %>">
+		<h2>Mein Profil (<span data-pastload-module="simpletext" data-pastload-field="fullnameorusername"></span>)</h2>
+		<p>Persönliche Daten, Beschreibung und Fachbereiche</p>
+	</a>
+<% }); %>

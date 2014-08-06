@@ -1,0 +1,18 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<ul data-role="listview" data-inset="true" data-inset="true" data-theme="a" data-corners="false" data-shadow="false" data-divider-theme="h">
+		<li data-role="list-divider">Kontaktdaten<!--<span class="ui-li-count">2</span>--></li>
+		<li>
+			<a href="#usercontact?userid=<%= user.id %>">
+				<% if ( ((user.companyname || "") + (user.fullname || "") + (user.street || "") + (user.zip || "") + (user.city || "")) =="" ) { %><p>Noch keine Kontaktdaten...</p><% } %>
+				<p>
+					<span data-pastload-module="simpletext" data-pastload-field="companynameorfullname"></span>
+				</p>
+				<p>
+					<span data-pastload-module="simpletext" data-pastload-field="zipcity"></span>
+				</p>
+				<% if (user.street && user.street!="") { %><p><%= user.street %></p><% } else { %><% } %>
+				<!--<p class="ui-li-aside"><strong>6:24</strong>PM</p>-->
+			</a>
+		</li>
+	</ul>
+<% }); %>

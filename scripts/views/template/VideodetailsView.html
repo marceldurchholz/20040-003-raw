@@ -1,0 +1,54 @@
+<div data-theme="h" data-role="header" data-position="fixed">
+    <a id="btnBack" href="#" data-icon="back" data-iconpos="notext">Zurück</a>
+    <h1><%= page_vars.header_vars.title %></h1>
+    <% if(checkRole("user")==true) { %>
+		<a data-ajax="true" href="#panel_right" data-icon="gear" data-iconpos="notext">Funktionen</a>
+	<% } else { %>
+		<a data-ajax="true" href="#panel_right" data-icon="gear" data-iconpos="notext">Login</a>
+	<% } %>
+</div>
+
+<div data-role="content">
+
+	<% console.log(page_vars) %>
+		
+	<ul id="videosListView" data-role="listview" data-theme="a" data-divider-theme="b">
+	
+		<% _.each(page_vars.stream_data, function(video) { %>
+			<% if (video.active==true || window.me.id == video.uploader) { %>
+
+				<h3 class="ui-bar ui-bar-b" style="border-top-width:0px;text-align:center;"><%= video.topic %></h3>
+				<div id="youtubebox" style="width:100%;">
+					<iframe id="youtube_player_1" class="youtube-player" style="width:100%;" type="text/html" src="" frameborder="0" allowfullscreen></iframe>
+				</div>
+				<div id="videobox" style="background-color:#000;">
+					<div id="videoboxinnerdiv">
+						<video id="video_player_1" class="video-js vjs-default-skin" poster="<%= video.thumbnailurl %>" data-setup="{}"></video>
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<div style="width:100%;height:10px;overflow:visible;text-align:center;">
+					<img src="images/shadow.png" style="width:100%;height:20px;">
+				</div>
+				<div class="clear"></div>
+
+					<% if(Math.round(video.price)>0) { %>
+					<% } %>
+					<% if( (window.me.purchases && _.indexOf(window.me.purchases, video.id)>-1) || video.uploaderdata.id == me.id) { %>
+					<% } else { %>
+						<div style="padding:0px 0px 0px 0px;"><a data-inset="false" data-corners="false" data-videoid="<%= video.id %>" id="loadvideobutton" class="loadvideobutton" data-theme="b" data-role="button">KAUFEN: <%= video.price %> Coins</a></div>
+					<% } %>
+
+				<% if (video.uploaderdata.id==window.me.id || window.me.master==true) { %>
+					<div class="clear" style="padding:10px 0px 10px 0px;">
+					<a data-inset="false" data-corners="false" data-mini="true" data-videoid="<%= video.id %>" id="setusergroupbtn" class="setusergroupbtn" data-theme="b" data-role="button">Zugriffrechte einschränken</a>
+				<% } %>
+				<div class="clear"></div>
+
+			<% } %>
+		<% }); %>
+		
+	</ul>
+	
+</div>

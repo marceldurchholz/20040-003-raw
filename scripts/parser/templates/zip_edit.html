@@ -1,0 +1,5 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<span data-placeholder="Klicken zum Ändern..." data-posteditable="true" data-postfield="zip" data-posturl="<%= window.dpd_server+"users/?id="+user.id+"" %>">
+		<p data-pastload-url="simpletext" data-pastload-field="zip" style="white-space:normal;"><% if (user.zip && user.zip!="") { %><%= user.zip %><% } else { %><% } %></p>
+	</span>
+<% }); %>

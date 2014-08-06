@@ -1,0 +1,5 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<span data-placeholder="Klicken zum Ändern..." data-posteditable="true" data-postfield="city" data-posturl="<%= window.dpd_server+"users/?id="+user.id+"" %>">
+		<p data-pastload-url="simpletext" data-pastload-field="city" style="white-space:normal;"><% if (user.city && user.city!="") { %><%= user.city %><% } else { %><% } %></p>
+	</span>
+<% }); %>

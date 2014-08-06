@@ -1,0 +1,8 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<% if (checkAppConfig("wall")==true) { %>
+		<a href="#learningstream">
+		<img style="padding:10px 0px 0px 10px;" src="images/icon-cloud-storage-001-60x60.png">
+		<h2>Pinnwand</h2>
+		<p>Ausgewählte Inhalte (chronologisch)</p></a>
+	<% } %>
+<% }); %>

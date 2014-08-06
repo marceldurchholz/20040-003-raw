@@ -1,0 +1,6 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<a href="#planer?userid=<%= window.me.id %>">
+	<img style="padding:10px 0px 0px 10px;" src="images/icon-calendar-002-resized-60.png">
+	<h2>Termine</h2>
+	<p>Veranstaltungstermine, -orte und -zeiten</p></a>
+<% }); %>

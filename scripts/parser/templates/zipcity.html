@@ -1,0 +1,8 @@
+<% if (page_vars.streamData.userArray) _.each(page_vars.streamData.userArray, function(user) { %>
+	<% if (user.zip && user.zip!="") { %>
+		<span data-pastload-module="simpletext" data-pastload-field="zip"></span> 
+	<% } %>
+	<% if (user.city && user.city!="") { %>
+		 <span data-pastload-module="simpletext" data-pastload-field="city"></span>
+	<% } %>
+<% }); %>
