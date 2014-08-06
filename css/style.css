@@ -15,7 +15,6 @@ body > * {
 	-webkit-highlight: none !important; 
 	-webkit-tap-highlight-color: rgba(0,0,0,0) !important;
 }
-
 div[data-role="page"] {
 	-webkit-overflow-scrolling: touch !important;
 	padding-top: 41px !important;
@@ -26,7 +25,6 @@ div[data-role="page"], body, #container {
 	-webkit-transform: translateZ(0px) !important;
 	-webkit-backface-visibility: hidden; 
 }
-
 #container {
 	background: url(../images/quadbg001.jpg) no-repeat center center fixed !important;
 	-webkit-background-size: cover;
@@ -53,14 +51,12 @@ div[data-role="content"] {
 	left: 0;
 	right: 0;
 }
-
 a {
 	text-decoration: none !important;
 }
 label {
 	font-weight:normal !important;
 }
-
 .overflow-visible {
 	overflow:visible;
 }
@@ -71,14 +67,12 @@ label {
 .ui-overlay-shadow {
 	b/ackground: none;
 }
-
 #learningstreamListView > .ui-li-static, #learningstreamListView > .ui-li-divider, #learningstreamListView > li > a.ui-btn {
 	border-left-width: none !important;
 	border-right-width: none !important;
     border-style: none !important;
     border-width: 1px 0 0;
 }
-
 .learningstreamFunctionArea, .learningstreamCommentArea, .learningstreamFunctionArea > a, .learningstreamCommentArea > a {
 	font-size:0.75em !important;
 	font-weight:normal !important;
@@ -89,7 +83,6 @@ label {
 .learningstreamFunctionArea, .learningstreamCommentArea {
 	padding-bottom:10px !important;
 }
-
 .likeLink, .messageLink, .forwardLink, .linkCdate {
 	text-decoration:none !important;
 	font-weight:normal !important;
@@ -110,7 +103,6 @@ label {
 	font-weight:bold !important;
 	text-decoration:underline !important;
 }
-
 .likeCountLink, .likeCountTextLink {
 	padding:4px !important;
 	font-weight: normal !important;
@@ -123,18 +115,15 @@ label {
 .likeCountTextLink:hover {
 	text-decoration:underline !important;
 }
-
 .likeCountLink > img, .likeCountTextLink > img {
 	padding-right:5px !important;
 }
-
 .learningstreamGapArea {
 	padding-bottom:10px !important;
 	background:none !important;
 	background-color:transparent !important;
 	border:none !important;
 }
-
 .listviewTextUnderThumbnbailLeft {
 	color:#999;
 	position: absolute;
@@ -146,9 +135,8 @@ label {
 	text-align:center;
 	font-size:0.6em !important;
 }
-
 #learningstreamListView li[role="heading"], #learningstreamListView li[role="content"] a, #learningstreamListView li[role="learningstreamFunctionArea"], #learningstreamListView li.learningstreamCommentArea, #learningstreamListView li.learningstreamSubheading {
-	/* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important; */
+	
 	border-left: 1px solid rgba(0, 0, 0, 0.2) !important;
 	border-right: 1px solid rgba(0, 0, 0, 0.2) !important;
 	-moz-box-shadow:    0px 2px 0px 0px rgba(0, 0, 0, 0.2) !important;
@@ -156,34 +144,27 @@ label {
 	box-shadow:         0px 2px 0px 0px rgba(0, 0, 0, 0.2) !important;
 	b/ackground-color:lightgreen !important;
 }
-
 #learningstreamListView li[role="heading"], #learningstreamListView li.learningstreamSubheading {
 	border-top: 1px solid rgba(0, 0, 0, 0.2) !important;
 }
 #learningstreamListView li.learningstreamFunctionArea, #learningstreamListView li.learningstreamCommentArea {
 	border-top: 1px solid #efefef !important;
 }
-
 .input_classic {
 	margin:-8px -4px !important;
 	padding:8px 4px !important;
 	width:100% !important;
 	border: 1px solid #ccc;
 }
-
 .commentForm {
 	padding:8px !important;
 }
-
 .hidden {
 	display:none !important;
 }
-
 .font_small {
 	font-size:0.6em !important;
 }
-
-
 ul.sendMessage > textarea::-webkit-scrollbar {
 	width: 0px;
 	height: 10px;
@@ -195,25 +176,20 @@ ul.sendMessage > textarea {
 	overflow-y:visible !important;
 	resize: none !important;
 }
-
 .ui-controlgroup-controls {
 	width:100% !important;
 }
-
 span[data-pastload-module="simpletext"] {
 	width:100% !important;
 }
-
 ////////////////////////////////////////////////////////////////////////////////////////////
-//* FACEBOOK STYLED LOADER */
+/
 ////////////////////////////////////////////////////////////////////////////////////////////
-//* http://www.marcofolio.net/css/css3_quickie_the_facebook_loading_animation.html */
+/
 ////////////////////////////////////////////////////////////////////////////////////////////
-
 #pastloadloadingbar, #pastloadloadingbar > * {
 	-webkit-transform: translateZ(0);
 }
-
 .loader { 
 	position:relative;
 	top:0px;
@@ -222,21 +198,18 @@ span[data-pastload-module="simpletext"] {
 	height:34px;
 }
  
-/* Initial state */
 .bar {
     background-color:#99aaca; border:1px solid #96a6c9; float:left;
     margin-right:4px; margin-top:6px; width:6px; height:18px;
-    /* Set the animation properties */
+    
     animation-duration: 1s;
     animation-iteration-count: infinite;
     animation-name: loadingbar;
 }
  
-/* Delay both the second and third bar at the start */
 .loader .bar:nth-child(2) { animation-delay: 0.1s; }
 .loader .bar:nth-child(3) { animation-delay: 0.2s; }
  
-/* The actual animation */
 @keyframes loadingbar {
      0% { }
     10% { margin-top:5px; height:22px; border-color:#d1d8e6; background-color:#bac5db; }
@@ -246,8 +219,6 @@ span[data-pastload-module="simpletext"] {
     50% { margin-top:5px; height:22px; }
     60% { margin-top:6px; height:18px; }
     70% { }
-    /* Missing frames will cause the extra delay */
+    
     100% { }
 }
-
-
