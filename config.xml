@@ -111,6 +111,8 @@
     <preference name="FadeSplashScreen" value="false" />
     <!--
 	<preference name="FadeSplashScreenDuration" value="0" />
+	-->
+	<!--
 	<preference name="GapBetweenPages" value="0"/>
 	<preference name="PageLength" value="0"/>
 	<preference name="PaginationBreakingMode" value="page"/>

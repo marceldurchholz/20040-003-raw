@@ -9,11 +9,6 @@ define(['collections/sidemenusCollection', 'selfies/navigation/PanelrightView', 
 			) {
 
 		var MobileRouter = Backbone.Router.extend({
-			
-			
-			// my test
-			
-			
 			/***** TODOs *****/
 			//  http://demoinfinite.appspot.com/
 			//      Responsive Infinite Scroll (DEMO SITE)
