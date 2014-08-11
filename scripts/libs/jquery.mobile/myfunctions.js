@@ -389,7 +389,7 @@ function keyboardDidHide() {
 	console.log('keyboardDidHide');
 	window.keyboardvisible = false;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
-	$('.ui-page-active > .ui-content').find('#sendMessage').attr('css','');
+	$('.ui-page-active > .ui-content').find('#sendMessage').attr('style','').css('background-color','lightred');
 }
 
 function fb_desktop_init() {
