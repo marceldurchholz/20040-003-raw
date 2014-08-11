@@ -179,6 +179,7 @@ $(document).ready(function() {
 			// form.submit();
 		}
 		
+		/*
 		// $(e.currentTarget).scrollTop(9999);
 		$('.ui-page-active > .ui-content').scrollTo( $(e.currentTarget), 100 );
 		var ul = $('ul#sendMessage');
@@ -207,6 +208,7 @@ $(document).ready(function() {
 		// console.log('li_beforetop: '+li_beforetop);
 		// console.log('li_top: '+li_top);
 		// console.log('new_top: '+new_top);
+		*/
 	});
 	
 	$(document).off('submit','.messageForm').on('submit','.messageForm',function(e){
@@ -239,11 +241,13 @@ $(document).ready(function() {
 					cordova.plugins.Keyboard.disableScroll(true);
 					console.log("cordova.plugins.Keyboard.disableScroll(true);");
 				}
+				$('.ui-page-active > .ui-content').find('#sendMessage').css('position','fixed').css('bottom','0').css('margin-bottom','216px').css('width','100%');
 			}});
 		}
 		if (e.type=="focusout") {
 			$('.ui-page-active > .ui-content').find('#bottomGap').css('height','50px');
 			console.log("$('.ui-page-active > .ui-content').find('#bottomGap').css('height','50px');");
+			if (!isMobile.any()) $('.ui-page-active > .ui-content').find('#sendMessage').attr('style','').css('background-color','lightred');
 		}
 	});
 	
