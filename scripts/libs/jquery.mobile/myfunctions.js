@@ -374,7 +374,7 @@ function keyboardDidShow() {
 		cordova.plugins.Keyboard.disableScroll(false);
 		console.log("cordova.plugins.Keyboard.disableScroll(false); B");
 	}
-	$('.ui-page-active > .ui-content').scrollTo( $('.ui-page-active > .ui-content').find('#myMsgBox') , {offset: {top:0, left:0} , onAfter:function(){
+	$.mobile.activePage.find('.ui-conten').scrollTo( $('.ui-page-active > .ui-content').find('#myMsgBox') , {offset: {top:0, left:0} , onAfter:function(){
 		console.log("$('.ui-page-active > .ui-content').scrollTo( $('.ui-page-active > .ui-content').find('#myMsgBox') , {offset: {top:0, left:0} , onAfter:function(){ B");
 		if (isMobile.any()) {
 			cordova.plugins.Keyboard.disableScroll(true);
@@ -389,7 +389,7 @@ function keyboardDidHide() {
 	console.log('keyboardDidHide');
 	window.keyboardvisible = false;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
-	$('.ui-page-active > .ui-content').find('#sendMessage').attr('style','').css('background-color','lightred');
+	$.mobile.activePage.find('#sendMessage').attr('style','').css('background-color','lightred');
 }
 
 function fb_desktop_init() {

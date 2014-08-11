@@ -230,24 +230,24 @@ $(document).ready(function() {
 		if (e.type=="focusinmanual") {
 		}
 		if (e.type=="focusin") {
-			$('.ui-page-active > .ui-content').find('#bottomGap').css('height','266px');
+			$.mobile.activePage.find('#bottomGap').css('height','378px');
 			if (isMobile.any()) {
 				cordova.plugins.Keyboard.disableScroll(false);
 				console.log("cordova.plugins.Keyboard.disableScroll(false);");
 			}
-			$('.ui-page-active > .ui-content').scrollTo( $('.ui-page-active > .ui-content').find('#myMsgBox') , {offset: {top:0, left:0} , onAfter:function(){
+			$.mobile.activePage.find('.ui-content').scrollTo( $.mobile.activePage.find('#myMsgBox') , {offset: {top:0, left:0} , onAfter:function(){
 				console.log("$('.ui-page-active > .ui-content').scrollTo( $('.ui-page-active > .ui-content').find('#myMsgBox') , {offset: {top:0, left:0} , onAfter:function(){");
 				if (isMobile.any()) {
 					cordova.plugins.Keyboard.disableScroll(true);
 					console.log("cordova.plugins.Keyboard.disableScroll(true);");
 				}
-				$('.ui-page-active > .ui-content').find('#sendMessage').css('position','fixed').css('bottom','0').css('margin-bottom','216px').css('width','100%');
+				$.mobile.activePage.find('#sendMessage').css('position','fixed').css('bottom','0').css('margin-bottom','216px').css('width','100%');
 			}});
 		}
 		if (e.type=="focusout") {
-			$('.ui-page-active > .ui-content').find('#bottomGap').css('height','50px');
+			$.mobile.activePage.find('#bottomGap').css('height','50px');
 			console.log("$('.ui-page-active > .ui-content').find('#bottomGap').css('height','50px');");
-			if (!isMobile.any()) $('.ui-page-active > .ui-content').find('#sendMessage').attr('style','').css('background-color','lightred');
+			if (!isMobile.any()) $.mobile.activePage.find('#sendMessage').attr('style','').css('background-color','lightred');
 		}
 	});
 	
