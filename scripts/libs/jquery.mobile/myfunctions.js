@@ -355,40 +355,6 @@ function loadNativeSpecific() {
 	}
 }
 
-function keyboardWillShow(o,e) {
-	// cordova.plugins.Keyboard.disableScroll(false);
-	cordova.plugins.Keyboard.disableScroll(false);
-	cordova.plugins.Keyboard.disableScroll(true);
-	console.log('keyboardWillShow');
-	// alert('keyboardWillShow');
-	console.log(o);
-	console.log(e);
-}
-function keyboardWillHide(o,e) {
-	// cordova.plugins.Keyboard.disableScroll(true);
-	console.log('keyboardWillShow');
-	// alert('keyboardWillShow');
-	console.log(o);
-	console.log(e);
-}
-function keyboardDidShow(o,e) {
-	// cordova.plugins.Keyboard.disableScroll(false);
-	window.keyboardvisible = true;
-	console.log('window.keyboardvisible: '+window.keyboardvisible);
-	console.log('keyboardDidShow');
-	// alert('keyboardDidShow');
-	console.log(o);
-	console.log(e);
-}
-function keyboardDidHide(o,e) {
-	window.keyboardvisible = false;
-	console.log('window.keyboardvisible: '+window.keyboardvisible);
-	console.log('keyboardDidHide');
-	// alert('keyboardDidHide');
-	console.log(o);
-	console.log(e);
-}
-
 function native_keyboard_manipulation() {
 	cordova.plugins.Keyboard.disableScroll(true);
 	cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -396,50 +362,22 @@ function native_keyboard_manipulation() {
 	$('body').on('keyboardDidShow', keyboardDidShow);
 	$('body').on('keyboardWillHide', keyboardWillHide);
 	$('body').on('keyboardDidHide', keyboardDidHide);
-	/*
-	cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-	cordova.plugins.Keyboard.disableScroll(true);
-	*/
-	/*
-	Keyboard.shrinkView(false);
-	Keyboard.hideFormAccessoryBar(true);
-	Keyboard.disableScrollingInShrinkView(true);
-	Keyboard.onshowing = function () {
-		// Describe your logic which will be run each time when keyboard is about to be shown.
-		alert('Keyboard.onshowing');
-	}
-	Keyboard.onhiding = function () {
-		// Describe your logic which will be run each time when keyboard is about to be closed.
-		alert('Keyboard.onhiding');
-	}
-	Keyboard.onshow = function () {
-		// Describe your logic which will be run each time keyboard is shown.
-		window.keyboardvisible = true;
-		console.log('window.keyboardvisible: '+window.keyboardvisible);
-	}
-	Keyboard.onhide = function () {
-		// Describe your logic which will be run each time keyboard is closed.
-		window.keyboardvisible = false;
-		console.log('window.keyboardvisible: '+window.keyboardvisible);
-	}
-	*/
-	/*
-	window.addEventListener('native.keyboardshow', function(ek) {
-		console.log('Keyboard height is: ' + ek.keyboardHeight);
-		window.keyboardvisible = true;
-		console.log('window.keyboardvisible: '+window.keyboardvisible);
-		// $('.ui-page-active > .ui-content').scrollTo( '+='+ek.keyboardHeight+'px', 100 );
-		// $(".ui-page-active > .ui-content").css('overflow-y','hidden');
-	}, false);
-	window.addEventListener('native.keyboardhide', function(ek) {
-		console.log('Keyboard is hidden');
-		window.keyboardvisible = false;
-		console.log('window.keyboardvisible: '+window.keyboardvisible);
-		// $(".ui-page-active > .ui-content").css('overflow-y','auto');
-		// $(".ui-page-active > .ui-content").trigger("focus");
-		// $(document).find('.ui-page-active > .ui-content').trigger("focus");
-	}, false);
-	*/
+}
+function keyboardWillShow() {
+	console.log('keyboardWillShow');
+}
+function keyboardDidShow() {
+	console.log('keyboardDidShow');
+	window.keyboardvisible = true;
+	console.log('window.keyboardvisible: '+window.keyboardvisible);
+}
+function keyboardWillHide() {
+	console.log('keyboardWillShow');
+}
+function keyboardDidHide() {
+	console.log('keyboardDidHide');
+	window.keyboardvisible = false;
+	console.log('window.keyboardvisible: '+window.keyboardvisible);
 }
 
 function fb_desktop_init() {

@@ -219,113 +219,39 @@ $(document).ready(function() {
 
 	// viewport meta fix for ios - could cause some issues on android 
 	// http://nerd.vasilis.nl/prevent-ios-from-zooming-onfocus/	
-	/*
-	// $('input, select, textarea').bind('focus blur', function(e) {
-	// $('input, select, textarea').bind('focus blur', function(e) {
-	$(document).off('blur','input, select, textarea').on('blur','input, select, textarea',function(e) {
-		console.log("$('input, select, textarea').bind('focus blur', function(e) {");
-		console.log(e);
-	});
-	*/
-	
-	/*
-	$(document).on('focus', 'textarea', function(e) {
-	  len = e.target.value.length
-	  e.target.setSelectionRange(len, len)
-	});
-	*/
-
 	$(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], select, textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], select, textarea',function(e) {
-		console.log("$('input, select, textarea').bind('focus blur', function(e) {");
+		console.log("$(document).off('focus focusinmanual blur','input[type=text], input[type=password], select, textarea').on('focus focusinmanual blur','input[type=text], input[type=password], select, textarea',function(e) {...");
 		console.log(e);
-		// var scrolltoonfocus = $(e.currentTarget).attr('scrolltoonfocus');
-		// if (!scrolltoonfocus || scrolltoonfocus!="true") return(false);
 		var $viewportMeta = $('meta[name="viewport"]');
-		// console.log(e.type);
-		// if (e.type=="blur") alert('blurred!!!');
 		$viewportMeta.attr('content','user-scalable=no,width=device-width,height=device-height,initial-scale=1,maximum-scale=' + ((e.type == 'blur' || e.type == 'focusout') ? 10 : 1) + ',target-densitydpi=device-dpi');
+		console.log($('meta[name="viewport"]'));
 		if (e.type=="focusinmanual") {
-			// if (!isMobile.any()) $('.ui-page-active > .ui-content').scrollTo( $(e.target) , 0, {offset: {top:-250, left:0}} );
-			/*
-			if (isMobile.any()) {
-				len = e.target.value.length;
-				e.target.setSelectionRange(len, len);
-			}
-			*/
 		}
 		else if (e.type=="focusin") {
-			
-			// if attr('preventScrollOnFocus'==true) {}
-			// else {...
-			// setTimeout(function() {
-				// if (!isMobile.any()) $('.ui-page-active > .ui-content').scrollTo( $(e.target) , 1000, {offset: {top:-250, left:0}} );
-				if (isMobile.any()) {
-					cordova.plugins.Keyboard.disableScroll(false);
-				}
-				$('.ui-page-active > .ui-content').scrollTo( $(e.target) , {offset: {top:-250, left:0} , onAfter:function(){
-					if (isMobile.any()) {
-						cordova.plugins.Keyboard.disableScroll(true);
-					}
-				}});
-				
-			// }, 1000);
-
-			// len = e.target.value.length;
-			// e.target.setSelectionRange(len, len);
-			/*
 			if (isMobile.any()) {
-				len = e.target.value.length;
-				e.target.setSelectionRange(len, len);
+				cordova.plugins.Keyboard.disableScroll(false);
+				console.log("cordova.plugins.Keyboard.disableScroll(false);");
 			}
-			*/
-
-			// $('.ui-page-active > .ui-content').scrollTo( '-=100px' , {duration:100} );
-			/*
-			console.log($(e.currentTarget));
-			console.log($(e.currentTarget).position());
-			var offset = $(e.currentTarget).offset();
-			var goto_offset_y = parseInt(offset.top,0);
-			$('.ui-page-active > .ui-content').scrollTo( {top:goto_offset_y+'', left:'0px'} , 100 );
-			*/
-			/*
-			var offset = $(e.currentTarget).position();
-			var goto_offset_y = parseInt(offset.top,0) - 100;
-			if (goto_offset_y<0) goto_offset_y=0;
-			console.log('goto_offset_y: '+goto_offset_y);
-			$('.ui-page-active > .ui-content').scrollTo( {top:goto_offset_y+'px', left:'0px'} , 100 );
-			*/
+			$('.ui-page-active > .ui-content').scrollTo( $(e.target) , {offset: {top:-250, left:0} , onAfter:function(){
+				console.log("$('.ui-page-active > .ui-content').scrollTo( $(e.target) , {offset: {top:-250, left:0} , onAfter:function(){");
+				if (isMobile.any()) {
+					cordova.plugins.Keyboard.disableScroll(true);
+					console.log("cordova.plugins.Keyboard.disableScroll(true);");
+				}
+			}});
 		}
 	});
 	
-	function closeKeyboardIfOpenedAndMobile() {
+	$(document).off('touchmove','.ui-page-active > .ui-content').on('touchmove','.ui-page-active > .ui-content',function(e) {
 		if (isMobile.any()) {
-			// console.log('window.keyboardvisible: '+window.keyboardvisible);
-			// console.log('cordova.plugins.Keyboard.isVisible: '+cordova.plugins.Keyboard.isVisible);
 			if (window.keyboardvisible==true) {
-				console.log('Uhhhhh.. TOUCHMOVED DURING Damn Keyboard Interaction!!!');
-				// console.log(e);
-				// cordova.plugins.Keyboard.close();
-				// hideKeyboard();
-				cordova.plugins.Keyboard.close();
-			}
-		}
-	}
-	$('body').off('touchmove','.ui-page-active > .ui-content').on('touchmove','.ui-page-active > .ui-content',function(e) {
-		closeKeyboardIfOpenedAndMobile();
-	});
-	
-	/*
-	$(document).off('swipedown','.ui-page-active > .ui-content').on('swipedown','.ui-page-active > .ui-content',function(e) {
-		if (isMobile.any()) {
-			console.log('window.keyboardvisible: '+window.keyboardvisible);
-			console.log('cordova.plugins.Keyboard.isVisible: '+cordova.plugins.Keyboard.isVisible);
-			if (cordova.plugins.Keyboard.isVisible || window.keyboardvisible==true) {
-				console.log('Uhhhhh.. SWIPEDOWN DURING Damn Keyboard Interaction!!!');
+				console.log("Uhhhhh.. TOUCHMOVED DURING Damn Keyboard Interaction!!!");
 				console.log(e);
+				cordova.plugins.Keyboard.close();
+				console.log("cordova.plugins.Keyboard.close();");
 			}
 		}
 	});
-	*/
 	
 	// $(document).off('dblclick','.ui-page-active > .ui-content').on('dblclick','.ui-page-active > .ui-content',function(e) {
 	
