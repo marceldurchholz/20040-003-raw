@@ -370,6 +370,18 @@ function keyboardDidShow() {
 	console.log('keyboardDidShow');
 	window.keyboardvisible = true;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
+	$('#bottomGap').css('height','266');
+	if (isMobile.any()) {
+		cordova.plugins.Keyboard.disableScroll(false);
+		console.log("cordova.plugins.Keyboard.disableScroll(false); B");
+	}
+	$('.ui-page-active > .ui-content').scrollTo( $('#myMsgBox') , {offset: {top:0, left:0} , onAfter:function(){
+		console.log("$('.ui-page-active > .ui-content').scrollTo( $('#myMsgBox') , {offset: {top:0, left:0} , onAfter:function(){ B");
+		if (isMobile.any()) {
+			cordova.plugins.Keyboard.disableScroll(true);
+			console.log("cordova.plugins.Keyboard.disableScroll(true); B");
+		}
+	}});
 }
 function keyboardWillHide() {
 	console.log('keyboardWillShow');

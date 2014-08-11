@@ -232,8 +232,8 @@ $(document).ready(function() {
 				cordova.plugins.Keyboard.disableScroll(false);
 				console.log("cordova.plugins.Keyboard.disableScroll(false);");
 			}
-			$('.ui-page-active > .ui-content').scrollTo( $(e.target) , {offset: {top:-250, left:0} , onAfter:function(){
-				console.log("$('.ui-page-active > .ui-content').scrollTo( $(e.target) , {offset: {top:-250, left:0} , onAfter:function(){");
+			$('.ui-page-active > .ui-content').scrollTo( $('#myMsgBox') , {offset: {top:0, left:0} , onAfter:function(){
+				console.log("$('.ui-page-active > .ui-content').scrollTo( $('#myMsgBox') , {offset: {top:0, left:0} , onAfter:function(){");
 				if (isMobile.any()) {
 					cordova.plugins.Keyboard.disableScroll(true);
 					console.log("cordova.plugins.Keyboard.disableScroll(true);");

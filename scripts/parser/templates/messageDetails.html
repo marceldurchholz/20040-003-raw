@@ -1,8 +1,8 @@
 <% console.log(page_vars.streamData) %>
 <% if (page_vars.streamData.messageArray) _.each(page_vars.streamData.messageArray, function(message) { %>
 	<ul data-role="listview" data-inset="true" data-theme="a" data-icon="false" data-corners="true" data-shadow="true">
-		<li style="m/in-height:80px !important;border:3px dotted red;">
-			<a style="m/in-height:80px !important;width:auto !important;" data-ajax="true" href="#messagedetails?messageid=<%= message.id %>">
+		<li style="border:3px dotted red;">
+			<a style="width:auto !important;" data-ajax="true" href="#messagedetails?messageid=<%= message.id %>">
 				<img src="<% if(message.senderdata.pictureurl && message.senderdata.pictureurl!="") { %><%= message.senderdata.pictureurl %><% } else { %>images/avatar.jpg<% } %>" style="padding:20px !important;height:60px !important;width:60px !important;">
 				<h2><% if(message.senderdata.fullname && message.senderdata.fullname!="") { %><%= message.senderdata.fullname %><% } else { %><%= message.senderdata.username %><% } %></h2>
 				<p style="white-space:pre-line;"><%= message.content %><div style="clear:both:float:right;right:0px;bottom:5px;position:inherit;text-align:right;color:#bbb;font-size:0.7em;padding-left:20px;width:auto !important;">15:45</div></p>
