@@ -235,7 +235,7 @@ $(document).ready(function() {
 	});
 	*/
 
-	$(document).off('focus focusinmanual blur','input, select, textarea').on('focus focusinmanual blur','input, select, textarea',function(e) {
+	$(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], select, textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], select, textarea',function(e) {
 		console.log("$('input, select, textarea').bind('focus blur', function(e) {");
 		console.log(e);
 		// var scrolltoonfocus = $(e.currentTarget).attr('scrolltoonfocus');
