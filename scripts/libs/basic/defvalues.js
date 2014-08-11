@@ -88,6 +88,9 @@ window.me = new Object();
 window.btnBackClicked = 0;
 window.ajaxLoader = 0;
 window.pagecreated = 1;
+window.keyboardvisible = false;
+window.height_native_keyboard = 216;
+
 
 /***** Additional Variables *****/
 // f.e. used by pdfbrowser and childbrowser

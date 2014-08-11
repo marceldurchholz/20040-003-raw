@@ -95,11 +95,20 @@ $(document).off( "pagehide" ).on( "pagehide", function( event ) {
 });
 $(document).off( "pagebeforecreate" ).on( "pagebeforecreate", function( event ) {
 	if (window.heavyDebug) console.log('onpageevents.js >> $(document).off( "pagebeforecreate" ).on( "pagebeforecreate", function( event ) {...');
+	// $(document).find('.ui-page').show();
 	// handleGhostViews();
 });
 $(document).off( "pagecreate" ).on( "pagecreate", function( event ) {
+	// $(document).find('.ui-page').show();
 	if (window.heavyDebug) console.log('onpageevents.js >> $(document).off( "pagecreate" ).on( "pagecreate", function( event ) {...');
+	/*
 	// console.log('pagecreate | setting window.pagecreated = 1');
+	$.mobile.activePage.find('div[data-role="header"]').each(function(e) {
+		e.preventDefault();
+		$(this).attr('data-tap-toggle','false');
+		return(false);
+	});
+	*/
 	window.pagecreated = 1;
 });
 
@@ -122,6 +131,56 @@ $(document).off( "pagechange" ).on( "pagechange", function( event ) {
 
 $(document).off( "pageshow" ).on( "pageshow", function( event ) {
 	if (window.heavyDebug) console.log('onpageevents.js >> $(document).off( "pageshow" ).on( "pageshow", function( event ) {...');
+	
+	var bodypos = $('body').position();
+	var bodyposid = $('#body').position();
+	console.log('#+++++#++#+#+##++#+#+#+#+#+#+#+#+##+#++##+#++##+#+#++##+#+#+#+#+#+#++#+#+#+#+#+#');
+	console.log('bodypos:');
+	console.log(bodypos);
+	console.log('bodyposid:');
+	console.log(bodyposid);
+
+	
+	// alert($('#container').height());
+	// alert($('#container').first().height());
+	
+	/*
+	// create an object named "prefetchapp" which we can define methods on
+	var prefetchapp = {
+		// returns an array of each url to prefetch
+		prefetchLinks: function(){
+			// returns an array of each a.prefetch link's href
+			// var hrefs = $("a.prefetch").map(function(index, domElement){
+			// var hrefs = $("a").not("[prefetched='true']").map(function(index, domElement){
+			var hrefs = $.mobile.activePage.find("a[href]").not("[prefetched='true']").map(function(index, domElement){
+				$(this).attr('prefetched','true');
+				return $(this).attr("href");
+			});
+			// returns the array of hrefs without duplicates
+			return $.unique(hrefs);
+		},
+
+		// adds a link tag to the document head for each of prefetchLinks()
+		addPrefetchTags: function(){
+			// for each prefetchLinks() ...
+			this.prefetchLinks().each(function(index,Element){
+				// create a link element...
+				// alert('index');
+				$("<link />", {
+					// with rel=prefetch and href=Element...
+					rel: "prefetch", href: Element
+					// and append it to the end of the document head
+				}).appendTo("head");            
+			});
+		},
+	}
+	// when the document is ready...
+	// $(function(){
+		// alert('call the method we defined above.');
+		prefetchapp.addPrefetchTags();
+	// });
+	*/
+	
 });
 
 /********************** START: PLDR - Past Load Dynamic Recursion **********************/
@@ -144,7 +203,7 @@ function PLDR_begin(el) {
 		$.when(slideDownLoadingBar()).done(function(){
 		setTimeout(function() {
 			PLDR_recursion(el);
-		},1000);
+		},0);
 		}).fail(function() {
 		}).always(function() {
 		});
@@ -228,7 +287,7 @@ function foreach_async(PLDR_array,PLDR_foreach,PLDR_arraywalkDone) {
 			done();
 			// PLDR_createJqmPage();
 		// });
-		},1000);
+		},0);
 	}, PLDR_arraywalkDone);
 }
 function PLDR_finalAction() {
@@ -240,8 +299,6 @@ function PLDR_finalAction() {
 	PLDR_createJqmPage();
 	startBuildEditables($.mobile.activePage);
 	PLDR_resetCreated($.mobile.activePage);
-	// $.mobile.activePage.scrollTo( '0px', 1000 );
-	// $.mobile.activePage.scrollTo( $('ul').get(2).childNodes[20], 800 );
 }
 /********************** END: PLDR - Past Load Dynamic Recursion **********************/
 

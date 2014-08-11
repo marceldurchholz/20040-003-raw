@@ -35,7 +35,7 @@
 
 		// Scroll to the bottom, in case we're in a tall textarea
 		// (Necessary for Firefox and Google Chrome)
-		this.scrollTop = 999999;
+		// this.scrollTop = 999999;
 
 	  });
 

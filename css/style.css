@@ -191,9 +191,18 @@ ul.sendMessage > textarea::-webkit-scrollbar {
 ul.sendMessage > textarea {
 	
 }
+ul.sendMessage > li {
+	m/in-height:80px !important;padding-top:0px !important;padding-bottom:0px !important;background-color: rgb(240, 240, 240) !important;
+}
+
+ul.sendMessagea {
+	position:fixed;bottom:0;left:0;right:0;margin-bottom:0px !important;padding-top:16px !important;
+}
+
 #myMsgBox {
 	overflow-y:visible !important;
 	resize: none !important;
+	padding:8px 4px !important;margin:16px !important; margin-left:0px !important; border:1px solid #dedede !important;background-color: rgb(249, 249, 249) !important;max-height:200px !important;
 }
 
 .ui-controlgroup-controls {

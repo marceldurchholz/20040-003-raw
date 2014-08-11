@@ -2,7 +2,7 @@
 	<% if (page_vars.streamData.usersArray) _.each(page_vars.streamData.usersArray, function(user) { %>
 		<% if (user.active==true || window.me.id == user.sponsor) { %>
 			<li data-dbtype="user" class="<% if(window.me.id == user.sponsor) { %>swipetodeletetd<% } %>" data-devider-topic="<%= user.fullname.substring(0,1).toUpperCase() %>">
-				<a href="#user?usershowid=<%= user.id %>">
+				<a href="#userdetails?userdetailsid=<%= user.id %>">
 					<h3 <% if(user.active!=true) { %>style="color:red;"<% } %>><%= user.title %></h3>
 						<p><% if(user.fullname && user.fullname!="") { %><%= user.fullname %><% } else { %><%= user.username %><% } %><% if(user.kdnr!="" && user.kdnr!=undefined) { %>(<%= user.kdnr %>)<% } %></p>
 					<p><%= user.sponsordata.fullname %></p>

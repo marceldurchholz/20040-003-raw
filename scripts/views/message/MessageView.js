@@ -1,6 +1,6 @@
-define(['jquery', 'underscore', 'Backbone', 'text!views/template/MessagesView.html'],
+define(['jquery', 'underscore', 'Backbone', 'text!views/template/MessageView.html'],
     function ($, _, Backbone, videosTemplate) {
-        var MessagesViewVar = Backbone.View.extend({
+        var MessageViewVar = Backbone.View.extend({
 
 			events:{
                 'click a':global_a_clickHandler,
@@ -16,8 +16,8 @@ define(['jquery', 'underscore', 'Backbone', 'text!views/template/MessagesView.ht
 				_this.options.streamData.messageArray = _this.options.streamData.messageArray || new Array();
 				_this.options.query_vars = _this.options.query_vars || new Object();
 				window.me = window.me || new Object();
-				_this.options.query_vars.messageid = _this.options.query_vars.messageid || "";
 				_this.options.query_vars.userid = _this.options.query_vars.userid || window.me.id  || "";
+				_this.options.query_vars.messageid = _this.options.query_vars.messageid || "";
 			},
 			
 			fetchData:function(options) {
@@ -25,7 +25,7 @@ define(['jquery', 'underscore', 'Backbone', 'text!views/template/MessagesView.ht
 				var _this = this;
 				_this.options = options;
 				if (_this.options.query_vars.userid!=undefined && _this.options.query_vars.userid!="") {
-					$.when(collectUserData(_this.options.query_vars.userid) , collectmessageArray(_this.options.query_vars.userid)).done(
+					$.when(collectUserData(_this.options.query_vars.userid) , collectMessageArray(_this.options.query_vars.messageid)).done(
 					// $.when(collectmessageArray(_this.options.query_vars.userid)).done(
 						function(userArray,messageArray) {
 							_this.options.streamData.userArray = new Array(userArray);
@@ -51,7 +51,7 @@ define(['jquery', 'underscore', 'Backbone', 'text!views/template/MessagesView.ht
 								$(_this.$el).trigger('create');
 								d.resolve(_this);
 							} catch (e) {
-								require(['text!views/template/MessagesView.html'], function(_foundTemplateContent) {
+								require(['text!views/template/MessageView.html'], function(_foundTemplateContent) {
 									var _finalContent = _.template(_foundTemplateContent,{page_vars:_this.options}).replace('	','').replace(/\n|\r|\t/g, "");
 									_this.$el.html(_finalContent);
 									$(_this.$el).trigger('create');
@@ -71,5 +71,5 @@ define(['jquery', 'underscore', 'Backbone', 'text!views/template/MessagesView.ht
 			}
 
         });
-        return MessagesViewVar;
+        return MessageViewVar;
     });

@@ -130,7 +130,7 @@ function PLDR_createJqmPage() {
 		},
 	});
 	
-	$('ul.sendMessage').each(function() {
+	$.mobile.activePage.find('ul.sendMessage').each(function() {
 		var ul = $(this);
 		var ul_width = ul.width();
 		var li = ul.find('li');
@@ -144,25 +144,42 @@ function PLDR_createJqmPage() {
 		
 		// $($.mobile.activePage).find('.ui-content').scrollTo( $('.learningstreamSubheading[data-learningstreamid='+query_vars.id+']').prev().prev(), 200 );
 		
-		var active_page_content_height = $($.mobile.activePage).find('.ui-content').height();
-		var messages_area_height = ul.parent().height();
-		var li_top = parseInt(active_page_content_height,0) - parseInt(messages_area_height,0);
-		// var win_height = $(window).height();
-		// var li_pos_y = li.css('top');
-		if (li_top<0) li_top=0;
-		li.css('top',li_top+'px');
-		li.attr('data-beforeheight',li_height+'px');
-		li.attr('data-beforetop',li_top+'px');
-		li.attr('data-basetop',li_top+'px');
-		// alert(ul_width);
-		// alert(sendLink_width);
-		// alert(message_width);
-		// message.width(parseInt(ul_width,0) - parseInt(new_width,0));
-		$('.ui-page-active > .ui-content').scrollTo( $('#myMsgBox'), 1000 );
-		$('#myMsgBox').autosize();
+		/*
+		if (1==2 && !isMobile.any()) {
+			// var active_page_content_height = $($.mobile.activePage).find('.ui-content').height();
+			var active_page_content_height = $(this).closest('.ui-content').height();
+			alert('active_page_content_height: '+active_page_content_height);
+			var messages_area_height = ul.parent().height();
+			alert('messages_area_height: '+messages_area_height);
+			var li_top = parseInt(active_page_content_height,0) - parseInt(messages_area_height,0);
+			// var win_height = $(window).height();
+			// var li_pos_y = li.css('top');
+			if (li_top<0) li_top=0;
+			li.css('top',li_top+'px');
+			li.attr('data-beforeheight',li_height+'px');
+			li.attr('data-beforetop',li_top+'px');
+			li.attr('data-basetop',li_top+'px');
+			// alert(ul_width);
+			// alert(sendLink_width);
+			// alert(message_width);
+			// message.width(parseInt(ul_width,0) - parseInt(new_width,0));
+		}
+		*/
+		
+		try {
+			if ($.mobile.activePage.find('#nativeKeyboardGap').length) {
+				console.log("$.mobile.activePage.find('#nativeKeyboardGap').height() : "+$.mobile.activePage.find('#nativeKeyboardGap').height());
+				$.mobile.activePage.find('#nativeKeyboardGap').height(0);
+				console.log("$.mobile.activePage.find('#nativeKeyboardGap').height() NOW : "+$.mobile.activePage.find('#nativeKeyboardGap').height());
+			}
+		} catch(e) {
+			console.log("error while $.mobile.activePage.find('#nativeKeyboardGap').height(0)");
+			console.log(e);
+		}
 	});
 	
-	$.mobile.activePage.trigger("create");
+	$.mobile.activePage.find('.ui-content').trigger("create");
+	// $('#myMsgBox').autosize();
 
 	// $('.ui-page-active > .ui-content').scrollTo(1000000);
 			
@@ -174,7 +191,7 @@ function getQueryVarsFromElement(el) {
 	return(query_vars);
 }
 
-function likeToogleupdatDB(e) {
+function likeToggleupdatDB(e) {
 	var d = $.Deferred();
 	// e.preventDefault();
 	var el = $(e.currentTarget);
@@ -211,12 +228,12 @@ function likeToogleupdatDB(e) {
 	// return(false);
 	return d.promise();
 }
-function likeToogle(e) {
+function likeToggle(e) {
 	e.preventDefault();
 	var el = $(e.currentTarget);
 	var query_vars = getQueryVarsFromElement($(e.currentTarget));
 	// update database with my like...
-	$.when( likeToogleupdatDB(e) ) .done(function(response){
+	$.when( likeToggleupdatDB(e) ) .done(function(response){
 		var changeValueBy = 0;
 		if (response.action=="del") changeValueBy=-1;
 		if (response.action=="post") changeValueBy=+1;
@@ -241,7 +258,7 @@ function updateLikeCountFields(id,by) {
 	else if (nowCount>0) $('.linkCountLength[data-learningstreamid="'+id+'"]').parent().parent().removeClass('hidden');
 }
 
-function switchUserinterestInputClick(e) {
+function switchUserinterestInputChange(e) {
 	e.preventDefault();
 	if (window.heavyDebug) console.log("$(document).off('change','.switchUserinterestInput').on('change','.switchUserinterestInput',function(e){...");
 	var status = e.currentTarget.checked;
@@ -259,32 +276,68 @@ function switchUserinterestInputClick(e) {
 	return(false);
 }
 
-function commentAreaToogle(e) {
-	e.preventDefault();
-	// $('.learningstreamCommentArea[data-learningstreamid="'+getQueryVarsFromElement($(e.currentTarget)).id+'"]').toggleClass('hidden');
-	$('.learningstreamCommentArea[data-learningstreamid="'+getQueryVarsFromElement($(e.currentTarget)).id+'"]').toggleClass('hidden');
-	return(false);	
+function commentAreaToggle(e) {
+	if ($('.learningstreamCommentArea[data-learningstreamid="'+getQueryVarsFromElement($(e.currentTarget)).id+'"]').hasClass('hidden')) {
+		$('.learningstreamCommentArea[data-learningstreamid="'+getQueryVarsFromElement($(e.currentTarget)).id+'"]').toggleClass('hidden');
+	}
 }
 
 function messageLinkClick(e) {
-	var query_vars = getQueryVarsFromElement($(e.currentTarget));
-	try {
-		$($.mobile.activePage).find('.ui-content').scrollTo( $('.learningstreamSubheading[data-learningstreamid='+query_vars.id+']').prev().prev(), 200 );
-	} catch(e) {
-		// console.log(e);
-		try {
-			$($.mobile.activePage).find('.ui-content').scrollTo( $('.learningstreamSubheading[data-learningstreamid='+query_vars.id+']').prev(), 200 );
-		} catch(e) {
-			// console.log(e);
-		}
-	}	
-	// $.mobile.activePage.find("a[data-role='button']").each(function() {
-	setTimeout(function() {
+	// if (!isMobile.any()) {
+		$('.ui-page-active > .ui-content').scrollTo( $(e.currentTarget) , 1000, {offset: {top:-220, left:0} , onAfter:function(){
+			$(document).find('#comment_input_learningstream_'+getQueryVarsFromElement($(e.currentTarget)).id).trigger("focusinmanual");
+			commentAreaToggle(e);
+		} } );
+	// }
+	
+	// setTimeout(function() {
 		// only if commentArea is hidden
-		// if ($('.learningstreamCommentArea[data-learningstreamid="'+getQueryVarsFromElement($(e.currentTarget)).id+'"]').toggle()) commentAreaToogle(e);
-		if ($('.learningstreamCommentArea[data-learningstreamid="'+getQueryVarsFromElement($(e.currentTarget)).id+'"]').hasClass('hidden')) commentAreaToogle(e);
-		$('.commentInput[data-learningstreamid="'+query_vars.id+'"]').focus();
-	}, 500);
+		// if ($('.learningstreamCommentArea[data-learningstreamid="'+getQueryVarsFromElement($(e.currentTarget)).id+'"]').toggle()) commentAreaToggle(e);
+		// $('input[data-learningstreamid="'+query_vars.id+'"]').focus();
+		// console.log(query_vars);
+		// console.log(query_vars.id);
+		/*
+		var el = e.target;
+			console.log(el);
+			var val = el.getAttribute('scrolltoid') || '';
+			console.log(val);
+			var targetel = document.getElementById(val);
+			console.log(targetel);
+			var len = targetel.value.length;
+			console.log(len);
+			targetel.setSelectionRange(len, len);
+			// var len = e.target.value.length;
+			// e.target.setSelectionRange(len, len);
+		*/	
+		// if (!isMobile.any()) $(document).find('#comment_input_learningstream_'+getQueryVarsFromElement($(e.currentTarget)).id).focus();
+		/*
+		else {
+			var el = e.target;
+			console.log(el);
+			// var len = e.target.value.length;
+			// e.target.setSelectionRange(len, len);
+		}
+		*/
+		// console.log(getQueryVarsFromElement($(e.currentTarget)).id);
+		// console.log($('#comment_input_learningstreamid_'+query_vars.id+''));
+		// $('comment_input_learningstream_'+getQueryVarsFromElement($(e.currentTarget)).id+'').focus();
+		// $('comment_input_learningstream_'+getQueryVarsFromElement($(e.currentTarget)).id+'').tap();
+		// $('#comment_input_learningstream_'+getQueryVarsFromElement($(e.currentTarget)).id+'').hide();
+		/*
+		if (isMobile.any()) {
+			console.log('isMobile.any()');
+			console.log($('#comment_input_learningstream_'+getQueryVarsFromElement($(e.currentTarget)).id+''));
+			$('#comment_input_learningstream_'+getQueryVarsFromElement($(e.currentTarget)).id+'').focus();
+		}
+		else {
+			console.log('!isMobile.any()');
+			console.log($('#comment_input_learningstream_'+getQueryVarsFromElement($(e.currentTarget)).id+''));
+			 $('#comment_input_learningstream_'+getQueryVarsFromElement($(e.currentTarget)).id+'').focus(function () { this.setSelectionRange(0, 9999); return false; } ).mouseup( function () { return false; });
+		}
+		// $('#comment_input_learningstreamid_'+query_vars.id+'').focusin();
+		// $('input_data-learningstreamid_"'+query_vars.id+'"]').hide('');
+		*/
+	// }, 0);
 
 	// $($.mobile.activePage).find('.ui-content').scrollTo( '200px', 300 );
 }
@@ -298,18 +351,9 @@ function loadNativeSpecific() {
 		hideCordovaSplashScreen();
 		preventScreenSleep();
 		
-		/*
-		Keyboard.shrinkView(false);
-		Keyboard.hideFormAccessoryBar(true);
-		Keyboard.disableScrollingInShrinkView(true);
-		Keyboard.onshowing = function () {
-			// Describe your logic which will be run each time keyboard is shown.
-			// console.log('showing keyboard');
-		}
-		*/
-		
-		cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-		cordova.plugins.Keyboard.disableScroll(true);
+		if (window.iosShowStatusBar==true) iosModifyStatusBar();
+		// cordova.plugins.Keyboard.disableScroll(false);
+		native_keyboard_manipulation();
 		
 		// fb_mobile_init();
 		fb_desktop_init();
@@ -321,13 +365,130 @@ function loadNativeSpecific() {
 		// add a statusbar gap to the body header
 		// only when apple mobile device detected
 		// alert(window.hideStatusbar);
-		if (window.iosShowStatusBar==true) iosModifyStatusBar();
 		if (window.iosShowLoadingSpinner==true) activateNativeSpinnerPlugin.initialize();
 		// Phonegap native loading spinner plugin
 		// activateNativeSpinnerPlugin();
 	} catch(e) {
 		alert('could nor execute loadNativeSpecific: function()');
 	}
+}
+
+function resizeActivePageCauseNativeKeyboard(addorremove) {
+	window.height_native_keyboard = 216;
+	
+	// add native keyboard gap
+	if ($.mobile.activePage.find('#nativeKeyboardGap').length) {
+		console.log('#nativeKeyboardGap already existing');
+	} else {
+		// $('.ui-page-active > .ui-content').append('<div id="nativeKeyboardGap" style="float:none;clear:both;height:'+window.height_native_keyboard+'px !important;background-color:red !important;overflow:hidden !important;">nativeKeyboardGap ;-)</div><div id="realEndDiv" style="position:absolute;bottom:0px;"></div>');
+		$.mobile.activePage.find('.ui-content').append('<div id="nativeKeyboardGap" style="float:none;clear:both;height:'+window.height_native_keyboard+'px !important;background-color:red !important;overflow:hidden !important;">nativeKeyboardGap ;-)</div><div id="realEndDiv" style="position:relative;float:none;clear:both;"></div>');
+		console.log('#nativeKeyboardGap added');
+	}
+	
+	if (addorremove=='add') {
+		// var old_height_without_native_keyboard = 0;
+		// var new_height_with_native_keyboard = window.height_native_keyboard;
+		// console.log('old_height_without_native_keyboard: '+old_height_without_native_keyboard);
+		// console.log('window.height_native_keyboard: '+window.height_native_keyboard);
+		// console.log('new_height_with_native_keyboard: '+new_height_with_native_keyboard);
+		// if (isMobile.any() && isNativeAppMode()) $.mobile.activePage.find('#nativeKeyboardGap').height(new_height_with_native_keyboard+'');
+		$('.ui-page-active > .ui-content').find('#nativeKeyboardGap').height(216);
+		console.log("$.mobile.activePage.find('#nativeKeyboardGap').height() : " + $('.ui-page-active > .ui-content').find('#nativeKeyboardGap').height());
+	}
+	if (addorremove=='remove') {
+		// var old_height_without_native_keyboard = parseInt($.mobile.activePage.find('#nativeKeyboardGap').height(),0);
+		// var new_height_with_native_keyboard = old_height_without_native_keyboard - window.height_native_keyboard;
+		// console.log(old_height_without_native_keyboard);
+		// console.log(window.height_native_keyboard);
+		// console.log(new_height_with_native_keyboard);
+		$('.ui-page-active > .ui-content').find('#nativeKeyboardGap').height(0);	
+		console.log("$('.ui-page-active > .ui-content').find('#nativeKeyboardGap').height() : " + $('.ui-page-active > .ui-content').find('#nativeKeyboardGap').height());
+	}
+	PLDR_createJqmPage();
+}
+
+function keyboardWillShow() {
+	// cordova.plugins.Keyboard.disableScroll(false);
+	console.log('keyboardWillShow');
+	if ($.mobile.activePage.find('#nativeKeyboardGap').length) resizeActivePageCauseNativeKeyboard('add');
+	window.keyboardvisible = true;
+	console.log('window.keyboardvisible now: '+window.keyboardvisible);
+	// alert('keyboardWillShow');
+}
+function keyboardDidShow(e) {
+	// cordova.plugins.Keyboard.disableScroll(true);
+	console.log('keyboardDidShow');
+	console.log('Keyboard height is: ' + e.keyboardHeight);
+	// alert('keyboardDidShow');
+	window.height_native_keyboard = e.keyboardHeight;
+}
+function keyboardWillHide() {
+	window.keyboardvisible = false;
+	console.log('keyboardWillHide');
+	cordova.plugins.Keyboard.close();
+	if ($.mobile.activePage.find('#nativeKeyboardGap').length) resizeActivePageCauseNativeKeyboard('remove');
+}
+function keyboardDidHide() {
+	// cordova.plugins.Keyboard.disableScroll(false);
+	console.log('window.keyboardvisible: '+window.keyboardvisible);
+	console.log('keyboardDidHide');
+	// alert('keyboardDidHide');
+}
+
+function native_keyboard_manipulation() {
+	/*
+	cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+	// cordova.plugins.Keyboard.disableScroll(true);
+	$('body').on('keyboardWillShow', keyboardWillShow);
+	// $('body').on('keyboardDidShow', keyboardDidShow);
+	window.addEventListener('native.keyboardshow', keyboardDidShow);
+	$('body').on('keyboardWillHide', keyboardWillHide);
+	$('body').on('keyboardDidHide', keyboardDidHide);
+	*/
+	/*
+	cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+	cordova.plugins.Keyboard.disableScroll(true);
+	*/
+	/*
+	Keyboard.shrinkView(false);
+	Keyboard.hideFormAccessoryBar(true);
+	Keyboard.disableScrollingInShrinkView(true);
+	Keyboard.onshowing = function () {
+		// Describe your logic which will be run each time when keyboard is about to be shown.
+		alert('Keyboard.onshowing');
+	}
+	Keyboard.onhiding = function () {
+		// Describe your logic which will be run each time when keyboard is about to be closed.
+		alert('Keyboard.onhiding');
+	}
+	Keyboard.onshow = function () {
+		// Describe your logic which will be run each time keyboard is shown.
+		window.keyboardvisible = true;
+		console.log('window.keyboardvisible: '+window.keyboardvisible);
+	}
+	Keyboard.onhide = function () {
+		// Describe your logic which will be run each time keyboard is closed.
+		window.keyboardvisible = false;
+		console.log('window.keyboardvisible: '+window.keyboardvisible);
+	}
+	*/
+	/*
+	window.addEventListener('native.keyboardshow', function(ek) {
+		console.log('Keyboard height is: ' + ek.keyboardHeight);
+		window.keyboardvisible = true;
+		console.log('window.keyboardvisible: '+window.keyboardvisible);
+		// $('.ui-page-active > .ui-content').scrollTo( '+='+ek.keyboardHeight+'px', 100 );
+		// $(".ui-page-active > .ui-content").css('overflow-y','hidden');
+	}, false);
+	window.addEventListener('native.keyboardhide', function(ek) {
+		console.log('Keyboard is hidden');
+		window.keyboardvisible = false;
+		console.log('window.keyboardvisible: '+window.keyboardvisible);
+		// $(".ui-page-active > .ui-content").css('overflow-y','auto');
+		// $(".ui-page-active > .ui-content").trigger("focus");
+		// $(document).find('.ui-page-active > .ui-content').trigger("focus");
+	}, false);
+	*/
 }
 
 function fb_desktop_init() {
@@ -603,8 +764,8 @@ function iosModifyStatusBar(){
 	if (window.heavyDebug) console.log(parseFloat(window.device.version));
 	try {
 		if (isMobile.Apple() && isNativeAppMode() && window.device.version && parseFloat(window.device.version) >= 6.0) {
-			if (window.heavyDebug) console.log('adding iosModifyStatusBar() StatusBar Gap');
-			correctPageFitIntoWindow();
+			// if (window.heavyDebug) console.log('adding iosModifyStatusBar() StatusBar Gap');
+			// correctPageFitIntoWindow();
 			StatusBar.show();
 			StatusBar.styleLightContent();
 			// StatusBar.styleDefault();
@@ -1241,9 +1402,15 @@ function isDisabled(element){
 }
 
 function hideKeyboard(){
-	document.activeElement.blur();
-	$("input").blur();
-	$("body").focus();
+	// console.log('document.activeElement');
+	// console.log(document.activeElement);
+	// document.activeElement.blur();
+	// document.activeElement.trigger('focus');
+	// $("input").blur();
+	// $(".ui-page-active > .ui-content").css('overflow-y','auto');
+	$(".ui-page-active > .ui-content").focus();
+	console.log('$(".ui-page-active > .ui-content").focus(); << just done');
+	// $("body").focus();
 };
 
 function doGenericConnectionAlert(){
@@ -2066,6 +2233,13 @@ function sendAnonymRegister(e) {
 
 function sendLoginClicked(e) {
 	$.when( sendLogin(e) ) .done(function(userData){
+		// alert('$.when( sendLogin(e) ) .done(function(userData){');
+		// alert(userData);
+		/*
+		if (userData==false) {
+			return(false);
+		}
+		*/
 		// if (window.heavyDebug) console.log('$.when( sendRegister(e) ) .done(function(){... >> ');
 		$.when( lao.save_local('user',userData), dao.save_local('user',userData) ).done(
 			function( lao_result, dao_result ) {
@@ -2084,7 +2258,9 @@ function sendLoginClicked(e) {
 			}
 		);
 	}).fail(function(err) {
-		doAlert(err,'Warning');
+		// doAlert(err,'Warning');
+		// doAlert('Bitte überprüfen Sie die eingegebenen Daten.','Eingaben unvollständig oder nicht korrekt!');
+		// d.reject(err);
 	});
 }
 
@@ -2147,8 +2323,8 @@ function sendLogin(e) {
 	}
 	if (checkString(username)!=true || password=='') {
 		$( "#panel_right" ).panel().panel( "close" );
-		doAlert('Bitte überprüfen Sie die eingegebenen Daten.','Eingaben unvollständig oder nicht korrekt!');
-		return(false);
+		d.reject();
+		// return(false);
 	}
 	
 	$.when( do_login({username: username, password: password}) ) .done(function(loginResolvedObject){
@@ -2612,13 +2788,14 @@ function collectMessageArrayDpd(messageid) {
 	var d = $.Deferred();
 	// var query = { $sort : { cdate : -1 } , $or:[ {"sender":messageid} , {"receiver":messageid} ] , deleted:false , include:['all'] , $limit:10 };
 	// var query = { $sort : { cdate : -1 } , $or:[ {"sender":userid} , {"receiver":userid} ] , deleted:false , includeall:true };
-	// console.log('collecting now for '+messageid);
+	console.log('collecting now for '+messageid);
 	// var query = { id:messageid , $sort : { cdate : 1 } , deleted:false , includeall:true , $limitRecursion: 99999};
 	// var query = {id:messageid,$or:[{"sender":messageid},{"receiver":messageid}],deleted:false};
 	// console.log(query);
 	dpd.messages.get( {id:messageid,messageflow:true,deleted:false,includeall:true,markreadby:true,me:window.me} , function (messageData) {
-		// console.log('messageData');
-		// console.log(messageData);
+	// dpd.messages.get( {id:messageid} , function (messageData) {
+		console.log('messageData');
+		console.log(messageData);
 		d.resolve(messageData);
 	});
 	return d.promise();
@@ -3275,6 +3452,7 @@ var dao = {
 		tx.executeSql('CREATE TABLE IF NOT EXISTS learningstream (id unique, data)');
 		tx.executeSql('CREATE TABLE IF NOT EXISTS interests (id unique, data)');
 		tx.executeSql('CREATE TABLE IF NOT EXISTS user (id unique, data)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS userdetails (id unique, data)');
 		tx.executeSql('CREATE TABLE IF NOT EXISTS users (id unique, data)');
 		tx.executeSql('CREATE TABLE IF NOT EXISTS video (id unique, data)');
 		tx.executeSql('CREATE TABLE IF NOT EXISTS videos (id unique, data)');

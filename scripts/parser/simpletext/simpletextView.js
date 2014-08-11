@@ -17,6 +17,7 @@ define(['underscore', 'Backbone', 'text!parser/simpletext/simpletext.html'],
 				_this.options.pastLoadField = _this.options.pastLoadField || "";
 				window.me = window.me || new Object();
 				_this.options.query_vars.userid = _this.options.query_vars.userid || window.me.id  || "";
+				_this.options.query_vars.userdetailsid = _this.options.query_vars.userdetailsid || window.me.id  || "";
 			},
 			parseData:function() {
 				var d = $.Deferred();

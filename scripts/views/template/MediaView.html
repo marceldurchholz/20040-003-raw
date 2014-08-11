@@ -1,4 +1,4 @@
-<div data-theme="h" data-role="header" data-position="fixed">
+<div data-theme="h" data-role="header" data-position="fixed"  data-tap-toggle="false">
     <a data-ajax="true" href="#panel_left" data-icon="grid" data-iconpos="notext"></a>
     <h1><% if(parseInt(window.me.username)>0) { %>Willkommen<% } else { %><%= window.me.username %> <% } %></h1>
     <% if(checkRole("user")==true) { %>

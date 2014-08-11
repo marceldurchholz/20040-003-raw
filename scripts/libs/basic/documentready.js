@@ -3,7 +3,7 @@ $(document).ready(function() {
 	if (window.heavyDebug) console.log('documentready.js');
 
 	FastClick.attach(document.body);
-	$('body').append("<div class='ui-loader-background'></div>");
+	// $('body').append("<div class='ui-loader-background'></div>");
 	
 	// console.log('document ready');
 	// closeJqmPanels();
@@ -30,26 +30,32 @@ $(document).ready(function() {
 		// return(false);
 	});
 	
+	$(document).off('click','.switchUserinterestInput').on('click','.switchUserinterestInput',function(e){
+		e.preventDefault();
+		return(false);
+	});
 	$(document).off('change','.switchUserinterestInput').on('change','.switchUserinterestInput',function(e){
 		e.preventDefault();
-		switchUserinterestInputClick(e);
+		switchUserinterestInputChange(e);
 		return(false);
 	});
 	
 	$(document).off('click','.likeLink').on('click','.likeLink',function(e){
 		e.preventDefault();
-		likeToogle(e);
+		likeToggle(e);
 		return(false);
 	});
 	$(document).off('click','.likeLinkActive').on('click','.likeLinkActive',function(e){
 		e.preventDefault();
-		likeToogle(e);
+		likeToggle(e);
 		return(false);
 	});
 	
 	$(document).off('click','.likeCountLink').on('click','.likeCountLink',function(e){
 		e.preventDefault();
-		commentAreaToogle(e);
+		commentAreaToggle(e);
+		$('.ui-page-active > .ui-content').scrollTo( $(e.currentTarget) , 1000, {offset: {top:-250, left:0}} );
+		// if (!isMobile.any()) $('.ui-page-active > .ui-content').scrollTo( $(e.target) , 1000, {offset: {top:-250, left:0}} );
 		return(false);
 	});
 		
@@ -173,8 +179,19 @@ $(document).ready(function() {
 			// form.submit();
 		}
 		
+		/*
 		// $(e.currentTarget).scrollTop(9999);
-		$('.ui-page-active > .ui-content').scrollTo( $(e.currentTarget), 1 );
+		if (isMobile.any()) {
+			cordova.plugins.Keyboard.disableScroll(false);
+		}
+		// $('.ui-page-active > .ui-content').scrollTo( $(e.currentTarget), 100 );
+		$('.ui-page-active > .ui-content').scrollTo( $(e.currentTarget) , {offset: {top:0, left:0} , onAfter:function(){
+			if (isMobile.any()) {
+				cordova.plugins.Keyboard.disableScroll(true);
+			}
+		}});
+		*/
+		// $('.ui-page-active > .ui-content').scrollTo( $(e.currentTarget), 100 );
 		var ul = $('ul.sendMessage');
 		var li = ul.find('li');
 		var base_top = parseInt(li.attr('data-basetop'),0);
@@ -191,7 +208,8 @@ $(document).ready(function() {
 		var new_top = parseInt(li.css('top'),0)-diff_height || 0;
 		if (new_top>base_top) new_top=base_top;
 		if (new_top<0) new_top=0;
-		li.css('top',new_top+'px');
+		// li.css('top',new_top+'px');
+		li.css('top','0px');
 		if (new_top) li.attr('data-beforetop',new_top+'px');
 		li.attr('data-beforeheight',li_height+'px');
 		// console.log('HEIGHT CHANGED...');
@@ -201,29 +219,242 @@ $(document).ready(function() {
 		// console.log('li_beforetop: '+li_beforetop);
 		// console.log('li_top: '+li_top);
 		// console.log('new_top: '+new_top);
+		
 	});
 	
 	$(document).off('submit','.messageForm').on('submit','.messageForm',function(e){
 		e.preventDefault();
 		alert('submitting messageForm...');
+		// if (!isMobile.any()) $('.ui-page-active > .ui-content').scrollTo( $(e.target) , 0, {offset: {top:-250, left:0}} );
+		hideKeyboard();
 		return(false);
 	});
 
 	// viewport meta fix for ios - could cause some issues on android 
 	// http://nerd.vasilis.nl/prevent-ios-from-zooming-onfocus/	
-	var $viewportMeta = $('meta[name="viewport"]');
-	$('input, select, textarea').bind('focus blur', function(e) {
-		$viewportMeta.attr('content', 'width=device-width,initial-scale=1,maximum-scale=' + (e.type == 'blur' ? 10 : 1));
-		$('.ui-page-active > .ui-content').scrollTo( $(e.currentTarget), 100 );
+	/*
+	// $('input, select, textarea').bind('focus blur', function(e) {
+	// $('input, select, textarea').bind('focus blur', function(e) {
+	$(document).off('blur','input, select, textarea').on('blur','input, select, textarea',function(e) {
+		console.log("$('input, select, textarea').bind('focus blur', function(e) {");
+		console.log(e);
+	});
+	*/
+	
+	/*
+	$(document).on('focus', 'textarea', function(e) {
+	  len = e.target.value.length
+	  e.target.setSelectionRange(len, len)
+	});
+	*/
+
+	// common scrollto() functions for input fields
+	$(document).off('focus focusout focusin focusinmanual blur','input[type="text"], input[type="password"], select, textarea').on('focus focusinmanual','input[type="text"], input[type="password"], select, textarea',function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		/*
+		$(this).style.webkitTransform = 'translate3d(0px,-10000px,0)'; 
+		webkitRequestAnimationFrame(function() { 
+			this.style.webkitTransform = ''; 
+		}.bind(this));
+		*/
+		console.log("$('input, select, textarea').bind('focus blur', function(e) {");
+		console.log(e);
+		if (e.type=='blur') {
+			return(false);
+		}
+		// var scrolltoonfocus = $(e.currentTarget).attr('scrolltoonfocus');
+		// if (!scrolltoonfocus || scrolltoonfocus!="true") return(false);
+		var $viewportMeta = $('meta[name="viewport"]');
+		// console.log(e.type);
+		// if (e.type=="blur") alert('blurred!!!');
+		$viewportMeta.attr('content','user-scalable=no,width=device-width,height=device-height,initial-scale=1,maximum-scale=' + ((e.type == 'blur' || e.type == 'focusout') ? 10 : 1) + ',target-densitydpi=device-dpi');
+		if (e.type=="focusinmanual") {
+			// if (!isMobile.any()) $('.ui-page-active > .ui-content').scrollTo( $(e.target) , 0, {offset: {top:-250, left:0}} );
+			/*
+			if (isMobile.any()) {
+				len = e.target.value.length;
+				e.target.setSelectionRange(len, len);
+			}
+			*/
+		}
+		else if (e.type=="focusout") {
+			console.log('focusout and now: resizeActivePageCauseNativeKeyboard("remove")');
+			// resizeActivePageCauseNativeKeyboard('remove');
+			// cordova.plugins.Keyboard.disableScroll(false);
+		}
+		else if (e.type=="focusin") {
+		
+			// add native keyboard gap
+			if ($.mobile.activePage.find('#nativeKeyboardGap').length) {
+				console.log('#nativeKeyboardGap already existing');
+			} else {
+				$.mobile.activePage.find('.ui-content').append('<div id="nativeKeyboardGap" style="float:none;clear:both;height:'+window.height_native_keyboard+'px !important;background-color:red !important;overflow:hidden !important;">nativeKeyboardGap ;-)</div><div id="realEndDiv" style="position:relative;float:none;clear:both;"></div>');
+				console.log('#nativeKeyboardGap added');
+			}
+			
+			// resizeActivePageCauseNativeKeyboard('add');
+			// if attr('preventScrollOnFocus'==true) {}
+			// else {...
+			// setTimeout(function() {
+			// if (!isMobile.any()) $('.ui-page-active > .ui-content').scrollTo( $(e.target) , 1000, {offset: {top:-250, left:0}} );
+			var scrolltoid_defined=0;
+			try {
+				var scrolltoid = $(e.target)[0].id;
+				var scrolltoid_defined=1;
+			} catch(e) {
+				console.log('scrolltoid not defined in focussed target');
+			}
+
+			console.log($(e.target)[0].id);
+			if (scrolltoid_defined==1 && $(e.target)[0].id == 'myMsgBox') {
+				console.log("$(e.target)[0].id == 'myMsgBox'");
+				if ($(e.target)[0].id && $(e.target)[0].id!=undefined && $(e.target)[0].id=='myMsgBox') {
+					console.log("doing setTimeout(scrollToBottom,1000);...");
+					setTimeout(scrollToBottom,100);
+				}
+				else {
+					/*
+					setTimeout(function() {
+						$('.ui-page-active > .ui-content').scrollTo( $('#'+scrolltoid) , {duration:1000 , offset: {top:216, left:0}});
+					},1000);
+					*/
+				}
+				/*
+				console.log('found scrolltoid element');
+				console.log(scrolltoid);
+				console.log($('#'+scrolltoid).attr('id'));
+				if (isMobile.any()) {
+					cordova.plugins.Keyboard.disableScroll(false);
+				}
+				console.log('scrolling to x0 y0');
+				$('.ui-page-active > .ui-content').scrollTo( $('#'+scrolltoid) , {duration:1000 , offset: {top:216, left:0} , onAfter:function(){
+					if (isMobile.any()) {
+						cordova.plugins.Keyboard.disableScroll(true);
+					}
+				}});				
+				if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(true);
+				*/
+			} else {
+				if (scrolltoid_defined==1 && scrolltoid!='myMsgBox') {
+					console.log('DID NOT found scrolltoid element');
+					console.log($(e.target));
+					console.log('scrolling to x0 y-270+'+window.height_native_keyboard);
+					var scrolltopwithoffset = (270-window.height_native_keyboard);
+					scrolltopwithoffset = scrolltopwithoffset;
+					if (parseInt(scrolltopwithoffset)<=50) scrolltopwithoffset=50;
+					console.log('scrolltopwithoffset : '+scrolltopwithoffset);
+					if (isMobile.any()) {
+						// cordova.plugins.Keyboard.disableScroll(false);
+					}
+					$('.ui-page-active > .ui-content').scrollTo( $(e.target) , {duration:0 , offset: {top:-scrolltopwithoffset, left:0} , onAfter:function(){
+						if (isMobile.any()) {
+							// cordova.plugins.Keyboard.disableScroll(true);
+						}
+					}});
+				}
+			}
+				
+			// }, 1000);
+
+			// len = e.target.value.length;
+			// e.target.setSelectionRange(len, len);
+			/*
+			if (isMobile.any()) {
+				len = e.target.value.length;
+				e.target.setSelectionRange(len, len);
+			}
+			*/
+
+			// $('.ui-page-active > .ui-content').scrollTo( '-=100px' , {duration:100} );
+			/*
+			console.log($(e.currentTarget));
+			console.log($(e.currentTarget).position());
+			var offset = $(e.currentTarget).offset();
+			var goto_offset_y = parseInt(offset.top,0);
+			$('.ui-page-active > .ui-content').scrollTo( {top:goto_offset_y+'', left:'0px'} , 100 );
+			*/
+			/*
+			var offset = $(e.currentTarget).position();
+			var goto_offset_y = parseInt(offset.top,0) - 100;
+			if (goto_offset_y<0) goto_offset_y=0;
+			console.log('goto_offset_y: '+goto_offset_y);
+			$('.ui-page-active > .ui-content').scrollTo( {top:goto_offset_y+'px', left:'0px'} , 100 );
+			*/
+		}
 	});
 	
-	function keyboardShowHandler(e){
-		console.log('Keyboard height is: ' + e.keyboardHeight);
+	function scrollToBottom() {
+		console.log('doing scrollToBottom()...');
+		// $('.ui-page-active > .ui-content').scrollTop(999999999999999);
+		$('.ui-page-active > .ui-content').scrollTo( 999999999999999 , {duration:300 , offset: {top:999999999999999, left:0}});
 	}
-	window.addEventListener('native.keyboardshow', keyboardShowHandler);
+	
+	$('body').off('touchmove','.ui-page-active > .ui-content').on('touchmove','.ui-page-active > .ui-content',function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		setTimeout(function() {
+			closeKeyboardIfOpenedAndMobile();
+		},500);
+		return(false);
+	});
+	function closeKeyboardIfOpenedAndMobile() {
+		if (isMobile.any()) {
+			// console.log('window.keyboardvisible: '+window.keyboardvisible);
+			// console.log('cordova.plugins.Keyboard.isVisible: '+cordova.plugins.Keyboard.isVisible);
+			if (cordova.plugins.Keyboard.isVisible==true) {
+				console.log('Uhhhhh.. TOUCHMOVED DURING Damn Keyboard Interaction!!!');
+				// console.log(e);
+				// cordova.plugins.Keyboard.close();
+				// hideKeyboard();
+				cordova.plugins.Keyboard.close();
+			}
+		}
+	}
+	
+	/*
+	$(document).off('swipedown','.ui-page-active > .ui-content').on('swipedown','.ui-page-active > .ui-content',function(e) {
+		if (isMobile.any()) {
+			console.log('window.keyboardvisible: '+window.keyboardvisible);
+			console.log('cordova.plugins.Keyboard.isVisible: '+cordova.plugins.Keyboard.isVisible);
+			if (cordova.plugins.Keyboard.isVisible || window.keyboardvisible==true) {
+				console.log('Uhhhhh.. SWIPEDOWN DURING Damn Keyboard Interaction!!!');
+				console.log(e);
+			}
+		}
+	});
+	*/
+	
+	// $(document).off('dblclick','.ui-page-active > .ui-content').on('dblclick','.ui-page-active > .ui-content',function(e) {
+	
+	// document.getElementById('.ui-page-active').addEventListener('touchmove', function(ep) {
+	// document.getElementById('.ui-content').addEventListener('click', function(ep) {
+	// document.getElementByClass('ui-content').addEventListener('click', function(ep) {
+	/*
+	document.getElementById('.ui-content').addEventListener('touchmove', function(e) {
+		if (window.keyboardvisible==true) e.preventDefault();
+	});
+	// $(document).bind('touchmove', 'Shift+right', function(bla) {
+	document.getElementById('.ui-content').addEventListener('touchmove', function(e) {
+		if (window.keyboardvisible==true) e.preventDefault();
+	});
+	*/
+	/*
+	$(".ui-page-active > .ui-content").css('overflow-y','hidden');
+	$(".ui-page-active > .ui-content").css('overflow-y','auto');
+	*/
+
+	/*
+	$(document).off('dblclick','.ui-page-active > .ui-content').on('dblclick','.ui-page-active > .ui-content',function(e) {
+		if (window.keyboardvisible==true) {
+			e.preventDefault();
+			console.log('.ui-content dblclicked');
+		}
+	});
+	*/
+	
 
 	// Deploydkit realtime actions
-	
 	dpd.likes.on('post', function(post) {
 	  // Do something
 	  console.log(post);

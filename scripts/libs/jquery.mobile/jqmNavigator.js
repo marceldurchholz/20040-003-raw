@@ -28,6 +28,39 @@
 
     // $(document).bind("mobileinit", function () {
 	$(document).off( "mobileinit" ).on( "mobileinit", function( event ) {
+	
+		activateNativeSpinnerPlugin = {
+			initialize: function() {
+				if (window.heavyDebug) console.log('jqmNativeSpinnerPlugin.js');
+				if (window.spinnerplugin) {
+					$.extend($.mobile, {
+						loading: function() {
+							if (window.heavyDebug) console.log('using jqmNativeSpinnerPlugin.js while ajax loading');
+							// Show/hide spinner
+							var arg = arguments ? arguments[0] : '';
+							if (arg == 'show') spinnerplugin.show({'overlay':true,'timeout':10,'fullscreen':true});
+							else if (arg == 'hide' || arg == undefined) spinnerplugin.hide();
+							// Compatibility with jQM 1.4
+							return { loader: function() { } }
+						}
+					}); 
+				} else {
+					$.extend($.mobile, {
+						loading: function() {
+							if (window.heavyDebug) console.log('using jqmNativeSpinnerPlugin.js while ajax loading');
+							// Show/hide spinner
+							var arg = arguments ? arguments[0] : '';
+							if (arg == 'show') console.log('show'); // spinnerplugin.show({'overlay':true,'timeout':10,'fullscreen':true});
+							// else if (arg == 'hide') console.log('hide'); // spinnerplugin.hide();
+							else if (arg == 'hide' || arg == undefined) console.log('hide'); // spinnerplugin.hide();
+							// Compatibility with jQM 1.4
+							return { loader: function() { } }
+						}
+					});				
+				}
+			}
+		}
+
 		$(document).off( "click", "#btnBack").on( "click", "#btnBack", function( e ) {
 			e.preventDefault();
 			window.btnBackClicked=1;
@@ -52,7 +85,13 @@
 		$.mobile.autoInitializePage = false;		
 		$.mobile.allowCrossDomainPages = true;
 		$.support.cors = true;
+		/*
 		$.mobile.page.prototype.options.domCache = true;
+		*/
+		// Set this to a really high number so it won't prevent the smooth scroll
+		$.mobile.getMaxScrollForTransition = function() {
+			return $.mobile.getScreenHeight() * 1000;
+		};
 		$.extend($.mobile, {
 			jqmNavigator:{
 

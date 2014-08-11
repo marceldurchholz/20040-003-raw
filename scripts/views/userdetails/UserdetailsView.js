@@ -24,10 +24,14 @@ define(['jquery', 'underscore', 'Backbone', 'text!views/template/UserdetailsView
 				var _this = this;
 				_this.options = options;
 				if (_this.options.query_vars.userid!=undefined && _this.options.query_vars.userid!="") {
-					$.when(collectUserData(window.me.id),collectUserdetailsData(_this.options.query_vars.userid)).done(
+					$.when(collectUserData(_this.options.query_vars.userid),collectUserdetailsData(_this.options.query_vars.userdetailsid)).done(
 						function(userArray,userdetailsData) {
+							// console.log('####################################################');
+							// console.log(userArray);
+							// console.log(userdetailsData);
+							// console.log('####################################################');
 							_this.options.streamData.userArray = new Array(userArray);
-							_this.options.streamData.userdetailsData = userdetailsData;
+							_this.options.streamData.userdetailsData =  new Array(userdetailsData);
 							d.resolve(_this);
 						}
 					);

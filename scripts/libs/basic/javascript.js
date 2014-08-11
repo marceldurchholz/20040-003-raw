@@ -19,29 +19,31 @@ function dateYmdHis() {
 	return(val);
 }
 
-function dateYmdHisToTimestamp(date) {
+function dateYmdHisToTimestamp(thedate) {
 	// input: 20100101120000
 	// target = 2010-01-01T12:00:00Z
-	if (date==undefined) date = "??????????????";
-	var y = (undefined ? "" : date.substr(0,4));
-	var m = (undefined ? "" : date.substr(4,2));
-	var d = (undefined ? "" : date.substr(6,2));
-	var H = (undefined ? "" : date.substr(8,2));
-	var i = (undefined ? "" : date.substr(10,2));
-	var s = (undefined ? "" : date.substr(12,2));
+	if (thedate==undefined) thedate = "??????????????";
+	thedate = thedate.toString();
+	var y = (undefined ? "" : thedate.substr(0,4));
+	var m = (undefined ? "" : thedate.substr(4,2));
+	var d = (undefined ? "" : thedate.substr(6,2));
+	var H = (undefined ? "" : thedate.substr(8,2));
+	var i = (undefined ? "" : thedate.substr(10,2));
+	var s = (undefined ? "" : thedate.substr(12,2));
 	// var val = '' + y + '' + (m<=9 ? '0' + m : m) + '' + (d <= 9 ? '0' + d : d) + '' + (H<=9 ? '0' + H : H)  + '' + (i<=9 ? '0' + i : i)  + '' + (s<=9 ? '0' + s : s);
 	var val = '' + y + '-' + m + '-' + d + 'T' + H + ':' + i + ':' + s + 'Z';
 	return(val);
 }
 
-function dateYmdHisToGerman(date) {
-	if (date==undefined) date = "??????????????";
-	var y = (undefined ? "" : date.substr(0,4));
-	var m = (undefined ? "" : date.substr(4,2));
-	var d = (undefined ? "" : date.substr(6,2));
-	var H = (undefined ? "" : date.substr(8,2));
-	var i = (undefined ? "" : date.substr(10,2));
-	var s = (undefined ? "" : date.substr(12,2));
+function dateYmdHisToGerman(thedate) {
+	if (thedate==undefined) thedate = "??????????????";
+	thedate = thedate.toString();
+	var y = (undefined ? "" : thedate.substr(0,4));
+	var m = (undefined ? "" : thedate.substr(4,2));
+	var d = (undefined ? "" : thedate.substr(6,2));
+	var H = (undefined ? "" : thedate.substr(8,2));
+	var i = (undefined ? "" : thedate.substr(10,2));
+	var s = (undefined ? "" : thedate.substr(12,2));
 	// var val = '' + y + '' + (m<=9 ? '0' + m : m) + '' + (d <= 9 ? '0' + d : d) + '' + (H<=9 ? '0' + H : H)  + '' + (i<=9 ? '0' + i : i)  + '' + (s<=9 ? '0' + s : s);
 	var val = '' + d + '.' + m + '.' + y;
 	return(val);

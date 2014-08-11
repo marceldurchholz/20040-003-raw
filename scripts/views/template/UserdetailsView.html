@@ -1,4 +1,4 @@
-<div data-theme="h" data-role="header" data-position="fixed">
+<div data-theme="h" data-role="header" data-position="fixed"  data-tap-toggle="false">
     <a id="btnBack" data-ajax="false" rel="external" href="#" data-icon="back" data-iconpos="notext">Zurück</a>
     <h1><%= page_vars.header_vars.title %></h1>
     <% if(checkRole("user")==true) { %>
@@ -10,6 +10,6 @@
 
 <div data-role="content">
 
-	<span data-pastload-module="simpletext" data-pastload-field="user"></span>
+	<span data-pastload-module="simpletext" data-pastload-field="userdetails"></span>
 	
 </div>

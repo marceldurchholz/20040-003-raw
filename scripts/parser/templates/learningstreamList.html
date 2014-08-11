@@ -27,7 +27,7 @@
 			<li class="learningstreamFunctionArea" role="learningstreamFunctionArea">
 				<span><a class="ui-link likeLink<% if(learningstream.likes.filter(checkMyId).length>0) { %>Active<% } %>" data-ajax="true" style="font-weight:normal;" href="#like?id=<%= learningstream.id %>" data-theme="b"><% if(learningstream.likes.filter(checkMyId).length>0) { %>Empfohlen<% } else { %>Empfehlen<% } %></a></span> 
 				&middot; <span><a class="ui-link forwardLink" data-ajax="true" style="font-weight:normal;" href="#forward?id=<%= learningstream.id %>" data-theme="b">Weiterleiten</a></span> 
-				&middot; <span><a class="ui-link messageLink" data-ajax="true" style="font-weight:normal;" href="#comment?id=<%= learningstream.id %>" data-theme="b">Fragen?</a></span> 
+				&middot; <span><a scrolltoid="comment_input_learningstream_<%= learningstream.id %>" class="ui-link messageLink" data-ajax="true" style="font-weight:normal;" href="#comment?id=<%= learningstream.id %>" data-theme="b">Fragen?</a></span> 
 				<span class="<% if(learningstream.likes && learningstream.likes.length>0) { %><% } else { %>hidden<% } %>"> &middot; 
 					<a class="ui-link likeCountLink" data-ajax="true" style="font-weight:normal;" href="#likeCount?id=<%= learningstream.id %>" data-theme="b">
 						<img src="images/icon-star-gold-10x10.png"><span class="linkCountLength" data-learningstreamid="<%= learningstream.id %>"><%= learningstream.likes.length %></span>

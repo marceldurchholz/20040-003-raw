@@ -9,6 +9,7 @@ require.config({
 		// dpd: "http://s15944029.onlinehome-server.info:5000/dpd",
 		jquery:'libs/jquery/jquery-2.1.1',
         // jquerymigrate:'libs/jquery/jquery-migrate-1.2.1',
+		// jqueryui:'libs/jquery.ui/jquery-ui',
 		jqm:'libs/jquery.mobile/jquery.mobile-1.4.3',
 		// transit:'libs/jquery.mobile/transit',
 		// touchwipe:'libs/jquery.mobile/touchwipe/touchwipe',
@@ -52,6 +53,7 @@ require.config({
         underscore:{
             exports:'_'
         },
+		
 		domReady:{
 			deps:['dpd','foreach','javascript','fastclick','jquery','jqm','jquerysetup','jqparseparams','accounting','jqueryhotkeys','jqueryautosize','jqueryage','jEditable','jScrollTo','openfb','myfunctions','documentready','putcursoratend','onpageevents']
 		}
