@@ -376,14 +376,16 @@ function loadNativeSpecific() {
 function resizeActivePageCauseNativeKeyboard(addorremove) {
 	window.height_native_keyboard = 216;
 	
+	/*
 	// add native keyboard gap
 	if ($.mobile.activePage.find('#nativeKeyboardGap').length) {
 		console.log('#nativeKeyboardGap already existing');
 	} else {
 		// $('.ui-page-active > .ui-content').append('<div id="nativeKeyboardGap" style="float:none;clear:both;height:'+window.height_native_keyboard+'px !important;background-color:red !important;overflow:hidden !important;">nativeKeyboardGap ;-)</div><div id="realEndDiv" style="position:absolute;bottom:0px;"></div>');
-		$.mobile.activePage.find('.ui-content').append('<div id="nativeKeyboardGap" style="float:none;clear:both;height:'+window.height_native_keyboard+'px !important;background-color:red !important;overflow:hidden !important;">nativeKeyboardGap ;-)</div><div id="realEndDiv" style="position:relative;float:none;clear:both;"></div>');
+		// $.mobile.activePage.find('.ui-content').append('');
 		console.log('#nativeKeyboardGap added');
 	}
+	*/
 	
 	if (addorremove=='add') {
 		// var old_height_without_native_keyboard = 0;
@@ -436,9 +438,9 @@ function keyboardDidHide() {
 }
 
 function native_keyboard_manipulation() {
-	/*
 	cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-	// cordova.plugins.Keyboard.disableScroll(true);
+	cordova.plugins.Keyboard.disableScroll(false);
+	/*
 	$('body').on('keyboardWillShow', keyboardWillShow);
 	// $('body').on('keyboardDidShow', keyboardDidShow);
 	window.addEventListener('native.keyboardshow', keyboardDidShow);
