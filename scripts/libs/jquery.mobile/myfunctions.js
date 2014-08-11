@@ -130,7 +130,7 @@ function PLDR_createJqmPage() {
 		},
 	});
 	
-	$.mobile.activePage.find('ul.sendMessage').each(function() {
+	$('ul.sendMessage').each(function() {
 		var ul = $(this);
 		var ul_width = ul.width();
 		var li = ul.find('li');
@@ -144,42 +144,25 @@ function PLDR_createJqmPage() {
 		
 		// $($.mobile.activePage).find('.ui-content').scrollTo( $('.learningstreamSubheading[data-learningstreamid='+query_vars.id+']').prev().prev(), 200 );
 		
-		/*
-		if (1==2 && !isMobile.any()) {
-			// var active_page_content_height = $($.mobile.activePage).find('.ui-content').height();
-			var active_page_content_height = $(this).closest('.ui-content').height();
-			alert('active_page_content_height: '+active_page_content_height);
-			var messages_area_height = ul.parent().height();
-			alert('messages_area_height: '+messages_area_height);
-			var li_top = parseInt(active_page_content_height,0) - parseInt(messages_area_height,0);
-			// var win_height = $(window).height();
-			// var li_pos_y = li.css('top');
-			if (li_top<0) li_top=0;
-			li.css('top',li_top+'px');
-			li.attr('data-beforeheight',li_height+'px');
-			li.attr('data-beforetop',li_top+'px');
-			li.attr('data-basetop',li_top+'px');
-			// alert(ul_width);
-			// alert(sendLink_width);
-			// alert(message_width);
-			// message.width(parseInt(ul_width,0) - parseInt(new_width,0));
-		}
-		*/
-		
-		try {
-			if ($.mobile.activePage.find('#nativeKeyboardGap').length) {
-				console.log("$.mobile.activePage.find('#nativeKeyboardGap').height() : "+$.mobile.activePage.find('#nativeKeyboardGap').height());
-				$.mobile.activePage.find('#nativeKeyboardGap').height(0);
-				console.log("$.mobile.activePage.find('#nativeKeyboardGap').height() NOW : "+$.mobile.activePage.find('#nativeKeyboardGap').height());
-			}
-		} catch(e) {
-			console.log("error while $.mobile.activePage.find('#nativeKeyboardGap').height(0)");
-			console.log(e);
-		}
+		var active_page_content_height = $($.mobile.activePage).find('.ui-content').height();
+		var messages_area_height = ul.parent().height();
+		var li_top = parseInt(active_page_content_height,0) - parseInt(messages_area_height,0);
+		// var win_height = $(window).height();
+		// var li_pos_y = li.css('top');
+		if (li_top<0) li_top=0;
+		li.css('top',li_top+'px');
+		li.attr('data-beforeheight',li_height+'px');
+		li.attr('data-beforetop',li_top+'px');
+		li.attr('data-basetop',li_top+'px');
+		// alert(ul_width);
+		// alert(sendLink_width);
+		// alert(message_width);
+		// message.width(parseInt(ul_width,0) - parseInt(new_width,0));
+		$('.ui-page-active > .ui-content').scrollTo( $('#myMsgBox'), 1000 );
+		// $('#myMsgBox').autosize();
 	});
 	
-	$.mobile.activePage.find('.ui-content').trigger("create");
-	// $('#myMsgBox').autosize();
+	$.mobile.activePage.trigger("create");
 
 	// $('.ui-page-active > .ui-content').scrollTo(1000000);
 			
@@ -352,7 +335,6 @@ function loadNativeSpecific() {
 		preventScreenSleep();
 		
 		if (window.iosShowStatusBar==true) iosModifyStatusBar();
-		// cordova.plugins.Keyboard.disableScroll(false);
 		native_keyboard_manipulation();
 		
 		// fb_mobile_init();
@@ -373,80 +355,47 @@ function loadNativeSpecific() {
 	}
 }
 
-function resizeActivePageCauseNativeKeyboard(addorremove) {
-	window.height_native_keyboard = 216;
-	
-	/*
-	// add native keyboard gap
-	if ($.mobile.activePage.find('#nativeKeyboardGap').length) {
-		console.log('#nativeKeyboardGap already existing');
-	} else {
-		// $('.ui-page-active > .ui-content').append('<div id="nativeKeyboardGap" style="float:none;clear:both;height:'+window.height_native_keyboard+'px !important;background-color:red !important;overflow:hidden !important;">nativeKeyboardGap ;-)</div><div id="realEndDiv" style="position:absolute;bottom:0px;"></div>');
-		// $.mobile.activePage.find('.ui-content').append('');
-		console.log('#nativeKeyboardGap added');
-	}
-	*/
-	
-	if (addorremove=='add') {
-		// var old_height_without_native_keyboard = 0;
-		// var new_height_with_native_keyboard = window.height_native_keyboard;
-		// console.log('old_height_without_native_keyboard: '+old_height_without_native_keyboard);
-		// console.log('window.height_native_keyboard: '+window.height_native_keyboard);
-		// console.log('new_height_with_native_keyboard: '+new_height_with_native_keyboard);
-		// if (isMobile.any() && isNativeAppMode()) $.mobile.activePage.find('#nativeKeyboardGap').height(new_height_with_native_keyboard+'');
-		$('.ui-page-active > .ui-content').find('#nativeKeyboardGap').height(216);
-		console.log("$.mobile.activePage.find('#nativeKeyboardGap').height() : " + $('.ui-page-active > .ui-content').find('#nativeKeyboardGap').height());
-	}
-	if (addorremove=='remove') {
-		// var old_height_without_native_keyboard = parseInt($.mobile.activePage.find('#nativeKeyboardGap').height(),0);
-		// var new_height_with_native_keyboard = old_height_without_native_keyboard - window.height_native_keyboard;
-		// console.log(old_height_without_native_keyboard);
-		// console.log(window.height_native_keyboard);
-		// console.log(new_height_with_native_keyboard);
-		$('.ui-page-active > .ui-content').find('#nativeKeyboardGap').height(0);	
-		console.log("$('.ui-page-active > .ui-content').find('#nativeKeyboardGap').height() : " + $('.ui-page-active > .ui-content').find('#nativeKeyboardGap').height());
-	}
-	PLDR_createJqmPage();
-}
-
-function keyboardWillShow() {
+function keyboardWillShow(o,e) {
 	// cordova.plugins.Keyboard.disableScroll(false);
+	cordova.plugins.Keyboard.disableScroll(false);
+	cordova.plugins.Keyboard.disableScroll(true);
 	console.log('keyboardWillShow');
-	if ($.mobile.activePage.find('#nativeKeyboardGap').length) resizeActivePageCauseNativeKeyboard('add');
-	window.keyboardvisible = true;
-	console.log('window.keyboardvisible now: '+window.keyboardvisible);
 	// alert('keyboardWillShow');
+	console.log(o);
+	console.log(e);
 }
-function keyboardDidShow(e) {
+function keyboardWillHide(o,e) {
 	// cordova.plugins.Keyboard.disableScroll(true);
-	console.log('keyboardDidShow');
-	console.log('Keyboard height is: ' + e.keyboardHeight);
-	// alert('keyboardDidShow');
-	window.height_native_keyboard = e.keyboardHeight;
+	console.log('keyboardWillShow');
+	// alert('keyboardWillShow');
+	console.log(o);
+	console.log(e);
 }
-function keyboardWillHide() {
-	window.keyboardvisible = false;
-	console.log('keyboardWillHide');
-	cordova.plugins.Keyboard.close();
-	if ($.mobile.activePage.find('#nativeKeyboardGap').length) resizeActivePageCauseNativeKeyboard('remove');
-}
-function keyboardDidHide() {
+function keyboardDidShow(o,e) {
 	// cordova.plugins.Keyboard.disableScroll(false);
+	window.keyboardvisible = true;
+	console.log('window.keyboardvisible: '+window.keyboardvisible);
+	console.log('keyboardDidShow');
+	// alert('keyboardDidShow');
+	console.log(o);
+	console.log(e);
+}
+function keyboardDidHide(o,e) {
+	window.keyboardvisible = false;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
 	console.log('keyboardDidHide');
 	// alert('keyboardDidHide');
+	console.log(o);
+	console.log(e);
 }
 
 function native_keyboard_manipulation() {
+	cordova.plugins.Keyboard.disableScroll(true);
 	cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-	cordova.plugins.Keyboard.disableScroll(false);
-	/*
 	$('body').on('keyboardWillShow', keyboardWillShow);
-	// $('body').on('keyboardDidShow', keyboardDidShow);
-	window.addEventListener('native.keyboardshow', keyboardDidShow);
+	$('body').on('keyboardDidShow', keyboardDidShow);
 	$('body').on('keyboardWillHide', keyboardWillHide);
 	$('body').on('keyboardDidHide', keyboardDidHide);
-	*/
 	/*
 	cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 	cordova.plugins.Keyboard.disableScroll(true);
@@ -1404,14 +1353,12 @@ function isDisabled(element){
 }
 
 function hideKeyboard(){
-	// console.log('document.activeElement');
-	// console.log(document.activeElement);
-	// document.activeElement.blur();
-	// document.activeElement.trigger('focus');
+	console.log('document.activeElement');
+	console.log(document.activeElement);
+	document.activeElement.blur();
 	// $("input").blur();
 	// $(".ui-page-active > .ui-content").css('overflow-y','auto');
 	$(".ui-page-active > .ui-content").focus();
-	console.log('$(".ui-page-active > .ui-content").focus(); << just done');
 	// $("body").focus();
 };
 

@@ -132,15 +132,6 @@ $(document).off( "pagechange" ).on( "pagechange", function( event ) {
 $(document).off( "pageshow" ).on( "pageshow", function( event ) {
 	if (window.heavyDebug) console.log('onpageevents.js >> $(document).off( "pageshow" ).on( "pageshow", function( event ) {...');
 	
-	var bodypos = $('body').position();
-	var bodyposid = $('#body').position();
-	console.log('#+++++#++#+#+##++#+#+#+#+#+#+#+#+##+#++##+#++##+#+#++##+#+#+#+#+#+#++#+#+#+#+#+#');
-	console.log('bodypos:');
-	console.log(bodypos);
-	console.log('bodyposid:');
-	console.log(bodyposid);
-
-	
 	// alert($('#container').height());
 	// alert($('#container').first().height());
 	
@@ -299,6 +290,8 @@ function PLDR_finalAction() {
 	PLDR_createJqmPage();
 	startBuildEditables($.mobile.activePage);
 	PLDR_resetCreated($.mobile.activePage);
+	// $.mobile.activePage.scrollTo( '0px', 1000 );
+	// $.mobile.activePage.scrollTo( $('ul').get(2).childNodes[20], 800 );
 }
 /********************** END: PLDR - Past Load Dynamic Recursion **********************/
 

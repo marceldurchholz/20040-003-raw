@@ -179,19 +179,8 @@ $(document).ready(function() {
 			// form.submit();
 		}
 		
-		/*
 		// $(e.currentTarget).scrollTop(9999);
-		if (isMobile.any()) {
-			cordova.plugins.Keyboard.disableScroll(false);
-		}
-		// $('.ui-page-active > .ui-content').scrollTo( $(e.currentTarget), 100 );
-		$('.ui-page-active > .ui-content').scrollTo( $(e.currentTarget) , {offset: {top:0, left:0} , onAfter:function(){
-			if (isMobile.any()) {
-				cordova.plugins.Keyboard.disableScroll(true);
-			}
-		}});
-		*/
-		// $('.ui-page-active > .ui-content').scrollTo( $(e.currentTarget), 100 );
+		$('.ui-page-active > .ui-content').scrollTo( $(e.currentTarget), 100 );
 		var ul = $('ul.sendMessage');
 		var li = ul.find('li');
 		var base_top = parseInt(li.attr('data-basetop'),0);
@@ -208,8 +197,7 @@ $(document).ready(function() {
 		var new_top = parseInt(li.css('top'),0)-diff_height || 0;
 		if (new_top>base_top) new_top=base_top;
 		if (new_top<0) new_top=0;
-		// li.css('top',new_top+'px');
-		li.css('top','0px');
+		li.css('top',new_top+'px');
 		if (new_top) li.attr('data-beforetop',new_top+'px');
 		li.attr('data-beforeheight',li_height+'px');
 		// console.log('HEIGHT CHANGED...');
@@ -219,7 +207,6 @@ $(document).ready(function() {
 		// console.log('li_beforetop: '+li_beforetop);
 		// console.log('li_top: '+li_top);
 		// console.log('new_top: '+new_top);
-		
 	});
 	
 	$(document).off('submit','.messageForm').on('submit','.messageForm',function(e){
@@ -248,21 +235,9 @@ $(document).ready(function() {
 	});
 	*/
 
-	// common scrollto() functions for input fields
-	$(document).off('focus focusout focusin focusinmanual blur','input[type="text"], input[type="password"], select, textarea').on('focus focusinmanual','input[type="text"], input[type="password"], select, textarea',function(e) {
-		e.preventDefault();
-		e.stopPropagation();
-		/*
-		$(this).style.webkitTransform = 'translate3d(0px,-10000px,0)'; 
-		webkitRequestAnimationFrame(function() { 
-			this.style.webkitTransform = ''; 
-		}.bind(this));
-		*/
+	$(document).off('focus focusinmanual blur','input, select, textarea').on('focus focusinmanual blur','input, select, textarea',function(e) {
 		console.log("$('input, select, textarea').bind('focus blur', function(e) {");
 		console.log(e);
-		if (e.type=='blur') {
-			return(false);
-		}
 		// var scrolltoonfocus = $(e.currentTarget).attr('scrolltoonfocus');
 		// if (!scrolltoonfocus || scrolltoonfocus!="true") return(false);
 		var $viewportMeta = $('meta[name="viewport"]');
@@ -278,82 +253,20 @@ $(document).ready(function() {
 			}
 			*/
 		}
-		else if (e.type=="focusout") {
-			console.log('focusout and now: resizeActivePageCauseNativeKeyboard("remove")');
-			// resizeActivePageCauseNativeKeyboard('remove');
-			// cordova.plugins.Keyboard.disableScroll(false);
-		}
 		else if (e.type=="focusin") {
-		
-			// add native keyboard gap
-			if ($.mobile.activePage.find('#nativeKeyboardGap').length) {
-				console.log('#nativeKeyboardGap already existing');
-			} else {
-				$.mobile.activePage.find('.ui-content').append('<div id="nativeKeyboardGap" style="float:none;clear:both;height:'+window.height_native_keyboard+'px !important;background-color:red !important;overflow:hidden !important;">nativeKeyboardGap ;-)</div><div id="realEndDiv" style="position:relative;float:none;clear:both;"></div>');
-				console.log('#nativeKeyboardGap added');
-			}
 			
-			// resizeActivePageCauseNativeKeyboard('add');
 			// if attr('preventScrollOnFocus'==true) {}
 			// else {...
 			// setTimeout(function() {
-			// if (!isMobile.any()) $('.ui-page-active > .ui-content').scrollTo( $(e.target) , 1000, {offset: {top:-250, left:0}} );
-			var scrolltoid_defined=0;
-			try {
-				var scrolltoid = $(e.target)[0].id;
-				var scrolltoid_defined=1;
-			} catch(e) {
-				console.log('scrolltoid not defined in focussed target');
-			}
-
-			console.log($(e.target)[0].id);
-			if (scrolltoid_defined==1 && $(e.target)[0].id == 'myMsgBox') {
-				console.log("$(e.target)[0].id == 'myMsgBox'");
-				if ($(e.target)[0].id && $(e.target)[0].id!=undefined && $(e.target)[0].id=='myMsgBox') {
-					console.log("doing setTimeout(scrollToBottom,1000);...");
-					setTimeout(scrollToBottom,100);
-				}
-				else {
-					/*
-					setTimeout(function() {
-						$('.ui-page-active > .ui-content').scrollTo( $('#'+scrolltoid) , {duration:1000 , offset: {top:216, left:0}});
-					},1000);
-					*/
-				}
-				/*
-				console.log('found scrolltoid element');
-				console.log(scrolltoid);
-				console.log($('#'+scrolltoid).attr('id'));
+				// if (!isMobile.any()) $('.ui-page-active > .ui-content').scrollTo( $(e.target) , 1000, {offset: {top:-250, left:0}} );
 				if (isMobile.any()) {
 					cordova.plugins.Keyboard.disableScroll(false);
 				}
-				console.log('scrolling to x0 y0');
-				$('.ui-page-active > .ui-content').scrollTo( $('#'+scrolltoid) , {duration:1000 , offset: {top:216, left:0} , onAfter:function(){
+				$('.ui-page-active > .ui-content').scrollTo( $(e.target) , {offset: {top:-250, left:0} , onAfter:function(){
 					if (isMobile.any()) {
 						cordova.plugins.Keyboard.disableScroll(true);
 					}
-				}});				
-				if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(true);
-				*/
-			} else {
-				if (scrolltoid_defined==1 && scrolltoid!='myMsgBox') {
-					console.log('DID NOT found scrolltoid element');
-					console.log($(e.target));
-					console.log('scrolling to x0 y-270+'+window.height_native_keyboard);
-					var scrolltopwithoffset = (270-window.height_native_keyboard);
-					scrolltopwithoffset = scrolltopwithoffset;
-					if (parseInt(scrolltopwithoffset)<=50) scrolltopwithoffset=50;
-					console.log('scrolltopwithoffset : '+scrolltopwithoffset);
-					if (isMobile.any()) {
-						// cordova.plugins.Keyboard.disableScroll(false);
-					}
-					$('.ui-page-active > .ui-content').scrollTo( $(e.target) , {duration:0 , offset: {top:-scrolltopwithoffset, left:0} , onAfter:function(){
-						if (isMobile.any()) {
-							// cordova.plugins.Keyboard.disableScroll(true);
-						}
-					}});
-				}
-			}
+				}});
 				
 			// }, 1000);
 
@@ -384,25 +297,11 @@ $(document).ready(function() {
 		}
 	});
 	
-	function scrollToBottom() {
-		console.log('doing scrollToBottom()...');
-		// $('.ui-page-active > .ui-content').scrollTop(999999999999999);
-		$('.ui-page-active > .ui-content').scrollTo( 999999999999999 , {duration:300 , offset: {top:999999999999999, left:0}});
-	}
-	
-	$('body').off('touchmove','.ui-page-active > .ui-content').on('touchmove','.ui-page-active > .ui-content',function(e) {
-		e.preventDefault();
-		e.stopPropagation();
-		setTimeout(function() {
-			closeKeyboardIfOpenedAndMobile();
-		},500);
-		return(false);
-	});
 	function closeKeyboardIfOpenedAndMobile() {
 		if (isMobile.any()) {
 			// console.log('window.keyboardvisible: '+window.keyboardvisible);
 			// console.log('cordova.plugins.Keyboard.isVisible: '+cordova.plugins.Keyboard.isVisible);
-			if (cordova.plugins.Keyboard.isVisible==true) {
+			if (window.keyboardvisible==true) {
 				console.log('Uhhhhh.. TOUCHMOVED DURING Damn Keyboard Interaction!!!');
 				// console.log(e);
 				// cordova.plugins.Keyboard.close();
@@ -411,6 +310,9 @@ $(document).ready(function() {
 			}
 		}
 	}
+	$('body').off('touchmove','.ui-page-active > .ui-content').on('touchmove','.ui-page-active > .ui-content',function(e) {
+		closeKeyboardIfOpenedAndMobile();
+	});
 	
 	/*
 	$(document).off('swipedown','.ui-page-active > .ui-content').on('swipedown','.ui-page-active > .ui-content',function(e) {
