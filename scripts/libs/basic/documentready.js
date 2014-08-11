@@ -181,7 +181,7 @@ $(document).ready(function() {
 		
 		// $(e.currentTarget).scrollTop(9999);
 		$('.ui-page-active > .ui-content').scrollTo( $(e.currentTarget), 100 );
-		var ul = $('ul.sendMessage');
+		var ul = $('ul#sendMessage');
 		var li = ul.find('li');
 		var base_top = parseInt(li.attr('data-basetop'),0);
 		var li_beforeheight = parseInt(li.attr('data-beforeheight'),0);

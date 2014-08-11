@@ -130,7 +130,7 @@ function PLDR_createJqmPage() {
 		},
 	});
 	
-	$('ul.sendMessage').each(function() {
+	$('ul#sendMessage').each(function() {
 		var ul = $(this);
 		var ul_width = ul.width();
 		var li = ul.find('li');

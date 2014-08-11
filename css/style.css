@@ -184,19 +184,14 @@ label {
 }
 
 
-ul.sendMessage > textarea::-webkit-scrollbar {
+ul#sendMessage > textarea::-webkit-scrollbar {
 	width: 0px;
 	height: 10px;
 }
-ul.sendMessage > textarea {
-	
-}
-ul.sendMessage > li {
-	m/in-height:80px !important;padding-top:0px !important;padding-bottom:0px !important;background-color: rgb(240, 240, 240) !important;
-}
-
-ul.sendMessagea {
-	position:fixed;bottom:0;left:0;right:0;margin-bottom:0px !important;padding-top:16px !important;
+ul#sendMessage > li {
+	padding-top:0px !important;
+	padding-bottom:0px !important;
+	/* background-color: rgb(240, 240, 240) !important; */
 }
 
 #myMsgBox {
