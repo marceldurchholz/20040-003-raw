@@ -232,10 +232,10 @@ $(document).ready(function() {
 	$(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
 		if ($(e.target).attr('id')=='myMsgBox') {
 			if (e.type=="focusin") {
-				$(e.target).parents('div.myfixedfooter').attr('style','position:fixed !important;top:'+($("#container").height()-100-32-216)+'px !important');
+				$(e.target).parents('div.myfixedfooter').attr('style','position:fixed !important;top:'+($("#container").height()-100-32-216-46)+'px !important');
 			}
 			if (e.type=="focusout") {
-				$(e.target).parents('div.myfixedfooter').attr('style','position:fixed !important;top:'+($("#container").height()-100-32)+'px !important');
+				$(e.target).parents('div.myfixedfooter').attr('style','position:fixed !important;top:'+($("#container").height()-100-32-46)+'px !important');
 			}
 		}
 		
