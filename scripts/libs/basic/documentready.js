@@ -20,6 +20,19 @@ $(document).ready(function() {
 		else if ($(document).find('#panel_left').hasClass('ui-panel-closed')) $( "#panel_left" ).panel( "open" );
 	});
 	
+	$( "#panel_left" ).off("panelbeforeopen").on( "panelbeforeopen", function( event, ui ) {
+		show_overlay();
+	} );
+	$( "#panel_left" ).off("panelbeforeclose").on( "panelbeforeclose", function( event, ui ) {
+		hide_overlay();
+	} );
+	$( "#panel_right" ).off("panelbeforeopen").on( "panelbeforeopen", function( event, ui ) {
+		show_overlay();
+	} );
+	$( "#panel_right" ).off("panelbeforeclose").on( "panelbeforeclose", function( event, ui ) {
+		hide_overlay();
+	} );
+	
 	$(document).off('click','.showVideoDetailsLink').on('click','.showVideoDetailsLink',function(event){
 		event.preventDefault();
 		// console.log(event);
@@ -229,6 +242,8 @@ $(document).ready(function() {
 		return(false);
 	}
 	*/
+	
+
 	$(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
 		if ($(e.target).attr('id')=='myMsgBox') {
 			if (e.type=="focusin") {

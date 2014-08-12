@@ -242,6 +242,31 @@ span[data-pastload-module="simpletext"] {
 	width:100% !important;
 }
 
+footer {
+	text-align: center;
+	background: #100;
+	color: #dedcb9;
+	padding: 0.5em 0;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+.ui-panel-display-overlay {
+	z-index: 100; 
+}
+#overlay  {
+   width: 100%;
+    min-height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background: url('../images/overlay.png') repeat 0 0;;
+    display: none;   
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 //* FACEBOOK STYLED LOADER */
 ////////////////////////////////////////////////////////////////////////////////////////////

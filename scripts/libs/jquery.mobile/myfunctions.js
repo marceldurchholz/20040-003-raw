@@ -130,7 +130,8 @@ function PLDR_createJqmPage() {
 		},
 	});
 	
-	$.mobile.activePage.find('ul#sendMessage').each(function() {
+	$.mobile.activePage.find('div.myfixedfooter').each(function() {
+		/*
 		var ul = $(this);
 		var ul_width = ul.width();
 		var ul_height = ul.height();
@@ -144,7 +145,8 @@ function PLDR_createJqmPage() {
 		message.css('width',message_width);
 		message.css('max-height','100px !important');
 		message.css('height','100px !important');
-		
+		*/
+		$(this).attr('style','position:fixed !important;top:'+($("#container").height()-100-32-46)+'px !important');
 		
 		// $($.mobile.activePage).find('.ui-content').scrollTo( $('.learningstreamSubheading[data-learningstreamid='+query_vars.id+']').prev().prev(), 200 );
 		
@@ -172,6 +174,19 @@ function PLDR_createJqmPage() {
 
 	// $('.ui-page-active > .ui-content').scrollTo(1000000);
 			
+}
+
+function show_overlay() {
+	console.log('show_overlay');
+    if ( $.mobile.activePage.find("#overlay").length ) { }
+	else append_overlay();
+    window.overlay_wrapper.fadeIn(700);
+}
+function hide_overlay() {
+    window.overlay_wrapper.fadeOut(500);
+}
+function append_overlay() {
+    window.overlay_wrapper = $('<div id="overlay"></div>').appendTo( $.mobile.activePage );
 }
 
 function getQueryVarsFromElement(el) {
