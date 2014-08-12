@@ -240,7 +240,7 @@ $(document).ready(function() {
 			var top_pos = win_height-ul_height-43-40; // ul_height;
 			var li = ul.find('li');
 			li.css('top',top_pos+'px');
-			hideKeyboard();
+			// hideKeyboard();
 		}
 		
 		/*
