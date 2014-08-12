@@ -46,7 +46,7 @@
 	</feature>
 	-->
 	<feature name="Keyboard">
-		<param name="ios-package" value="IonicKeyboard" onload="true" />
+		<param name="ios-package" value="IonicKeyboard" onload="false" />
 	</feature>
 
 	<!--

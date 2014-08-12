@@ -192,6 +192,8 @@ function correctPageSize() {
 	if (!$('#container').attr('resized')) { 
 		$('#container').attr("style","height:"+(parseInt($('#container').height(),0)-40)+"px !important;");
 		$('#container').attr('resized','true');
+	} else {
+		$('#container').attr("style","height:"+(parseInt($('#container').height(),0))+"px !important;");
 	}
 	alert(document.body.style.marginTop);
 	console.log(document.body.style.marginTop);
@@ -199,6 +201,8 @@ function correctPageSize() {
 		// $('#body').height(parseInt($('#container').height(),0)); 
 		$('#body').attr("style","height:"+(parseInt($('#body').height(),0)-40)+"px !important;margin-top:0px !important;top:0px !important;");
 		$('#body').attr('resized','true');
+	} else {
+		$('#body').attr("style","height:"+(parseInt($('#body').height(),0))+"px !important;margin-top:0px !important;top:0px !important;");
 	}
 	if (!$('.ui-page-active').attr('resized')) { 
 		$('.ui-page-active').attr("style","height:"+parseInt($('#container').height(),0)+"px !important;");
