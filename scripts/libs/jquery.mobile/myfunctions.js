@@ -197,7 +197,7 @@ function correctPageSize() {
 	console.log(document.body.style.marginTop);
 	if (!$('#body').attr('resized')) { 
 		// $('#body').height(parseInt($('#container').height(),0)); 
-		$('#body').attr("style","height:"+(parseInt($('#body').height(),0)-40)+"px !important;margin-top:40px !important;top:0px !important;");
+		$('#body').attr("style","height:"+(parseInt($('#body').height(),0)-40)+"px !important;margin-top:0px !important;top:0px !important;");
 		$('#body').attr('resized','true');
 	}
 	if (!$('.ui-page-active').attr('resized')) { 
