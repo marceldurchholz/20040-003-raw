@@ -53,6 +53,9 @@ div[data-role="content"] {
 	left: 0;
 	right: 0;
 }
+.ui-content {
+	margin-bottom:100px;
+}
 
 a {
 	text-decoration: none !important;
@@ -251,8 +254,17 @@ footer {
 	bottom: 0;
 	left: 0;
 	width: 100%;
+	height:84px;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////
+/*
+// dark css overlay when panels are open
+// http://stackoverflow.com/questions/24865615/issue-with-jquery-slide-pannel-display-format
+// http://jsfiddle.net/HE96S/
+// http://interactivevolcano.com/grayed-out-overlays-with-jquery-and-css
+*/
+////////////////////////////////////////////////////////////////////////////////////////////
 .ui-panel-display-overlay {
 	z-index: 100; 
 }

@@ -176,6 +176,10 @@ function PLDR_createJqmPage() {
 			
 }
 
+// dark css overlay when panels are open
+// http://stackoverflow.com/questions/24865615/issue-with-jquery-slide-pannel-display-format
+// http://jsfiddle.net/HE96S/
+// http://interactivevolcano.com/grayed-out-overlays-with-jquery-and-css
 function show_overlay() {
 	console.log('show_overlay');
     if ( $.mobile.activePage.find("#overlay").length ) { }
@@ -377,7 +381,7 @@ function loadNativeSpecific() {
 }
 
 function native_keyboard_manipulation() {
-	cordova.plugins.Keyboard.disableScroll(true);
+	cordova.plugins.Keyboard.disableScroll(false);
 	cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 	$('body').on('keyboardWillShow', keyboardWillShow);
 	$('body').on('keyboardDidShow', keyboardDidShow);
