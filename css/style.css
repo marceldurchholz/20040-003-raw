@@ -213,6 +213,7 @@ ul#sendMessage > textarea::-webkit-scrollbar {
 	height: 10px !important;
 }
 textarea.myMsgBox {
+	z-index:3;
 	overflow-y:visible !important;
 	resize: none !important;
 	padding:8px 4px !important;
