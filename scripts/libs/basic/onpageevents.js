@@ -129,19 +129,22 @@ $(document).off( "pagechange" ).on( "pagechange", function( event ) {
 	PLDR_begin($('#panel_right'));
 });
 
-$(document).off( "pageshow" ).on( "pageshow", function( event ) {
-	if (window.heavyDebug) console.log('onpageevents.js >> $(document).off( "pageshow" ).on( "pageshow", function( event ) {...');
+function correctPageSize() {
 	console.log(document.body.style.marginTop);
 	if (!$('#body').attr('resized')) { 
-		if (!isMobile.any()) {
-			if (document.body.style.marginTop!='20px') document.body.style.marginTop = '20px';
-			$('#body').height(parseInt($('#body').height(),0)-20); $('#body').attr('resized','true') 
-		}
+		if (document.body.style.marginTop!='0px') document.body.style.marginTop = '0px';
+		$('#body').height(parseInt($('#body').height(),0)-20); $('#body').attr('resized','true') 
 	}
 	if (!$('#container').attr('resized')) { $('#container').height(parseInt($('#container').height(),0)-20); $('#container').attr('resized','true') }
 	if (!$('.ui-page').attr('resized')) { $('.ui-page').height(parseInt($('.ui-page').height(),0)-20); $('.ui-page').attr('resized','true') }
 	if (!$('.ui-mobile').attr('resized')) { $('.ui-mobile').height(parseInt($('.ui-mobile').height(),0)-20); $('.ui-mobile').attr('resized','true') }
-	
+}
+
+$(document).off( "pageshow" ).on( "pageshow", function( event ) {
+	console.log('onpageevents.js >> $(document).off( "pageshow" ).on( "pageshow", function( event ) {...');
+	setTimeout(function() {
+		correctPageSize();
+	},2000);
 	// alert($('#container').height());
 	// alert($('#container').first().height());
 	
