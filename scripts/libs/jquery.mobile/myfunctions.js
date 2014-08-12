@@ -187,27 +187,33 @@ function correctPageSize() {
 		$('html').attr('resized','true');
 	}
 	*/
-	alert(document.getElementById("body").innerHTML);
-	console.log(document.getElementById("body").innerHTML);
-	if (!$('#container').attr('resized')) { 
-		$('#container').attr("style","height:"+(parseInt($('#container').height(),0)-40)+"px !important;");
-		$('#container').attr('resized','true');
-	} else {
-		$('#container').attr("style","height:"+(parseInt($('#container').height(),0))+"px !important;");
-	}
-	alert(document.body.style.marginTop);
-	console.log(document.body.style.marginTop);
-	if (!$('#body').attr('resized')) { 
-		// $('#body').height(parseInt($('#container').height(),0)); 
-		$('#body').attr("style","height:"+(parseInt($('#body').height(),0)-40)+"px !important;margin-top:0px !important;top:0px !important;");
-		$('#body').attr('resized','true');
-	} else {
-		$('#body').attr("style","height:"+(parseInt($('#body').height(),0))+"px !important;margin-top:0px !important;top:0px !important;");
-	}
-	if (!$('.ui-page-active').attr('resized')) { 
-		$('.ui-page-active').attr("style","height:"+parseInt($('#container').height(),0)+"px !important;");
-		$('.ui-page-active').attr('resized','true');
-	}
+	setTimeout(function() {
+		// alert(document.getElementById("body").innerHTML);
+		// console.log(document.getElementById("body").innerHTML);
+		if (!$('#container').attr('resized')) { 
+			$('#container').attr("style","height:"+(parseInt($('#container').height(),0)-40)+"px !important;overflow:hidden !important;");
+			$('#container').attr('resized','true');
+		} else {
+			$('#container').attr("style","height:"+(parseInt($('#container').height(),0))+"px !important;overflow:hidden !important;");
+		}
+		// alert(document.body.style.marginTop);
+		// console.log(document.body.style.marginTop);
+		if (!$('#body').attr('resized')) { 
+			// $('#body').height(parseInt($('#container').height(),0)); 
+			$('#body').attr("style","height:"+(parseInt($('#body').height(),0)-40)+"px !important;margin-top:0px !important;top:0px !important;overflow:hidden !important;");
+			$('#body').attr('resized','true');
+		} else {
+			$('#body').attr("style","height:"+(parseInt($('#body').height(),0))+"px !important;margin-top:0px !important;top:0px !important;overflow:hidden !important;");
+		}
+		if (!$('.ui-page-active').attr('resized')) { 
+			$('.ui-page-active').attr("style","height:"+parseInt($('#container').height(),0)+"px !important;overflow:hidden !important;");
+			$('.ui-page-active').attr('resized','true');
+		}
+		if (!$('.ui-content').attr('resized')) { 
+			$('.ui-content').attr("style","height:"+parseInt($('.ui-content').height()-100,0)+"px !important;");
+			$('.ui-content').attr('resized','true');
+		}
+	},1000);
 }
 
 // dark css overlay when panels are open
