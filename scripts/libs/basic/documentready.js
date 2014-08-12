@@ -230,24 +230,13 @@ $(document).ready(function() {
 	}
 	*/
 	$(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
-		if (e.type=="focusin") {
-			var ul_height = $(e.target).parents('ul').height();
-			console.log($(e.target).parents('ul').height());
-			var win_height = $(window).height();
-			if(window.win_height==undefined) window.win_height = win_height;
-			console.log($(window).height());
-			var top_pos = window.win_height-100-32-216;
-			window.top_pos = top_pos;
-			$(e.target).parents('ul').attr('style','position:fixed !important;top:'+top_pos+'px !important');
-		}
-		if (e.type=="focusout") {
-			var ul_height = $(e.target).parents('ul').height();
-			console.log($(e.target).parents('ul').height());
-			// var win_height = $(window).height();
-			console.log(window.win_height);
-			var top_pos = window.win_height-100-32;
-			window.top_pos = top_pos;
-			$(e.target).parents('ul').attr('style','position:fixed !important;top:'+top_pos+'px !important');
+		if ($(e.target).attr('id')=='myMsgBox') {
+			if (e.type=="focusin") {
+				$(e.target).parents('div.myfixedfooter').attr('style','position:fixed !important;top:'+($("#container").height()-100-32-216)+'px !important');
+			}
+			if (e.type=="focusout") {
+				$(e.target).parents('div.myfixedfooter').attr('style','position:fixed !important;top:'+($("#container").height()-100-32)+'px !important');
+			}
 		}
 		
 		/*

@@ -14,13 +14,11 @@
 	
 	<div id="bottomGap" style="float:none;clear:both;height:50px;background-color:yellow;">&nbsp;</div>
 
-	<ul data-role="listview" data-inset="false" data-theme="a" data-icon="false" data-corners="false" data-shadow="false" id="sendMessage" style="position:fixed !important;top:<%= window.win_height-100-32 %>px !important">
-		<li>
-			<form class="messageForm resizetext" data-inset="false">
-				<textarea placeholder="Nachricht..." data-id="myMsgBox" id="myMsgBox" class="myMsgBox" name="message" data-role="none"></textarea>
-				<a name="sendLink" class="sendLink" data-mini="true" data-role="button" data-enhance="false" data-shadow="false" data-role="none" href="#" data-ajax="true">Senden</a>
-			</form>
-		</li>
-	</ul>
+	<div class="myfixedfooter" style="position:fixed;top:<%= ($("#container").height()-100-32) %>px;">
+		<form class="messageForm resizetext" data-inset="false">
+			<textarea placeholder="Nachricht..." data-id="myMsgBox" id="myMsgBox" class="myMsgBox" name="message" data-role="none"></textarea>
+			<a name="sendLink" class="sendLink" data-mini="true" data-role="button" data-enhance="false" data-shadow="false" data-role="none" href="#" data-ajax="true">Senden</a>
+		</form>
+	</div>
 
 </div>
