@@ -172,8 +172,38 @@ function PLDR_createJqmPage() {
 	
 	$.mobile.activePage.trigger("create");
 
+	correctPageSize();
+	
 	// $('.ui-page-active > .ui-content').scrollTo(1000000);
 			
+}
+
+function correctPageSize() {
+	// console.log(document.body.style.marginTop);
+	/*
+	if (!$('html').attr('resized')) { 
+		// $('html').height(parseInt($('html').height(),0)-20); 
+		$('html').attr("style","height:"+parseInt($('html').height(),0)-20+"px !important;");
+		$('html').attr('resized','true');
+	}
+	*/
+	alert(document.getElementById("body").innerHTML);
+	console.log(document.getElementById("body").innerHTML);
+	if (!$('#container').attr('resized')) { 
+		$('#container').attr("style","height:"+(parseInt($('#container').height(),0)-40)+"px !important;");
+		$('#container').attr('resized','true');
+	}
+	alert(document.body.style.marginTop);
+	console.log(document.body.style.marginTop);
+	if (!$('#body').attr('resized')) { 
+		// $('#body').height(parseInt($('#container').height(),0)); 
+		$('#body').attr("style","height:"+(parseInt($('#body').height(),0)-40)+"px !important;margin-top:40px !important;top:0px !important;");
+		$('#body').attr('resized','true');
+	}
+	if (!$('.ui-page-active').attr('resized')) { 
+		$('.ui-page-active').attr("style","height:"+parseInt($('#container').height(),0)+"px !important;");
+		$('.ui-page-active').attr('resized','true');
+	}
 }
 
 // dark css overlay when panels are open

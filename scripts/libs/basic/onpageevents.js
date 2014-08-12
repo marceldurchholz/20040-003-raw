@@ -127,45 +127,17 @@ $(document).off( "pagechange" ).on( "pagechange", function( event ) {
 	PLDR_begin($.mobile.activePage);
 	PLDR_begin($('#panel_left'));
 	PLDR_begin($('#panel_right'));
+	correctPageSize();
 });
-
-function correctPageSize() {
-	// console.log(document.body.style.marginTop);
-	/*
-	if (!$('html').attr('resized')) { 
-		// $('html').height(parseInt($('html').height(),0)-20); 
-		$('html').attr("style","height:"+parseInt($('html').height(),0)-20+"px !important;");
-		$('html').attr('resized','true');
-	}
-	*/
-	alert(document.getElementById("body").innerHTML);
-	console.log(document.getElementById("body").innerHTML);
-	if (!$('#container').attr('resized')) { 
-		// $('#container').height(parseInt($('#container').height(),0)-20); 
-		$('#container').attr("style","height:"+(parseInt($('#container').height(),0)-20)+"px !important;");
-		$('#container').attr('resized','true');
-	}
-	alert(document.body.style.marginTop);
-	console.log(document.body.style.marginTop);
-	if (!$('#body').attr('resized')) { 
-		if (document.body.style.marginTop!='0px') document.body.style.marginTop = '0px';
-		// $('#body').height(parseInt($('#container').height(),0)); 
-		$('#body').attr("style","height:"+(parseInt($('#body').height(),0)-20)+"px !important;");
-		$('#body').attr('resized','true');
-	}
-	if (!$('.ui-page-active').attr('resized')) { 
-		// $('.ui-page-active').height(parseInt($('.ui-page-active').height(),0)-20); 
-		// $('.ui-page-active').attr("style","height:"+parseInt($('.ui-page-active').height(),0)-20+"px !important;");
-		$('.ui-page-active').attr("style","height:"+parseInt($('#container').height(),0)+"px !important;");
-		$('.ui-page-active').attr('resized','true');
-	}
-}
 
 $(document).off( "pageshow" ).on( "pageshow", function( event ) {
 	console.log('onpageevents.js >> $(document).off( "pageshow" ).on( "pageshow", function( event ) {...');
+	correctPageSize();
+	/*
 	setTimeout(function() {
 		correctPageSize();
 	},2000);
+	*/
 	// alert($('#container').height());
 	// alert($('#container').first().height());
 	
