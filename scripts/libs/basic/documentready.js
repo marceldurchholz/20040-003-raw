@@ -221,26 +221,33 @@ $(document).ready(function() {
 
 	// viewport meta fix for ios - could cause some issues on android 
 	// http://nerd.vasilis.nl/prevent-ios-from-zooming-onfocus/	
-	$(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], select, textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], select, textarea',function(e) {
+	/*
+	$(document).off('focus','a.nojqm').on('focus','a.nojqm',function(e) {
+		e.preventDefault();
+		e.stopImmediatePropagation();
+		e.stopPropagation();
+		return(false);
+	}
+	*/
+	$(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
 		if (e.type=="focusin") {
-			var ul = $(e.target).parents('ul');
-			var ul_width = ul.width();
-			var ul_height = ul.height();
+			var ul_height = $(e.target).parents('ul').height();
+			console.log($(e.target).parents('ul').height());
 			var win_height = $(window).height();
-			// var top_pos = win_height-ul_height-43-40; // ul_height;
-			var top_pos = win_height-ul_height-43-40-216;
-			var li = ul.find('li');
-			li.css('top',top_pos+'px');
+			if(window.win_height==undefined) window.win_height = win_height;
+			console.log($(window).height());
+			var top_pos = window.win_height-100-32-216;
+			window.top_pos = top_pos;
+			$(e.target).parents('ul').attr('style','position:fixed !important;top:'+top_pos+'px !important');
 		}
 		if (e.type=="focusout") {
-			var ul = $(e.target).parents('ul');
-			var ul_width = ul.width();
-			var ul_height = ul.height();
-			var win_height = $(window).height();
-			var top_pos = win_height-ul_height-43-40; // ul_height;
-			var li = ul.find('li');
-			li.css('top',top_pos+'px');
-			// hideKeyboard();
+			var ul_height = $(e.target).parents('ul').height();
+			console.log($(e.target).parents('ul').height());
+			// var win_height = $(window).height();
+			console.log(window.win_height);
+			var top_pos = window.win_height-100-32;
+			window.top_pos = top_pos;
+			$(e.target).parents('ul').attr('style','position:fixed !important;top:'+top_pos+'px !important');
 		}
 		
 		/*

@@ -135,10 +135,9 @@ function PLDR_createJqmPage() {
 		var ul_width = ul.width();
 		var ul_height = ul.height();
 		var win_height = $(window).height();
-		var top_pos = win_height-ul_height-43-40; // ul_height;
+		var top_pos = win_height-ul_height-43-40-40; // ul_height;
 		var li = ul.find('li');
-		li.css('top',top_pos+'px');
-		var li_height = li.height();
+		ul.css('top',top_pos+'px !important').css('position','fixed !important');
 		var sendLink = ul.find('a[name="sendLink"]');
 		var sendLink_width = sendLink.width();
 		var message = ul.find('textarea[name="message"]');

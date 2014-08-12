@@ -183,15 +183,26 @@ label {
 	font-size:0.6em !important;
 }
 
-ul#sendMessage {
+.fixBottom {
 	position: fixed !important;
-	top: 100px !important;
+}
+
+ul#sendMessage {
+	z-index:1 !important;
+	position: fixed !important;
+	top: 30px !important;
 	width:100% !important;
+	background-color:lightred !important;
+}
+
+ul#sendMessage > form {
+	background-color:darkred;
 }
 
 ul#sendMessage > li {
 	padding-top:0px !important;
 	padding-bottom:0px !important;
+	background-color:red !important;
 	/* background-color: rgb(240, 240, 240) !important; */
 }
 ul#sendMessage > textarea::-webkit-scrollbar {
