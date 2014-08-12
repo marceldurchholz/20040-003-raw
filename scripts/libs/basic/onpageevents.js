@@ -131,6 +131,15 @@ $(document).off( "pagechange" ).on( "pagechange", function( event ) {
 
 $(document).off( "pageshow" ).on( "pageshow", function( event ) {
 	if (window.heavyDebug) console.log('onpageevents.js >> $(document).off( "pageshow" ).on( "pageshow", function( event ) {...');
+	console.log(document.body.style.marginTop);
+	if (!$('#body').attr('resized')) { 
+		if (!isMobile.any()) {
+			if (document.body.style.marginTop!='20px') document.body.style.marginTop = '20px';
+		}
+		$('#body').height(parseInt($('#body').height(),0)-20); $('#body').attr('resized','true') 
+	}
+	if (!$('#container').attr('resized')) { $('#container').height(parseInt($('#container').height(),0)-20); $('#container').attr('resized','true') }
+	if (!$('.ui-page').attr('resized')) { $('.ui-page').height(parseInt($('.ui-page').height(),0)-20); $('.uipage').attr('resized','true') }
 	
 	// alert($('#container').height());
 	// alert($('#container').first().height());

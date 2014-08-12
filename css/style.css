@@ -1,5 +1,6 @@
 body {
 	margin: 0;
+	margin-top:20px !important;
 	-webkit-touch-callout: none !important; 
 	-webkit-text-size-adjust: none !important; 
 	-webkit-user-select: none !important; 
@@ -54,6 +55,7 @@ div[data-role="content"] {
 	right: 0;
 }
 .ui-content {
+	/* margin-bottom:80px; */
 	margin-bottom:100px;
 }
 
