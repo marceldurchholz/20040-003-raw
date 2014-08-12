@@ -130,14 +130,14 @@ $(document).off( "pagechange" ).on( "pagechange", function( event ) {
 });
 
 function correctPageSize() {
-	console.log(document.body.style.marginTop);
+	// console.log(document.body.style.marginTop);
+	if (!$('#container').attr('resized')) { $('#container').height(parseInt($('#container').height(),0)-20); $('#container').attr('resized','true') }
 	if (!$('#body').attr('resized')) { 
 		if (document.body.style.marginTop!='0px') document.body.style.marginTop = '0px';
-		$('#body').height(parseInt($('#body').height(),0)-20); $('#body').attr('resized','true') 
+		$('#body').height(parseInt($('#container').height(),0)); $('#body').attr('resized','true') 
 	}
-	if (!$('#container').attr('resized')) { $('#container').height(parseInt($('#container').height(),0)-20); $('#container').attr('resized','true') }
-	if (!$('.ui-page').attr('resized')) { $('.ui-page').height(parseInt($('.ui-page').height(),0)-20); $('.ui-page').attr('resized','true') }
-	if (!$('.ui-mobile').attr('resized')) { $('.ui-mobile').height(parseInt($('.ui-mobile').height(),0)-20); $('.ui-mobile').attr('resized','true') }
+	if (!$('.ui-page-active').attr('resized')) { $('.ui-page-active').height(parseInt($('.ui-page-active').height(),0)-20); $('.ui-page-active').attr('resized','true') }
+	if (!$('html').attr('resized')) { $('html').height(parseInt($('html').height(),0)-20); $('html').attr('resized','true') }
 }
 
 $(document).off( "pageshow" ).on( "pageshow", function( event ) {
