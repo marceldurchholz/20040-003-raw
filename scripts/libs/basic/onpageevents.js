@@ -135,11 +135,12 @@ $(document).off( "pageshow" ).on( "pageshow", function( event ) {
 	if (!$('#body').attr('resized')) { 
 		if (!isMobile.any()) {
 			if (document.body.style.marginTop!='20px') document.body.style.marginTop = '20px';
+			$('#body').height(parseInt($('#body').height(),0)-20); $('#body').attr('resized','true') 
 		}
-		$('#body').height(parseInt($('#body').height(),0)-20); $('#body').attr('resized','true') 
 	}
 	if (!$('#container').attr('resized')) { $('#container').height(parseInt($('#container').height(),0)-20); $('#container').attr('resized','true') }
-	if (!$('.ui-page').attr('resized')) { $('.ui-page').height(parseInt($('.ui-page').height(),0)-20); $('.uipage').attr('resized','true') }
+	if (!$('.ui-page').attr('resized')) { $('.ui-page').height(parseInt($('.ui-page').height(),0)-20); $('.ui-page').attr('resized','true') }
+	if (!$('.ui-mobile').attr('resized')) { $('.ui-mobile').height(parseInt($('.ui-mobile').height(),0)-20); $('.ui-mobile').attr('resized','true') }
 	
 	// alert($('#container').height());
 	// alert($('#container').first().height());
