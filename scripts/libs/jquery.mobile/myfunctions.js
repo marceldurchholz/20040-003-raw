@@ -130,20 +130,27 @@ function PLDR_createJqmPage() {
 		},
 	});
 	
-	$('ul#sendMessage').each(function() {
+	$.mobile.activePage.find('ul#sendMessage').each(function() {
 		var ul = $(this);
 		var ul_width = ul.width();
+		var ul_height = ul.height();
+		var win_height = $(window).height();
+		var top_pos = win_height-ul_height-43-40; // ul_height;
 		var li = ul.find('li');
+		li.css('top',top_pos+'px');
 		var li_height = li.height();
 		var sendLink = ul.find('a[name="sendLink"]');
 		var sendLink_width = sendLink.width();
 		var message = ul.find('textarea[name="message"]');
-		var message_width = parseInt(ul.width(),0) - parseInt(sendLink_width,0) - 96;
+		var message_width = parseInt(ul.width(),0) - parseInt(sendLink_width,0) - 116;
 		message.css('width',message_width);
-		message.css('max-height','200px !important');
+		message.css('max-height','100px !important');
+		message.css('height','100px !important');
+		
 		
 		// $($.mobile.activePage).find('.ui-content').scrollTo( $('.learningstreamSubheading[data-learningstreamid='+query_vars.id+']').prev().prev(), 200 );
 		
+		/*
 		var active_page_content_height = $($.mobile.activePage).find('.ui-content').height();
 		var messages_area_height = ul.parent().height();
 		var li_top = parseInt(active_page_content_height,0) - parseInt(messages_area_height,0);
@@ -160,6 +167,7 @@ function PLDR_createJqmPage() {
 		// message.width(parseInt(ul_width,0) - parseInt(new_width,0));
 		$('.ui-page-active > .ui-content').scrollTo( $('#myMsgBox'), 1000 );
 		// $('#myMsgBox').autosize();
+		*/
 	});
 	
 	$.mobile.activePage.trigger("create");

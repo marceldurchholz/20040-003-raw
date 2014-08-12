@@ -222,6 +222,28 @@ $(document).ready(function() {
 	// viewport meta fix for ios - could cause some issues on android 
 	// http://nerd.vasilis.nl/prevent-ios-from-zooming-onfocus/	
 	$(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], select, textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], select, textarea',function(e) {
+		if (e.type=="focusin") {
+			var ul = $(e.target).parents('ul');
+			var ul_width = ul.width();
+			var ul_height = ul.height();
+			var win_height = $(window).height();
+			// var top_pos = win_height-ul_height-43-40; // ul_height;
+			var top_pos = win_height-ul_height-43-40-216;
+			var li = ul.find('li');
+			li.css('top',top_pos+'px');
+		}
+		if (e.type=="focusout") {
+			var ul = $(e.target).parents('ul');
+			var ul_width = ul.width();
+			var ul_height = ul.height();
+			var win_height = $(window).height();
+			var top_pos = win_height-ul_height-43-40; // ul_height;
+			var li = ul.find('li');
+			li.css('top',top_pos+'px');
+			hideKeyboard();
+		}
+		
+		/*
 		console.log("$(document).off('focus focusinmanual blur','input[type=text], input[type=password], select, textarea').on('focus focusinmanual blur','input[type=text], input[type=password], select, textarea',function(e) {...");
 		console.log(e);
 		var $viewportMeta = $('meta[name="viewport"]');
@@ -251,9 +273,11 @@ $(document).ready(function() {
 			console.log("$('.ui-page-active > .ui-content').find('#bottomGap').css('height','50px');");
 			if (!isMobile.any()) $.mobile.activePage.find('#sendMessage').attr('style','').css('background-color','lightred');
 		}
+		*/
 	});
 	
 	$(document).off('touchmove','.ui-page-active > .ui-content').on('touchmove','.ui-page-active > .ui-content',function(e) {
+		/*
 		if (isMobile.any()) {
 			if (window.keyboardvisible==true) {
 				console.log("Uhhhhh.. TOUCHMOVED DURING Damn Keyboard Interaction!!!");
@@ -262,6 +286,7 @@ $(document).ready(function() {
 				console.log("cordova.plugins.Keyboard.close();");
 			}
 		}
+		*/
 	});
 	
 	// $(document).off('dblclick','.ui-page-active > .ui-content').on('dblclick','.ui-page-active > .ui-content',function(e) {
