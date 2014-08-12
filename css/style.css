@@ -187,6 +187,9 @@ label {
 	position: fixed !important;
 }
 
+ul#sendMessage > * {
+	z-index:2 !important;
+}
 ul#sendMessage {
 	z-index:1 !important;
 	position: fixed !important;
