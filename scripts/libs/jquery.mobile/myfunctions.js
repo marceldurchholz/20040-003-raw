@@ -2570,23 +2570,22 @@ function collectCardsArray(userid) {
 	console.log();
 	var db_table = 'cards';
 	try {
-		// var offline_object = new Object();
 		var offline_object = JSON.parse(window.localStorage.getItem(db_table)) || new Object();
-		console.log('getting data from db_table: '+db_table);
 		offline_object['timestamp'] = offline_object.timestamp || "";
 		offline_object['db_table'] = offline_object.db_table || "";
 		offline_object['db_data'] = offline_object.db_data || new Object;
+		/*
+		console.log('getting data from db_table: '+db_table);
 		console.log(window.localStorage.getItem(db_table));
 		console.log(offline_object['db_data']);
 		// if (window.pagechange_timestamp!=undefined && (window.pagechange_timestamp == offline_object['timestamp'])) {
-		console.log(window.pagechange_timestamp +"  ///  "+ offline_object['timestamp']);
-		if (offline_object['timestamp']!="" && offline_object['db_table']!="" && offline_object['db_data'].length>0 && window.pagechange_timestamp == offline_object['timestamp']) {
-			// console.log(window.pagechange_timestamp+' == ' +offline_object['timestamp']+' >> returning (cached data) offline_object["db_data"] via get_local (table '+db_table+')');
-			// var cards = new Object();
-			var cards = offline_object.db_data;
-			alert('bla');
-			// cards.bla = "foo";
-			console.log(offline_object.db_data);
+		console.log(window.save_pagechange_timestamp +"  ///  "+ window.pagechange_timestamp +"  ///  "+ offline_object['timestamp']);
+		*/
+		/*
+		// probably implement NEWness check for lao table data instead of offline_object['timestamp'] here... 
+		// ...
+		*/
+		if (offline_object['timestamp']!="" && offline_object['db_table']!="" && offline_object['db_data'].length>0) {
 			d.resolve(offline_object.db_data);
 		} else if (offline_object['timestamp']!=undefined) {
 			$.when( getOwnerData(window.system.owner.kdnr) ).done(
@@ -2594,7 +2593,6 @@ function collectCardsArray(userid) {
 					// $.when( collectCardsArrayDpd(userid,owner) ).done( function( videoData ) {
 					$.when( collectCardsArrayAjax(userid,owner) ).done( function( cardData ) {
 						console.log('collectCardsArrayAjax(userid,owner) ).done( function( cardData ) {...');
-						// _this.cardsArray = cardData;
 						// first sort by title
 						cardData.sort(function(a, b){
 						 var nameA=a.title.toLowerCase(), nameB=b.title.toLowerCase()
