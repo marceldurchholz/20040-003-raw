@@ -2592,9 +2592,10 @@ function collectCardsArray(userid) {
 			if (isNativeAppMode()) {
 				$.when( dao.get_local('cards') ).done(
 					function( cardData ) {
-						if (cardData.length && cardData.length>0) d.resolve(cardData);
-						else {
+						if (cardData==undefined) {
 							alert('no card data in var dao');
+						} else {
+							if (cardData.length && cardData.length>0) d.resolve(cardData);
 						}
 					}
 				);
