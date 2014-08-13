@@ -178,6 +178,76 @@ function PLDR_createJqmPage() {
 			
 }
 
+/*
+// height first header, content, last footer
+window.dheight = $('html').height(); 
+window.wheight = $(window).height();
+window.overTop = $('div[data-role="page"]:first-child div[data-role="header"]:first-child').height();
+window.cbody = $('div[data-role="page"]:first-child div[data-role="content"]:first-child').height();
+window.overBottom = $('div[data-role="page"]:first-child div[data-role="footer"]:last-child').height();
+window.correct = window.overTop + window.overBottom;
+window.cheight = window.wheight - window.dheight + window.cbody;
+*/
+
+function stretchScreen () {
+	//correction 
+	try {
+		console.log($('#container').parent().parent().html());
+		window.dheight = $('html').height(); 
+		console.log(window.dheight);
+		window.wheight = $(window).height();
+		console.log(window.wheight);
+		window.overTop = $('div[data-role="header"]').height();
+		console.log(window.overTop);
+		window.cbody = $('div[data-role="content"]').height();
+		console.log(window.cbody);
+		window.overBottom = $('div[data-role="footer"]').height() || 0;
+		// if (window.overBottom==undefined || window.overBottom==null) window.overBottom=0;
+		console.log(window.overBottom);
+		window.correct = window.overTop + window.overBottom;
+		console.log(window.correct);
+		window.cheight = window.wheight - window.dheight + window.cbody;
+		console.log(window.cheight);
+		if (window.cbody < window.dheight || window.cbody < window.wheight) { 
+			changePush();
+		}
+		if (window.wheight > window.dheight) {
+		  // $('.b_menuContent').height(window.cheight);
+		  $('div[data-role="content"]').height(window.cheight);
+		}
+		/*
+		//add orientationchange
+		$(window).bind('resize orientationchange', function() {
+		  window.wheight = $(window).height();
+		  noscroll();
+		  changePush();
+		});
+		*/
+	} catch(e) {
+		alert('error');
+		console.log(e);
+	}
+}
+function noscroll() {
+	if (window.wheight > window.dheight) {
+		$('html').addClass('noscroll');
+	} else if (window.wheight <= window.dheight)
+	{
+		$('html').removeClass('noscroll');
+	} else {
+	}
+}
+
+function changePush() {
+	if (window.wheight > window.dheight) {
+	  $('div[data-role="content"]:first-child').css({'min-height' : window.wheight-window.correct+'px'});
+		$.mobile.silentScroll(0);
+	  } else {
+		$('div[data-role="content"]:first-child').css({'min-height' : window.dheight-window.correct+'px'});
+		$.mobile.silentScroll(0);
+	  }
+}
+
 function correctPageSize() {
 	// console.log(document.body.style.marginTop);
 	/*
@@ -188,32 +258,38 @@ function correctPageSize() {
 	}
 	*/
 	setTimeout(function() {
+		stretchScreen();
+		$.mobile.silentScroll(0);
+	},2000);
+	/*
+	setTimeout(function() {
 		// alert(document.getElementById("body").innerHTML);
 		// console.log(document.getElementById("body").innerHTML);
 		if (!$('#container').attr('resized')) { 
-			$('#container').attr("style","height:"+(parseInt($('#container').height(),0)-40)+"px !important;overflow:hidden !important;");
+			$('#container').attr("style","height:"+(parseInt($('#container').height(),0)-40)+"px !important;overflow-y:hidden !important;");
 			$('#container').attr('resized','true');
 		} else {
-			$('#container').attr("style","height:"+(parseInt($('#container').height(),0))+"px !important;overflow:hidden !important;");
+			$('#container').attr("style","height:"+(parseInt($('#container').height(),0))+"px !important;overflow-y:hidden !important;");
 		}
 		// alert(document.body.style.marginTop);
 		// console.log(document.body.style.marginTop);
 		if (!$('#body').attr('resized')) { 
 			// $('#body').height(parseInt($('#container').height(),0)); 
-			$('#body').attr("style","height:"+(parseInt($('#body').height(),0)-40)+"px !important;margin-top:0px !important;top:0px !important;overflow:hidden !important;");
+			$('#body').attr("style","height:"+(parseInt($('#body').height(),0)-40)+"px !important;margin-top:0px !important;top:0px !important;overflow-y:hidden !important;");
 			$('#body').attr('resized','true');
 		} else {
-			$('#body').attr("style","height:"+(parseInt($('#body').height(),0))+"px !important;margin-top:0px !important;top:0px !important;overflow:hidden !important;");
+			$('#body').attr("style","height:"+(parseInt($('#body').height(),0))+"px !important;margin-top:0px !important;top:0px !important;overflow-y:hidden !important;");
 		}
 		if (!$('.ui-page-active').attr('resized')) { 
-			$('.ui-page-active').attr("style","height:"+parseInt($('#container').height(),0)+"px !important;overflow:hidden !important;");
+			$('.ui-page-active').attr("style","height:"+parseInt($('#container').height(),0)+"px !important;overflow-y:hidden !important;");
 			$('.ui-page-active').attr('resized','true');
 		}
 		if (!$('.ui-content').attr('resized')) { 
 			$('.ui-content').attr("style","height:"+parseInt($('.ui-content').height()-100,0)+"px !important;");
 			$('.ui-content').attr('resized','true');
 		}
-	},1000);
+	},5000);
+	*/
 }
 
 // dark css overlay when panels are open

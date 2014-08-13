@@ -1,11 +1,16 @@
+html {
+	margin:0px !important;
+	padding:0px !important;
+}
 body {
-	margin: 0;
-	margin-top:40px !important;
+	margin:0px !important;
+	padding:0px !important;
 	-webkit-touch-callout: none !important; 
 	-webkit-text-size-adjust: none !important; 
 	-webkit-user-select: none !important; 
 	-webkit-highlight: none !important; 
 	-webkit-tap-highlight-color: rgba(0,0,0,0) !important; 
+	background-color:green !important;
 }
 body > * {
 	-webkit-user-select: none !important;
@@ -37,9 +42,10 @@ div[data-role="page"], body, #container {
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	height: 100%;
+	height: auto;
 	width: 100%;
 	overflow:hidden !important;
+	overflow-y:hidden !important;
 }
 div[data-role="header"] {
 	position: absolute;
@@ -50,13 +56,9 @@ div[data-role="header"] {
 div[data-role="content"] {
 	position: absolute;
 	top: 41px;
-	bottom: 0;
+	height:auto;
 	left: 0;
 	right: 0;
-}
-.ui-content {
-	/* margin-bottom:80px; */
-	/* margin-bottom:100px; */
 }
 
 a {
