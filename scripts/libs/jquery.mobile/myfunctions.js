@@ -2585,21 +2585,21 @@ function collectCardsArray(userid) {
 		// ...
 		*/
 
-		if (offline_object['timestamp']!="" && offline_object['db_table']!="" && offline_object['db_data'].length>0) {
-			d.resolve(offline_object.db_data);
-		} else {
-			alert('no card data in var lao');
-			if (isNativeAppMode()) {
-				$.when( dao.get_local('cards') ).done(
-					function( cardData ) {
-						if (cardData==undefined) {
-							alert('no card data in var dao');
-						} else {
-							if (cardData.length && cardData.length>0) d.resolve(cardData);
-						}
+		if (isNativeAppMode()) {
+			$.when( dao.get_local('cards') ).done(
+				function( cardData ) {
+					if (cardData==undefined) {
+						alert('no card data in var dao');
+					} else {
+						if (cardData.length && cardData.length>0) d.resolve(cardData);
 					}
-				);
+				}
+			);
+		} else {
+			if (offline_object['timestamp']!="" && offline_object['db_table']!="" && offline_object['db_data'].length>0) {
+				d.resolve(offline_object.db_data);
 			} else {
+				alert('no card data in var lao');
 			}
 		}
 		if (isConnectedToInternet()==true) {
