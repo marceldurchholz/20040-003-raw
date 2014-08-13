@@ -2543,7 +2543,7 @@ function collectCardsArrayAjax(userid,owner) {
 	var query = dpd_server+"cards?active=true&deleted=false&include=all";
 	if (window.me.master==false && window.system.owner.master==false) query = query + "&uploader="+owner.id;
 	// console.log(query);	
-	$.ajax({url: query, async: false }).done(function(cardData) {
+	$.ajax({url: query, async: true }).done(function(cardData) {
 		d.resolve(cardData);
 	});
 	return d.promise();
@@ -2567,7 +2567,6 @@ function collectCardsArray(userid) {
 	// console.log('******************************************************************* cards');
 	// console.log(cards);
 	
-	console.log();
 	var db_table = 'cards';
 	try {
 		var offline_object = JSON.parse(window.localStorage.getItem(db_table)) || new Object();
@@ -2585,9 +2584,24 @@ function collectCardsArray(userid) {
 		// probably implement NEWness check for lao table data instead of offline_object['timestamp'] here... 
 		// ...
 		*/
+
 		if (offline_object['timestamp']!="" && offline_object['db_table']!="" && offline_object['db_data'].length>0) {
 			d.resolve(offline_object.db_data);
-		} else if (offline_object['timestamp']!=undefined) {
+		} else {
+			alert('no card data in var lao');
+			if (isNativeAppMode()) {
+				$.when( dao.get_local('cards') ).done(
+					function( cardData ) {
+						if (cardData.length && cardData.length>0) d.resolve(cardData);
+						else {
+							alert('no card data in var dao');
+						}
+					}
+				);
+			} else {
+			}
+		}
+		if (isConnectedToInternet()==true) {
 			$.when( getOwnerData(window.system.owner.kdnr) ).done(
 				function( owner ) {
 					// $.when( collectCardsArrayDpd(userid,owner) ).done( function( videoData ) {
@@ -2621,7 +2635,7 @@ function collectCardsArray(userid) {
 			);
 		}
 	} catch(e) {
-		console.log('SAVE ERROR FOLLOWING: error during getting from localStorage');
+		console.log('SAVE ERROR FOLLOWING: error during getting cards data');
 		console.log(e);
 	}
 	// alert(userid);
@@ -3617,7 +3631,7 @@ var dao = {
 	save_local: function(db_table,db_data) {
 		var _this = this;
 		var d = $.Deferred();
-		if (window.heavyDebug) console.log('doing dao.save_local('+db_table+',db_data)');
+		console.log('doing dao.save_local('+db_table+',db_data)');
 
 		// decode: var offline_object = JSON.parse(window.localStorage.getItem(db_table));
 		// encode: var db_string = JSON.stringify(offline_object)
@@ -3626,7 +3640,6 @@ var dao = {
 		offline_object['db_table'] = db_table;
 		offline_object['db_data'] = db_data;
 		
-		// alert('db_data.city: '+db_data.city);
 		$.when(_this.initialize())
 		.done(function(result) {
 			if (result==true) {
@@ -3636,7 +3649,6 @@ var dao = {
 					function(tx) {
 						// var sql = "INSERT OR REPLACE INTO "+db_table+" (data) VALUES ('"+db_data.city+"')";
 						var sql = "INSERT OR REPLACE INTO "+db_table+" (id, data) VALUES ('1', '"+JSON.stringify(offline_object)+"')";
-						// if (window.heavyDebug) console.log(sql);
 						tx.executeSql(sql);
 					},
 					function() {
@@ -3644,7 +3656,7 @@ var dao = {
 						d.resolve();
 					},
 					function(results) {
-						if (window.heavyDebug) console.log('SUCCESS INSERT OR REPLACE - now pushing back db_data via d.resolve(db_data);');
+						console.log('SUCCESS INSERT OR REPLACE - now pushing back db_data via d.resolve(db_data);');
 						// alert(results);
 						// for an insert statement, this property will return the ID of the last inserted row
 						// alert("Last inserted row ID = " + results.insertId);
@@ -3653,7 +3665,7 @@ var dao = {
 					}
 				);
 			} else {
-				if (window.heavyDebug) console.log('dao.initialize() not successful: result='+result);
+				console.log('dao.initialize() not successful: result='+result);
 				d.resolve();
 			}
 		});
@@ -4093,10 +4105,10 @@ var lao = {
 		try {
 			window.localStorage.setItem(db_table, JSON.stringify(offline_object));
 		} catch(e) {
-			if (window.heavyDebug) console.log('could not use window.localStorage');
+			console.log('could not use window.localStorage');
 		}
 		// window.localStorage.setItem("employees", this.records.join(","));
-		d.resolve(_this.get_local(db_table));
+		d.resolve(db_data);
 		return d.promise();
 	},
 	get_local: function(db_table) {
