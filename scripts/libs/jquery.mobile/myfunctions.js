@@ -266,14 +266,14 @@ function correctPageSize() {
 	$.mobile.silentScroll(0);
 	// console.log($('#container').parent().parent().find('#body').parent().html());
 	$(document).attr("style","overflow-y:hidden !important;");
-	$.mobile.activePage.parents('html').attr("style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;");
-	$.mobile.activePage.parents('body').attr("style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;");
+	$.mobile.activePage.parents('html').attr("style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;top:0px !important;left:0px !important;bottom:0px !important;margin:0px !important;padding:0px !important;");
 	$.mobile.activePage.parents('html').addClass("fixedHeightHtml");
-	$.mobile.activePage.parents('#container').attr("style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;margin:0px !important;");
+	$.mobile.activePage.parents('body').attr("style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;top:0px !important;left:0px !important;bottom:0px !important;margin:0px !important;padding:0px !important;");
+	$.mobile.activePage.parents('#container').attr("style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;top:0px !important;left:0px !important;bottom:0px !important;margin:0px !important;padding:0px !important;");
 	if (window.pageHeight==undefined) window.pageHeight = parseInt($(document).height(),0)-100-46-16;
 	if (window.contentHeight==undefined) window.contentHeight = parseInt($(document).height(),0)-100-46-16;
 	$.mobile.activePage.parents('#container').find('.ui-page-active').attr("style","height:"+(window.pageHeight)+"px !important;overflow-y:hidden !important;");
-	$.mobile.activePage.parents('#container').find('.ui-page-active').find('.ui-content').attr("style","height:"+window.contentHeight+"px !important;overflow-y:auto !important;padding:0px 16px !important;top:46px !important;");
+	$.mobile.activePage.parents('#container').find('.ui-page-active').find('.ui-content').attr("style","height:"+window.contentHeight+"px !important;overflow-y:scroll !important;padding:0px 16px !important;top:46px !important;");
 	$.mobile.silentScroll(0);
 	// alert(contentHeight);
 	// $('#container').parent().parent().find('#body').attr("style","overflow-y:hidden;");
