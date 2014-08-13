@@ -87,6 +87,7 @@ div[data-role="content"] {
 
 div[data-role="content"], .ui-content {
 	-webkit-overflow-scrolling: touch !important;
+	overflow-y:auto !important;
 }
 
 a {
