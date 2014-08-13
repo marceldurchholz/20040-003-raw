@@ -2604,9 +2604,9 @@ function collectCardsArray(userid) {
 		if (isConnectedToInternet()==true) {
 			$.when( getOwnerData(window.system.owner.kdnr) ).done(
 				function( owner ) {
-					// $.when( collectCardsArrayDpd(userid,owner) ).done( function( videoData ) {
-					$.when( collectCardsArrayAjax(userid,owner) ).done( function( cardData ) {
-						console.log('collectCardsArrayAjax(userid,owner) ).done( function( cardData ) {...');
+					$.when( collectCardsArrayDpd(userid,owner) ).done( function( cardData ) {
+					// $.when( collectCardsArrayAjax(userid,owner) ).done( function( cardData ) {
+						console.log('$.when( collectCardsArrayDpd(userid,owner) ).done( function( cardData ) {...');
 						// first sort by title
 						cardData.sort(function(a, b){
 						 var nameA=a.title.toLowerCase(), nameB=b.title.toLowerCase()
@@ -2658,7 +2658,7 @@ function collectCardsArray(userid) {
 	} else {
 		$.when( getOwnerData(window.system.owner.kdnr) ).done(
 			function( owner ) {
-				// $.when( collectCardsArrayDpd(userid,owner) ).done( function( videoData ) {
+				// $.when( collectCardsArrayDpd(userid,owner) ).done( function( cardData ) {
 				$.when( collectCardsArrayAjax(userid,owner) ).done( function( cardData ) {
 					_this.cardsArray = cardData;
 					// first sort by title
