@@ -4,11 +4,19 @@ html {
 	height:300px !important;
 	overflow:hidden !important;
 	overflow-y:hidden !important;
+	position:fixed !important;
+	width:100% !important;
+	height:100% !important;
 }
 .fixedHeightHtml {
 	height:300px !important;
 	overflow:hidden !important;
 	overflow-y:hidden !important;
+	margin:0px !important;
+	margin-top:0px !important;
+	position:fixed !important;
+	width:100% !important;
+	height:100% !important;
 }
 body {
 	margin:0px !important;
@@ -22,6 +30,9 @@ body {
 	height:300px !important;
 	overflow:hidden !important;
 	overflow-y:hidden !important;
+	position:fixed !important;
+	width:100% !important;
+	height:100% !important;
 }
 body > * {
 	-webkit-user-select: none !important;
@@ -34,7 +45,6 @@ body > * {
 }
 
 div[data-role="page"] {
-	-webkit-overflow-scrolling: touch !important;
 	padding-top: 46px !important;
 }
 div[data-role="page"], body, #container {
@@ -70,6 +80,10 @@ div[data-role="content"] {
 	height:auto;
 	left: 0;
 	right: 0;
+}
+
+div[data-role="content"], .ui-content {
+	-webkit-overflow-scrolling: touch !important;
 }
 
 a {
