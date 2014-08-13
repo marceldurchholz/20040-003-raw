@@ -257,10 +257,21 @@ function correctPageSize() {
 		$('html').attr('resized','true');
 	}
 	*/
+	/*
 	setTimeout(function() {
 		stretchScreen();
 		$.mobile.silentScroll(0);
 	},2000);
+	*/
+	$.mobile.silentScroll(0);
+	console.log($('#container').parent().parent().find('#body').parent().html());
+	$.mobile.activePage.parents('html').attr("style","height:300px !important;overflow-y:hidden;min-height:1px !important;");
+	$.mobile.activePage.parents('body').attr("style","height:300px !important;overflow-y:hidden;min-height:1px !important;");
+	$.mobile.activePage.parents('#container').attr("style","height:300px !important;overflow-y:hidden;min-height:1px !important;");
+	$.mobile.activePage.parents('#container').find('.ui-page-active').attr("style","height:254px !important;overflow-y:hidden;min-height:1px !important;");
+	$.mobile.activePage.parents('#container').find('.ui-page-active').find('.ui-content').attr("style","height:150px !important;overflow-y:hidden;padding:0px !important;padding-top:46px !important;min-height:1px !important;");
+	// $('#container').parent().parent().find('#body').attr("style","height:300px !important;overflow-y:hidden;");
+	// $('#container').parent().parent().find('#container').attr("style","height:300px !important;overflow-y:hidden;");
 	/*
 	setTimeout(function() {
 		// alert(document.getElementById("body").innerHTML);

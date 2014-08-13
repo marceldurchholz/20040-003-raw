@@ -24,7 +24,7 @@ body > * {
 
 div[data-role="page"] {
 	-webkit-overflow-scrolling: touch !important;
-	padding-top: 41px !important;
+	padding-top: 46px !important;
 }
 div[data-role="page"], body, #container {
 	background-color: transparent !important;
@@ -55,7 +55,7 @@ div[data-role="header"] {
 }
 div[data-role="content"] {
 	position: absolute;
-	top: 41px;
+	top: 46px;
 	height:auto;
 	left: 0;
 	right: 0;
