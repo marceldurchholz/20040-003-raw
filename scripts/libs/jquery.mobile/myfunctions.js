@@ -271,7 +271,7 @@ function correctPageSize() {
 		window.footerFixHeight = 100;
 	} else {
 		// alert('footer not found');
-		window.footerFixHeight = 0;
+		window.footerFixHeight = -16;
 	}
 	if (window.last_footerFixHeight==undefined) window.last_footerFixHeight=window.footerFixHeight;
 	
