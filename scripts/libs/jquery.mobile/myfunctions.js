@@ -2561,19 +2561,84 @@ function collectCardsArrayDpd(userid,owner) {
 function collectCardsArray(userid) {
 	var _this = this;
 	var d = $.Deferred();
-	_this.cardsArray = new Array();
-	var cards = lao.get_local('cards');
+	// _this.cardsArray = new Array();
+	// var cards = lao.get_local('cards');
 	
-	console.log('******************************************************************* cards');
-	console.log(cards);
+	// console.log('******************************************************************* cards');
+	// console.log(cards);
 	
+	console.log();
+	var db_table = 'cards';
+	try {
+		// var offline_object = new Object();
+		var offline_object = JSON.parse(window.localStorage.getItem(db_table)) || new Object();
+		console.log('getting data from db_table: '+db_table);
+		offline_object['timestamp'] = offline_object.timestamp || "";
+		offline_object['db_table'] = offline_object.db_table || "";
+		offline_object['db_data'] = offline_object.db_data || new Object;
+		console.log(window.localStorage.getItem(db_table));
+		console.log(offline_object['db_data']);
+		// if (window.pagechange_timestamp!=undefined && (window.pagechange_timestamp == offline_object['timestamp'])) {
+		console.log(window.pagechange_timestamp +"  ///  "+ offline_object['timestamp']);
+		if (offline_object['timestamp']!="" && offline_object['db_table']!="" && offline_object['db_data'].length>0 && window.pagechange_timestamp == offline_object['timestamp']) {
+			// console.log(window.pagechange_timestamp+' == ' +offline_object['timestamp']+' >> returning (cached data) offline_object["db_data"] via get_local (table '+db_table+')');
+			// var cards = new Object();
+			var cards = offline_object.db_data;
+			alert('bla');
+			// cards.bla = "foo";
+			console.log(offline_object.db_data);
+			d.resolve(offline_object.db_data);
+		} else if (offline_object['timestamp']!=undefined) {
+			$.when( getOwnerData(window.system.owner.kdnr) ).done(
+				function( owner ) {
+					// $.when( collectCardsArrayDpd(userid,owner) ).done( function( videoData ) {
+					$.when( collectCardsArrayAjax(userid,owner) ).done( function( cardData ) {
+						console.log('collectCardsArrayAjax(userid,owner) ).done( function( cardData ) {...');
+						// _this.cardsArray = cardData;
+						// first sort by title
+						cardData.sort(function(a, b){
+						 var nameA=a.title.toLowerCase(), nameB=b.title.toLowerCase()
+						 if (nameA < nameB) //sort string ascending
+						  return -1 
+						 if (nameA > nameB)
+						  return 1
+						 return 0 
+						});
+						// then sort by topic
+						cardData.sort(function(a, b){
+						 var nameA=a.topic.toLowerCase(), nameB=b.topic.toLowerCase()
+						 if (nameA < nameB) //sort string ascending
+						  return -1 
+						 if (nameA > nameB)
+						  return 1
+						 return 0
+						});
+						$.when( lao.save_local('cards',cardData), dao.save_local('cards',cardData) ).done(
+							function( lao_result, dao_result ) {
+								d.resolve(cardData);
+							}
+						);
+					});
+				}
+			);
+		}
+	} catch(e) {
+		console.log('SAVE ERROR FOLLOWING: error during getting from localStorage');
+		console.log(e);
+	}
+	// alert(userid);
+	// alert(cards);
+	
+	
+	/*
 	$.when( lao_deferred.get_local('cards') ).done(
 		function( def_cards ) {
 			console.log('******************************************************************* def_cards');
 			console.log(def_cards);
 		}
 	);
-	
+	*/
+	/*
 	if (cards!=undefined) {
 		console.log('cards!=undefined << resolving via lao_deferred.get_local("cards")');
 		_this.cardsArray = cards;
@@ -2605,13 +2670,13 @@ function collectCardsArray(userid) {
 					$.when( lao.save_local('cards',_this.cardsArray), dao.save_local('cards',_this.cardsArray) ).done(
 						function( lao_result, dao_result ) {
 							d.resolve(_this.cardsArray);
-							// if (window.heavyDebug) console.log('end deleteFlowClicked');
 						}
 					);
 				});
 			}
 		);
 	}
+	*/
 	// return(_this.cardsArray);
 	return d.promise();
 }
@@ -4090,8 +4155,8 @@ var lao_deferred = {
 	},
 	get_local: function(db_table) {
 		var _this = this;
-		var d = $.Deferred();
 		try {
+			var d = $.Deferred();
 			var offline_object = new Object();
 			var offline_object = JSON.parse(window.localStorage.getItem(db_table));
 			console.log('getting data from db_table: '+db_table);
@@ -4101,11 +4166,12 @@ var lao_deferred = {
 			console.log(offline_object['db_data']);
 			if (window.pagechange_timestamp!=undefined && (window.pagechange_timestamp == offline_object['timestamp'])) {
 				console.log(window.pagechange_timestamp+' == ' +offline_object['timestamp']+' >> returning (cached data) offline_object["db_data"] via get_local (table '+db_table+')');
-				d.resolve(JSON.parse(window.localStorage.getItem(db_table))['db_data']);
+				d.resolve(JSON.parse(window.localStorage.getItem(db_table)['db_data']));
 				// d.resolve(db_table);
 				return d.promise();
 			}
 		} catch(e) {
+			var d = $.Deferred();
 			console.log('window.localStorage (for '+db_table+') PROBABLY NOT AVAILABLE or NOT YET SETTED or NOT ACTUAL');
 			// d.resolve();
 			return d.promise();
