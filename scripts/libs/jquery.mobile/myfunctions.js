@@ -266,10 +266,10 @@ function correctPageSize() {
 	$.mobile.silentScroll(0);
 	console.log($('#container').parent().parent().find('#body').parent().html());
 	$(document).attr("style","height:300px !important;overflow-y:hidden !important;");
-	$.mobile.activePage.parents('html').attr("style","height:300px !important;overflow-y:hidden !important;");
+	$.mobile.activePage.parents('html').attr("style","height:300px !important;overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;");
+	$.mobile.activePage.parents('body').attr("style","height:300px !important;overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;");
 	$.mobile.activePage.parents('html').addClass("fixedHeightHtml");
-	$.mobile.activePage.parents('body').attr("style","height:300px !important;overflow-y:hidden !important;");
-	$.mobile.activePage.parents('#container').attr("style","height:300px !important;overflow-y:hidden !important;");
+	$.mobile.activePage.parents('#container').attr("style","height:300px !important;overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;");
 	$.mobile.activePage.parents('#container').find('.ui-page-active').attr("style","height:254px !important;overflow-y:hidden !important;");
 	$.mobile.activePage.parents('#container').find('.ui-page-active').find('.ui-content').attr("style","height:150px !important;overflow-y:auto;padding:0px !important;padding-top:46px !important;");
 	$.mobile.silentScroll(0);
