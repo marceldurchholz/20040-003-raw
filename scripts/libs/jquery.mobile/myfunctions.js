@@ -130,7 +130,7 @@ function PLDR_createJqmPage() {
 		},
 	});
 	
-	$.mobile.activePage.find('div.myfixedfooter').each(function() {
+	// $.mobile.activePage.find('div.myfixedfooter').each(function() {
 		/*
 		var ul = $(this);
 		var ul_width = ul.width();
@@ -146,7 +146,7 @@ function PLDR_createJqmPage() {
 		message.css('max-height','100px !important');
 		message.css('height','100px !important');
 		*/
-		$(this).attr('style','position:fixed !important;top:'+($("#container").height()-100-32-46)+'px !important');
+		// $(this).attr('style','position:fixed !important;top:'+($("#container").height()-100-32-46)+'px !important');
 		
 		// $($.mobile.activePage).find('.ui-content').scrollTo( $('.learningstreamSubheading[data-learningstreamid='+query_vars.id+']').prev().prev(), 200 );
 		
@@ -168,7 +168,7 @@ function PLDR_createJqmPage() {
 		$('.ui-page-active > .ui-content').scrollTo( $('#myMsgBox'), 1000 );
 		// $('#myMsgBox').autosize();
 		*/
-	});
+	// });
 	
 	$.mobile.activePage.trigger("create");
 
@@ -263,18 +263,32 @@ function correctPageSize() {
 		$.mobile.silentScroll(0);
 	},2000);
 	*/
-	$.mobile.silentScroll(0);
+	// $.mobile.silentScroll(0);
+	window.footerFixHeight = 0;
+	console.log($.mobile.activePage.find('.instantFooter').length);
+	if ($.mobile.activePage.find('.instantFooter').length > 0) {
+		// alert('footer found');
+		window.footerFixHeight = 100;
+	} else {
+		// alert('footer not found');
+		window.footerFixHeight = 0;
+	}
+	if (window.last_footerFixHeight==undefined) window.last_footerFixHeight=window.footerFixHeight;
+	
 	// console.log($('#container').parent().parent().find('#body').parent().html());
 	$(document).attr("style","overflow-y:hidden !important;");
 	$.mobile.activePage.parents('html').attr("style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;top:0px !important;left:0px !important;bottom:0px !important;margin:0px !important;padding:0px !important;");
 	$.mobile.activePage.parents('html').addClass("fixedHeightHtml");
 	$.mobile.activePage.parents('body').attr("style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;top:0px !important;left:0px !important;bottom:0px !important;margin:0px !important;padding:0px !important;");
 	$.mobile.activePage.parents('#container').attr("style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;top:0px !important;left:0px !important;bottom:0px !important;margin:0px !important;padding:0px !important;");
-	if (window.pageHeight==undefined) window.pageHeight = parseInt($(document).height(),0)-100-46-16;
-	if (window.contentHeight==undefined) window.contentHeight = parseInt($(document).height(),0)-100-46-16;
+	if (window.pageHeight==undefined || window.last_footerFixHeight!=window.footerFixHeight) window.pageHeight = parseInt($(document).height(),0)-window.footerFixHeight-46-16;
+	if (window.contentHeight==undefined || window.last_footerFixHeight!=window.footerFixHeight) window.contentHeight = parseInt($(document).height(),0)-window.footerFixHeight-46-16;
 	$.mobile.activePage.parents('#container').find('.ui-page-active').attr("style","height:"+(window.pageHeight)+"px !important;overflow-y:hidden !important;");
 	$.mobile.activePage.parents('#container').find('.ui-page-active').find('.ui-content').attr("style","height:"+window.contentHeight+"px !important;overflow-y:scroll !important;padding:0px 16px !important;top:46px !important;");
 	$.mobile.silentScroll(0);
+	
+	window.last_footerFixHeight = window.footerFixHeight;
+	
 	// alert(contentHeight);
 	// $('#container').parent().parent().find('#body').attr("style","overflow-y:hidden;");
 	// $('#container').parent().parent().find('#container').attr("style","overflow-y:hidden;");
@@ -2549,83 +2563,27 @@ function collectCardsArray(userid) {
 	var d = $.Deferred();
 	_this.cardsArray = new Array();
 	var cards = lao.get_local('cards');
+	
+	console.log('******************************************************************* cards');
+	console.log(cards);
+	
+	$.when( lao_deferred.get_local('cards') ).done(
+		function( def_cards ) {
+			console.log('******************************************************************* def_cards');
+			console.log(def_cards);
+		}
+	);
+	
 	if (cards!=undefined) {
+		console.log('cards!=undefined << resolving via lao_deferred.get_local("cards")');
 		_this.cardsArray = cards;
 		d.resolve(_this.cardsArray);
 	} else {
-	
 		$.when( getOwnerData(window.system.owner.kdnr) ).done(
 			function( owner ) {
-
-				/*
-				var requestUrl = dpd_server+"cards?active=true&deleted=false&include=likes";
-				if (window.me.master==false && window.system.owner.master==false) requestUrl = requestUrl + "&uploader="+owner.id;
-				// console.log(requestUrl);
-				// alert(requestUrl);
-				$.ajax({
-					url: requestUrl,
-					async: false
-				}).done(function(cardData) {
-				*/
 				// $.when( collectCardsArrayDpd(userid,owner) ).done( function( videoData ) {
 				$.when( collectCardsArrayAjax(userid,owner) ).done( function( cardData ) {
 					_this.cardsArray = cardData;
-					
-					/*
-					_this.uploaderArray = new Array();
-					_.each(cardData, function(value, index, list) {
-						// var exists = $.inArray( value.topic, window.me.interests );
-						// if (window.me.interests.length==0) exists=1;
-						// if (value.cardgroups == undefined) value.cardgroups = new Array();
-						// if (window.me.cardgroups == undefined) window.me.cardgroups = new Array();
-						// if (value.cardgroups.length>0) {
-							// exists=0;
-							// $.each( value.cardgroups, function( key, role ) {
-								// $.each( window.me.cardgroups, function( keyme, valueme ) {
-									// if (role==valueme) {
-										// exists=1;
-										// return(false);
-									// }
-								// });
-							// });
-						// }
-						
-						var exists = 1;
-						// alert(value.uploader+'=?='+window.me.id);
-						// if (value.uploader == window.me.id) exists=1;
-						if (exists>0) if (value.uploader == undefined || value.uploader == "") exists=0;
-						if (exists>0) {
-							value.ccat = 'card';
-							value.icon = 'images/icon-cards-60.png';
-							value.href = '#admin/cards/details/'+value.id;					
-							var uploader = value.uploader;
-							var queryurl = dpd_server+'users/?id='+uploader;
-							// console.log(queryurl);
-							if (_this.uploaderArray[uploader]==undefined) {
-								$.ajax({
-									url: queryurl,
-									async: false,
-									success: function(data, textStatus, XMLHttpRequest) {
-										value.uploaderdata = data;
-										// console.log(value.uploaderdata);
-										_this.uploaderArray[data.id] = new Object();
-										_this.uploaderArray[data.id] = data;
-									},
-									error:function (xhr, ajaxOptions, thrownError) {
-										// console.log(xhr.responseText);
-									}
-								});
-							}
-							else {
-								value.uploaderdata = _this.uploaderArray[uploader];
-							}
-							if ((window.system.master==true && value['public']==true) || window.system.master==false) { 
-								_this.cardsArray.push(value);
-							}
-						}
-							
-					});
-					*/
 					// first sort by title
 					_this.cardsArray.sort(function(a, b){
 					 var nameA=a.title.toLowerCase(), nameB=b.title.toLowerCase()
@@ -4090,7 +4048,7 @@ var lao = {
 			offline_object['db_data'] = offline_object.db_data;
 			// if (window.heavyDebug) console.log(offline_object);
 			// if (window.heavyDebug) console.log(offline_object);
-			if (pagechange_timestamp!=undefined && (window.pagechange_timestamp == offline_object['timestamp'])) {
+			if (window.pagechange_timestamp!=undefined && (window.pagechange_timestamp == offline_object['timestamp'])) {
 				if (window.heavyDebug) console.log(window.pagechange_timestamp+' == ' +offline_object['timestamp']+' >> returning (cached data) offline_object["db_data"] via get_local (table '+db_table+')');
 				// if (window.heavyDebug) console.log(db_table);
 				// if (window.heavyDebug) console.log(window.pagechange_timestamp , offline_object['db_data']);
@@ -4101,6 +4059,56 @@ var lao = {
 		} catch(e) {
 			// not yet existing offline...
 			if (window.heavyDebug) console.log('window.localStorage (for '+db_table+') PROBABLY NOT AVAILABLE or NOT YET SETTED or NOT ACTUAL');
+		}
+	}
+}
+
+var lao_deferred = {
+	initialize: function() {
+		// if (window.heavyDebug) console.log('lao: initialize');
+		// var d = $.Deferred();
+		// d.resolve();
+		// return d.promise();
+	},
+	save_local: function(db_table,db_data) {
+		var _this = this;
+		var d = $.Deferred();
+		if (window.heavyDebug) console.log('lao.save_local('+db_table+',db_data)');
+		var offline_object = new Object();
+		offline_object['timestamp'] = window.pagechange_timestamp; //  || dateYmdHis()
+		offline_object['db_table'] = db_table;
+		offline_object['db_data'] = db_data;
+		try {
+			window.localStorage.setItem(db_table, JSON.stringify(offline_object));
+			d.resolve(_this.get_local(db_table));
+			return d.promise();
+		} catch(e) {
+			if (window.heavyDebug) console.log('could not use window.localStorage');
+			// d.resolve();
+			return d.promise();
+		}
+	},
+	get_local: function(db_table) {
+		var _this = this;
+		var d = $.Deferred();
+		try {
+			var offline_object = new Object();
+			var offline_object = JSON.parse(window.localStorage.getItem(db_table));
+			console.log('getting data from db_table: '+db_table);
+			offline_object['timestamp'] = offline_object.timestamp;
+			offline_object['db_table'] = offline_object.db_table;
+			offline_object['db_data'] = offline_object.db_data;
+			console.log(offline_object['db_data']);
+			if (window.pagechange_timestamp!=undefined && (window.pagechange_timestamp == offline_object['timestamp'])) {
+				console.log(window.pagechange_timestamp+' == ' +offline_object['timestamp']+' >> returning (cached data) offline_object["db_data"] via get_local (table '+db_table+')');
+				d.resolve(JSON.parse(window.localStorage.getItem(db_table))['db_data']);
+				// d.resolve(db_table);
+				return d.promise();
+			}
+		} catch(e) {
+			console.log('window.localStorage (for '+db_table+') PROBABLY NOT AVAILABLE or NOT YET SETTED or NOT ACTUAL');
+			// d.resolve();
+			return d.promise();
 		}
 	}
 }
