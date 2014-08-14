@@ -118,9 +118,10 @@ $(document).off( "pagechange" ).on( "pagechange", function( event ) {
 	createLoadingBar();
 	window.ajaxLoader = 0;
 	window.modules_to_parse = 0;
-	window.pagechange_timestamp = dateYmdHis();
 	// if (window.btnBackClicked==1) {
 	if (window.pagecreated!=1 && window.btnBackClicked==1) {
+		window.pagechange_timestamp = dateYmdHis();
+		// alert('setting window.pagechange_timestamp to : ' + window.pagechange_timestamp);
 		// window.pagechange_timestamp = dateYmdHis();
 		// PLDR_resetCreated($.mobile.activePage);
 	}

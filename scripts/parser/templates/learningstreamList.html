@@ -9,7 +9,7 @@
 				<span class="ui-link linkCdate" data-ajax="true" style="font-weight:normal;" data-theme="b"><% if (learningstream.cdate && learningstream.cdate!="") { %> am <%= dateYmdHisToGerman(learningstream.cdate) %><% } else { %><% } %></span>
 				<!-- <p style="width:100% !important;float:left;clear:both;padding:0;margin:0;">blablabla</p> -->
 			</li>
-			<li role="content" class="<% if(window.me.id == learningstream.uploader) { %>swipetodeletetd<% } %>">
+			<li role="content" class="learningstreamPostContentArea<% if(window.me.id == learningstream.uploader) { %>swipetodeletetd<% } %>">
 				<% if(learningstream.ccat=="video") { %><a href="#videodetails?videoid=<%= learningstream.id %>"><% } else if (learningstream.ccat=="card") { %><a href="#carddetails?cardid=<%= learningstream.id %>"><% } else { %><a href="notsetted"><!--type not setted--><% } %>
 					<img style="width:50px;height:50px;padding:20px !important;" src="<% if (learningstream.icon && learningstream.icon!="") { %><%= learningstream.icon %><% } else { %>images/avatar.jpg<% } %>">
 					<p class="listviewTextUnderThumbnbailLeft"><% if(learningstream.price!=undefined && learningstream.price!="" && parseInt(learningstream.price)>0) { %><%= accounting.formatNumber(parseInt(learningstream.price), 0, ".", ",") %><% } else { %><!--kostenlos--><% }%></p>
@@ -50,7 +50,7 @@
 					</li>
 				</ul>
 			</li>
-			<li class="learningstreamGapArea">
+			<li class="learningstreamGapArea" style="background-color:transparent !important;">
 			</li>
 		<% } %>
 	<% }); %>

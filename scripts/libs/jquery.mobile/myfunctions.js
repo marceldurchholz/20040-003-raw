@@ -2585,31 +2585,13 @@ function collectCardsArray(userid) {
 		// ...
 		*/
 
-		if (isNativeAppMode()) {
-			$.when( dao.get_local('cards') ).done(
-				function( cardData ) {
-					if (cardData!=undefined) {
-						if (cardData.length && cardData.length>0) d.resolve(cardData);
-						alert('card data in var dao');
-					} else {
-						alert('no card data in var dao');
-					}
-				}
-			);
-		} else {
-			if (offline_object['timestamp']!="" && offline_object['db_table']!="" && offline_object['db_data'].length>0) {
-				alert('card data in var lao');
-				d.resolve(offline_object.db_data);
-			} else {
-				alert('no card data in var lao');
-			}
-		}
-		if (isConnectedToInternet()==true) {
-			alert('getting card data from online');
+		console.log(offline_object['timestamp'] +" //// "+ window.pagechange_timestamp);
+		if (isConnectedToInternet()==true && offline_object['timestamp'] != window.pagechange_timestamp) {
+			// alert('getting card data from online');
 			$.when( getOwnerData(window.system.owner.kdnr) ).done(
 				function( owner ) {
-					$.when( collectCardsArrayDpd(userid,owner) ).done( function( cardData ) {
-					// $.when( collectCardsArrayAjax(userid,owner) ).done( function( cardData ) {
+					// $.when( collectCardsArrayDpd(userid,owner) ).done( function( cardData ) {
+					$.when( collectCardsArrayAjax(userid,owner) ).done( function( cardData ) {
 						console.log('$.when( collectCardsArrayDpd(userid,owner) ).done( function( cardData ) {...');
 						// first sort by title
 						cardData.sort(function(a, b){
@@ -2637,6 +2619,26 @@ function collectCardsArray(userid) {
 					});
 				}
 			);
+		} else {
+			if (isNativeAppMode() && 11111==22222) {
+				$.when( dao.get_local('cards') ).done(
+					function( cardData ) {
+						if (cardData!=undefined) {
+							if (cardData.length && cardData.length>0) d.resolve(cardData);
+							// alert('card data in var dao');
+						} else {
+							// alert('no card data in var dao');
+						}
+					}
+				);
+			} else {
+				if (offline_object['timestamp']!="" && offline_object['db_table']!="" && offline_object['db_data'].length>0) {
+					// alert('card data in var lao');
+					d.resolve(offline_object.db_data);
+				} else {
+					// alert('no card data in var lao');
+				}
+			}
 		}
 	} catch(e) {
 		console.log('SAVE ERROR FOLLOWING: error during getting cards data');

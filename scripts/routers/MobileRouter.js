@@ -26,6 +26,7 @@ define(['collections/sidemenusCollection', 'selfies/navigation/PanelrightView', 
 			
 			initialize: function() {
 				forceLogin();
+				window.pagechange_timestamp = dateYmdHis();
 				if (window.heavyDebug) console.log('MobileRouter.js >> initialize: function() {...');
 				// if (window.heavyDebug) console.log('initialize MobileRouter.js');
 				var _this = this;
@@ -212,6 +213,8 @@ define(['collections/sidemenusCollection', 'selfies/navigation/PanelrightView', 
 			gotoRoute: function(open_route) {
 				var _this = this;
 				if (window.heavyDebug) console.log('*********************************************************** gotoRoute('+open_route+') ***********************************************************');
+				window.pagechange_timestamp = dateYmdHis();
+				// alert('setting window.pagechange_timestamp to : ' + window.pagechange_timestamp);
 				window.ajaxLoader = 1;
 				// if (window.heavyDebug) console.log('gotoRoute: '+open_route);
 				$.when(_this.getSidemenuCollection()).done(
