@@ -117,7 +117,7 @@ $(document).off( "pagecreate" ).on( "pagecreate", function( event ) {
 $(document).off( "pagechange" ).on( "pagechange", function( event ) {
 	if (window.heavyDebug) console.log('onpageevents.js >> $(document).off( "pagechange" ).on( "pagechange", function( event ) {...');
 	try {
-		alert('trying...');
+		// alert('trying...');
 		$('#container').find('.instantFooter[data-moved="true"]').remove();
 		$('.instantFooter[data-moved="true"]').remove();
 		// $(document).find('.instantFooterMoved').removeClass('.instantFooter');
