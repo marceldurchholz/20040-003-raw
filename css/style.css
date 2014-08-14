@@ -195,6 +195,7 @@ label {
 	position: fixed !important;
 }
 
+/*
 #sendMessage > * {
 	z-index:2 !important;
 }
@@ -214,6 +215,7 @@ label {
 	width: 0px !important;
 	height: 10px !important;
 }
+
 textarea.myMsgBox {
 	z-index:3;
 	overflow-y:visible !important;
@@ -229,18 +231,50 @@ textarea.myMsgBox {
 	float:left;
 	clear:none;
 }
+*/
 
+.messageForm {
+	padding:8px !important;
+}
+
+textarea.myMsgBox {
+	z-index:3;
+	overflow-y:visible !important;
+	resize: none !important;
+	p/adding:8px 4px !important;
+	padding:4px !important; 
+	m/argin-left:0px !important; 
+	m/argin-right:0px !important; 
+	border:1px solid #dedede !important;
+	background-color: rgb(249, 249, 249) !important;
+	max-height:72px !important;
+	height:72px !important;
+	f/loat:left;
+	c/lear:none;
+}
+
+.bottomGap {
+	float:none !important;
+	clear:both !important;
+	height:50px !important;
+	/* background-color:yellow !important;; */
+	background-color:transparent !important;
+}
+
+a.sendLink {
+	padding-left:8px !important;
+}
+
+/*
 a.sendLink {
 	width:60px !important;
 	margin:0px !important;
 	float:right;
 	clear:none;
 	margin:16px !important;
-	/* position:absolute !important; */
-	/* bottom:16px !important; */
-	/* right:16px !important; */
 	margin-bottom:0px !important;
 }
+*/
 
 .ui-controlgroup-controls {
 	width:100% !important;
@@ -250,53 +284,29 @@ span[data-pastload-module="simpletext"] {
 	width:100% !important;
 }
 
-.text_centered {
-	text-align: center;
-}
-
-div[data-role=footer]
-{
-	bottom:0px !important;
-	height:100px !important;
+.full_width {
 	width:100% !important;
+	height:auto !important;
+	display:inline-block !important;
+}
+
+div[data-role=footer], footer, .instantFooter, .instantFooterMoved {
+	z-index:999 !important;
+	position: fixed !important;
+	left:0px !important;
+	right:0px !important;
+	bottom:0px !important;
+	height:100px !important;
+	width: 100% !important;
+	margin:0px !important;
+	padding:0px !important;
+	max-height:100px !important;
+	text-align: center !important;
+	color: #dedcb9 !important;
+	overflow:hidden !important;
 	vertical-align:middle !important;
+	text-align:center !important;
 }
-
-footer {
-	z-index:999 !important;
-	position: fixed !important;
-	left:0px !important;
-	right:0px !important;
-	bottom:0px !important;
-	height:100px !important;
-	width: 100% !important;
-	margin:0px !important;
-	padding:0px !important;
-	max-height:100px !important;
-	text-align: center !important;
-	background: #100 !important;
-	color: #dedcb9 !important;
-	overflow:hidden !important;
-	vertical-align: middle !important;
-}
-.instantFooter, .instantFooterMoved {
-	z-index:999 !important;
-	position: fixed !important;
-	left:0px !important;
-	right:0px !important;
-	bottom:0px !important;
-	height:100px !important;
-	width: 100% !important;
-	margin:0px !important;
-	padding:0px !important;
-	max-height:100px !important;
-	text-align: center !important;
-	background: #100 !important;
-	color: #dedcb9 !important;
-	overflow:hidden !important;
-	vertical-align: middle !important;
-}
-
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////

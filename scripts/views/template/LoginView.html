@@ -8,9 +8,8 @@
 	<% } %>
 </div>
 
-<div data-role="content" class="text_centered">
+<div data-role="content">
 
-	
 		<!--
 		<div style="clear:both;float:none;width:100%;font-size:9px !important;">
 			<button class="btn btn-block" onclick="sendFbLogin()">Login with Facebook</button>
@@ -108,41 +107,45 @@
 
 		<div style="height:5px;"></div>
 		
-		<img src="icon.png" style="m/ax-height:30%;max-width:40%;" class="no-elementResizeByScreenHeight" no-data-percentheight="25">
+		<div class="full_width" style="text-align:center;">
 		
-		<div style="float:none;clear:both;"></div>
-		
-		<!--
-		<div id="videocontainer" style="b/order:10px solid red;b/ackground-color:#000000;">
-			<a id="videocontainerlink" style="width:100%;height:100%;">
-				<video id="video_player_1" class="video-js vjs-default-skin" data-setup="{}"></video>
-			</a>
-			<img src="images/shadow.png" style="width:100%;height:20px;">
-		</div>
-		-->
-		
-		<!-- <h5>APPinaut</h5> -->
-		
-		<!--
-		<p>link test<br /><br />
-		<a href="#" onclick="window.open('http://www.wikipedia.org','_self','location=yes')">Wikipedia (webview)</a><br /><br />
-		<a href="#" onclick="window.open('http://www.wikipedia.org','_blank','location=yes')">Wikipedia (inAppBrowser)</a><br /><br />
-		<a href="#" onclick="window.open('http://www.wikipedia.org','_system','location=yes')">Wikipedia (mobile browser)</a><br /><br />
-		</p>
-		<p>button test<br /><br />
-		<button type="button" onclick="window.open('http://www.wikipedia.org','_self','location=yes')">Wikipedia (webview)</button><br /><br />
-		<button type="button" onclick="window.open('http://www.wikipedia.org','_blank','location=yes')">Wikipedia (inAppBrowser)</button><br /><br />
-		<button type="button" onclick="window.open('http://www.wikipedia.org','_system','location=yes')">Wikipedia (mobile browser)</button><br /><br />  
-		</p>
-		<div style="height:5px;"></div>
-		-->
-		
-		<div style="float:none;clear:both;height:15px;"></div>
-		<div style="font-size:10px;">
-			<div style="font-size:16px;"><strong class="resizetext"><%= window.system.owner.slogan %></strong></div>
-			<div style="font-size:12px;" class="resizetext"><%= window.system.app.options.calltoaction %></div>
-		</div>
+			<img src="icon.png" style="float:center;m/ax-height:30%;max-width:40%;" class="no-elementResizeByScreenHeight" no-data-percentheight="25">
+			
+			<div style="float:none;clear:both;"></div>
+			
+			<!--
+			<div id="videocontainer" style="b/order:10px solid red;b/ackground-color:#000000;">
+				<a id="videocontainerlink" style="width:100%;height:100%;">
+					<video id="video_player_1" class="video-js vjs-default-skin" data-setup="{}"></video>
+				</a>
+				<img src="images/shadow.png" style="width:100%;height:20px;">
+			</div>
+			-->
+			
+			<!-- <h5>APPinaut</h5> -->
+			
+			<!--
+			<p>link test<br /><br />
+			<a href="#" onclick="window.open('http://www.wikipedia.org','_self','location=yes')">Wikipedia (webview)</a><br /><br />
+			<a href="#" onclick="window.open('http://www.wikipedia.org','_blank','location=yes')">Wikipedia (inAppBrowser)</a><br /><br />
+			<a href="#" onclick="window.open('http://www.wikipedia.org','_system','location=yes')">Wikipedia (mobile browser)</a><br /><br />
+			</p>
+			<p>button test<br /><br />
+			<button type="button" onclick="window.open('http://www.wikipedia.org','_self','location=yes')">Wikipedia (webview)</button><br /><br />
+			<button type="button" onclick="window.open('http://www.wikipedia.org','_blank','location=yes')">Wikipedia (inAppBrowser)</button><br /><br />
+			<button type="button" onclick="window.open('http://www.wikipedia.org','_system','location=yes')">Wikipedia (mobile browser)</button><br /><br />  
+			</p>
+			<div style="height:5px;"></div>
+			-->
+			
+			<div style="float:none;clear:both;height:15px;"></div>
+			<div style="font-size:10px;">
+				<div style="font-size:16px;"><strong class="resizetext"><%= window.system.owner.slogan %></strong></div>
+				<div style="font-size:12px;" class="resizetext"><%= window.system.app.options.calltoaction %></div>
+			</div>
 
+		</div>
+		
 		<div style="float:none;clear:both;height:15px;"></div>
 		
 		<form style="text-align:left;">
@@ -172,7 +175,6 @@
 					
 			<div style="float:none;clear:both;"></div>
 			<a id="sendLoginBtn" class="sendLoginBtn" data-role="button"><span>Anmelden</span></a>
-			<div id="bottomGap">bottomGap</div>
 			
 			<div class="ui-grid-a ui-responsive">
 				<div class="ui-block-a">
@@ -194,24 +196,28 @@
 		
 		<div style="height:20px;"></div>
 		
-		<span><a href="#privacy" class="resizetext">Datenschutz</a><span class="resizetext"> &middot; </span><a href="#support" class="resizetext">Support</a></span>
-		<div style="height:10px;"></div>
-		<span><a id="sendAnonymRegisterBtn" class="sendAnonymRegisterBtn resizetext" href="#" style="font-weight:normal;">Anonym in der Mediathek stöbern</a></span>
+		<div class="full_width" style="text-align:center;">
 		
-		<p style="padding-top:0px;font-weight:normal;font-size:9px;line-height:10px;text-align:justify;opacity:1;color:#888;text-decoration:none;text-align:center;" class="no-resizetext">
-			<% if (1==2) { %>
-				Indem Sie auf "Neuen Zugang anlegen" klicken, akzeptieren Sie die <a onClick="location.href='#agb';" style="font-weight:normal;font-size:9px;line-height:10px;text-align:justify;opacity:1;color:#888;text-decoration:none;" class="no-resizetext">Allgemeinen Geschäftsbedingungen von APPinaut</a>. <a onClick="location.href='#agb';" style="font-weight:normal;font-size:9px;line-height:10px;text-align:justify;opacity:1;color:#888;text-decoration:none;"><!--Kontaktieren</a> Sie uns gerne.--><!-- und bestätigen, dass Sie die Datenschutzrichtlinien und die Bestimmungen zur Cookie-Verwendung gelesen haben. Eventuell erhalten Sie eine E-Mail vom APPinaut Team, die Sie jederzeit abbestellen können.-->
-			<% } %>
-			<br><br><br><br>
-			<!--
-			<a onClick="javascript:openExternalURL('http://www.google.de/');">open google external</a>
-			<br><br><br><br>
+			<span><a href="#privacy" class="resizetext">Datenschutz</a><span class="resizetext"> &middot; </span><a href="#support" class="resizetext">Support</a></span>
+			<div style="height:10px;"></div>
+			<span><a id="sendAnonymRegisterBtn" class="sendAnonymRegisterBtn resizetext" href="#" style="font-weight:normal;">Anonym in der Mediathek stöbern</a></span>
 			
-			<a href="http://www.google.com/" onclick="window.open(this.href,'_system'); return false;">Google</a>
-			<br><br><br><br>
-			-->
+			<p style="padding-top:0px;font-weight:normal;font-size:9px;line-height:10px;text-align:justify;opacity:1;color:#888;text-decoration:none;text-align:center;" class="no-resizetext">
+				<% if (1==2) { %>
+					Indem Sie auf "Neuen Zugang anlegen" klicken, akzeptieren Sie die <a onClick="location.href='#agb';" style="font-weight:normal;font-size:9px;line-height:10px;text-align:justify;opacity:1;color:#888;text-decoration:none;" class="no-resizetext">Allgemeinen Geschäftsbedingungen von APPinaut</a>. <a onClick="location.href='#agb';" style="font-weight:normal;font-size:9px;line-height:10px;text-align:justify;opacity:1;color:#888;text-decoration:none;"><!--Kontaktieren</a> Sie uns gerne.--><!-- und bestätigen, dass Sie die Datenschutzrichtlinien und die Bestimmungen zur Cookie-Verwendung gelesen haben. Eventuell erhalten Sie eine E-Mail vom APPinaut Team, die Sie jederzeit abbestellen können.-->
+				<% } %>
+				<br><br><br><br>
+				<!--
+				<a onClick="javascript:openExternalURL('http://www.google.de/');">open google external</a>
+				<br><br><br><br>
+				
+				<a href="http://www.google.com/" onclick="window.open(this.href,'_system'); return false;">Google</a>
+				<br><br><br><br>
+				-->
+				
+			</p>
 			
-		</p>
+		</div>
 		
 		<!--
 		<p>

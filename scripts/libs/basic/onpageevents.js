@@ -318,11 +318,20 @@ function PLDR_finalAction() {
 	// if (window.heavyDebug) console.log('doing PLDR_finalAction');
 	slideUpLoadingBar();
 	window.ajaxLoader = 1;
+	if (window.pagecreated==1) {
+		// $.mobile.silentScroll(9999999);
+		if ($.mobile.activePage.find('.scrollDownTo').length) {
+			setTimeout(function() {
+				$.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , 1000 );
+			},300);
+		}
+	}
 	window.pagecreated = 0;
 	window.btnBackClicked = 0;
 	PLDR_createJqmPage();
 	startBuildEditables($.mobile.activePage);
 	PLDR_resetCreated($.mobile.activePage);
+	// if (window.pagecreated==1 || window.btnBackClicked==1) {
 	// $.mobile.activePage.scrollTo( '0px', 1000 );
 	// $.mobile.activePage.scrollTo( $('ul').get(2).childNodes[20], 800 );
 }
