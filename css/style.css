@@ -279,7 +279,7 @@ footer {
 	overflow:hidden !important;
 	vertical-align: middle !important;
 }
-.instantFooter {
+.instantFooter, .instantFooterMoved {
 	z-index:999 !important;
 	position: fixed !important;
 	left:0px !important;

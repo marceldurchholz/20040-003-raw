@@ -265,8 +265,8 @@ function correctPageSize() {
 	*/
 	// $.mobile.silentScroll(0);
 	window.footerFixHeight = 0;
-	console.log($.mobile.activePage.find('.instantFooter').length);
-	if ($.mobile.activePage.find('.instantFooter').length > 0) {
+	console.log($('body').find('.instantFooter').length);
+	if ($('body').find('.instantFooter').length > 0) {
 		// alert('footer found');
 		window.footerFixHeight = 100;
 	} else {

@@ -110,10 +110,36 @@ $(document).off( "pagecreate" ).on( "pagecreate", function( event ) {
 	});
 	*/
 	window.pagecreated = 1;
+	
+	// $('.instantFooter').appendTo('body');
 });
 
 $(document).off( "pagechange" ).on( "pagechange", function( event ) {
 	if (window.heavyDebug) console.log('onpageevents.js >> $(document).off( "pagechange" ).on( "pagechange", function( event ) {...');
+	try {
+		alert('trying...');
+		$('#container').find('.instantFooter[data-moved="true"]').remove();
+		$('.instantFooter[data-moved="true"]').remove();
+		// $(document).find('.instantFooterMoved').removeClass('.instantFooter');
+		// var bla = $('.instantFooter');
+		$('.instantFooter').attr('data-moved','true')
+		$('.instantFooter').appendTo('#container');
+		// $('.instantFooterMoved').toggleClass('.instantFooterMoved')
+		// $('.instantFooterMoved').removeClass('.instantFooter');
+		/*
+		$('.instantFooter').each(function(index,Element){
+			$(this).remove();
+		});
+		$('.instantFooterMoved').each(function(index,Element){
+			$(this).remove();
+		});
+		$('.instantFooter').remove();
+		$('.instantFooterMoved').remove();
+		*/
+		// $('.ui-page-active > .ui-content').find('.instantFooter').remove();
+	} catch(e) {
+		alert(e);
+	}
 	$.mobile.defaultPageTransition = window.defaultPageTransition;
 	createLoadingBar();
 	window.ajaxLoader = 0;
