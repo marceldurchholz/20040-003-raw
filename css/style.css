@@ -64,7 +64,9 @@ div[data-role="content"], .ui-content, .scrollable {
 .instantFooter {
 	height:100px !important;
 	max-height:100px !important;
-	margin:0px !important;padding:0px !important;overflow:hidden !important;
+	margin:0px !important;
+	padding:0px !important;
+	overflow:hidden !important;
 }
 
 a {
