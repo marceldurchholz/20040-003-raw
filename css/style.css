@@ -254,11 +254,20 @@ span[data-pastload-module="simpletext"] {
 	text-align: center;
 }
 
+div[data-role=footer]
+{
+	bottom:0px !important;
+	height:100px !important;
+	width:100% !important;
+	vertical-align:middle !important;
+}
+
 footer {
+	z-index:999 !important;
 	position: fixed !important;
 	left:0px !important;
 	right:0px !important;
-	bottom:100px !important;
+	bottom:0px !important;
 	height:100px !important;
 	width: 100% !important;
 	margin:0px !important;
@@ -268,12 +277,14 @@ footer {
 	background: #100 !important;
 	color: #dedcb9 !important;
 	overflow:hidden !important;
+	vertical-align: middle !important;
 }
 .instantFooter {
+	z-index:999 !important;
 	position: fixed !important;
 	left:0px !important;
 	right:0px !important;
-	bottom:100px !important;
+	bottom:0px !important;
 	height:100px !important;
 	width: 100% !important;
 	margin:0px !important;
@@ -283,6 +294,7 @@ footer {
 	background: #100 !important;
 	color: #dedcb9 !important;
 	overflow:hidden !important;
+	vertical-align: middle !important;
 }
 
 
