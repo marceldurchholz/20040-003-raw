@@ -549,7 +549,8 @@ function keyboardDidShow() {
 	console.log('keyboardDidShow');
 	window.keyboardvisible = true;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
-	console.log($(".footer").attr('style'));
+	var footerStyle = $(".footer").attr('style') || "";
+	console.log(footerStyle);
 	/*
 	$('.activeElement').parents('div.footer').addClass('footerMoveda');
 	var footer = $(".footer");
@@ -558,9 +559,9 @@ function keyboardDidShow() {
 	*/
 	$('.activeElement').parents('div.footer').addClass('footerMoveda');
 	
-	var windowHeight = parseInt($(window).height(),0);
-	var footerHeight = $('.activeElement').parents('div.footer').height();
-	var footerTopOffset = (windowHeight-footerHeight); // window.footerFixHeight-46-16;
+	var windowHeight = parseInt($(window).height(),0) || parseInt($(document).height(),0);
+	var footerHeight = $('.activeElement').parents('div.footer').height() || 100;
+	var footerTopOffset = (windowHeight-footerHeight);
 	console.log('windowHeight: '+windowHeight);
 	console.log('footerHeight: '+footerHeight);
 	console.log('footerTopOffset: '+footerTopOffset);
