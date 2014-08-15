@@ -28,7 +28,7 @@ bodya > * {
 	-webkit-tap-highlight-color: rgba(0,0,0,0) !important;
 }
 
-#container {
+#containera {
 	background: url(../images/quadbg001.jpg) no-repeat center center fixed !important;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -38,7 +38,7 @@ bodya > * {
 div[data-role="page"] {
 	padding-top: 46px !important;
 }
-div[data-role="page"], body, #container {
+div[data-role="pagea"], bodya, #containera {
 	background-color: transparent !important;
 	-webkit-transform: translate3d(0,0,0) !important;
 	-webkit-transform: translateZ(0px) !important;
