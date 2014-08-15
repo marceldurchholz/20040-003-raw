@@ -597,6 +597,7 @@ function keyboardDidShow() {
 }
 function keyboardWillHide() {
 	console.log('keyboardWillHide');
+	cordova.plugins.Keyboard.disableScroll(false);
 }
 function keyboardDidHide() {
 	console.log('keyboardDidHide');
@@ -631,6 +632,7 @@ function keyboardDidHide() {
 	console.log(footerOffset);
 	
 	correctPageSize();
+	cordova.plugins.Keyboard.disableScroll(true);
 	// $.mobile.activePage.find('#sendMessage').attr('style','').css('background-color','lightred');
 }
 
