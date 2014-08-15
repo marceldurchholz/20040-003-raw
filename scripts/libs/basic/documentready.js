@@ -250,6 +250,7 @@ $(document).ready(function() {
 			console.log("$(e.target).addClass('activeElement');");
 			$(e.target).addClass('activeElement');
 			if (!isMobile.any()) {
+				keyboardWillShow();
 				setTimeout(function() {
 					keyboardDidShow();
 				},600);
@@ -258,6 +259,7 @@ $(document).ready(function() {
 		if (e.type=="focusout") {
 			console.log("$(e.target).removeClass('activeElement');");
 			if (!isMobile.any()) {
+				keyboardWillHide();
 				setTimeout(function() {
 					keyboardDidHide();
 				},600);

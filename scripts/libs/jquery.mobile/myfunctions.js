@@ -550,15 +550,25 @@ function keyboardWillShow() {
 	window.documentCurrentScrollPosition = $(document).scrollTop();
 	console.log(window.documentCurrentScrollPosition);
 
+	window.windowHeight = parseInt($(window).height(),0) || parseInt($(document).height(),0) || parseInt($('body').height(),0) || parseInt($('#container').height(),0);
+	console.log('window.windowHeight: '+window.windowHeight);
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 }
 function keyboardDidShow() {
 	console.log('keyboardDidShow');
+	// $.mobile.silentScroll(0);
 	// window.keyboardvisible = true;
 	// console.log('window.keyboardvisible: '+window.keyboardvisible);
 
+	/*
 	window.documentCurrentScrollPosition = $(document).scrollTop();
 	console.log(window.documentCurrentScrollPosition);
+	window.documentCurrentScrollPosition = $(document).scrollTop();
+	console.log(window.documentCurrentScrollPosition);
+	*/
+	$(document).scrollTop(window.documentCurrentScrollPosition);
+	$(window).scrollTop(window.documentCurrentScrollPosition);
+
 	
 	var footerStyle = $(".footer").attr('style') || "";
 	console.log(footerStyle);
@@ -572,10 +582,9 @@ function keyboardDidShow() {
 	
 	$('.activeElement').parents('div.footer').addClass('footerMoveda');
 	
-	var windowHeight = parseInt($(window).height(),0) || parseInt($(document).height(),0);
 	var footerHeight = $('.activeElement').parents('div.footer').height() || 100;
-	var footerTopOffset = (windowHeight-footerHeight);
-	console.log('windowHeight: '+windowHeight);
+	var footerTopOffset = (window.windowHeight-footerHeight);
+	console.log('window.windowHeight: '+window.windowHeight);
 	console.log('footerHeight: '+footerHeight);
 	console.log('footerTopOffset: '+footerTopOffset);
 	$(".footer").css({"top":footerTopOffset,"bottom":"auto"});
@@ -586,7 +595,7 @@ function keyboardDidShow() {
 	console.log(footerPosition);
 	var footerOffset = $(".footer").offset() || new Object();
 	console.log(footerOffset);
-	cordova.plugins.Keyboard.disableScroll(true);
+	if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(true);
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(true);
 
 	/*
@@ -609,7 +618,7 @@ function keyboardDidShow() {
 	*/
 }
 function keyboardWillHide() {
-	cordova.plugins.Keyboard.disableScroll(false);
+	if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 	console.log('keyboardWillHide');
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 }
@@ -619,6 +628,8 @@ function keyboardDidHide() {
 	// console.log('window.keyboardvisible: '+window.keyboardvisible);
 
 	// $.mobile.silentScroll(0);
+	$(document).scrollTop(window.documentCurrentScrollPosition);
+	$(window).scrollTop(window.documentCurrentScrollPosition);
 	
 	var footerStyle = $(".footer").attr('style') || "";
 	console.log(footerStyle);
@@ -627,10 +638,9 @@ function keyboardDidHide() {
 	var footerOffset = $(".footer").offset() || new Object();
 	console.log(footerOffset);
 
-	var windowHeight = parseInt($(window).height(),0) || parseInt($(document).height(),0);
 	var footerHeight = $('.activeElement').parents('div.footer').height();
-	var footerTopOffset = (windowHeight-footerHeight); // window.footerFixHeight-46-16;
-	console.log('windowHeight: '+windowHeight);
+	var footerTopOffset = (window.windowHeight-footerHeight); // window.footerFixHeight-46-16;
+	console.log('window.windowHeight: '+window.windowHeight);
 	console.log('footerHeight: '+footerHeight);
 	console.log('footerTopOffset: '+footerTopOffset);
 	$(".footer").css({"top":footerTopOffset,"bottom":"auto"});
