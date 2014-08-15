@@ -578,6 +578,8 @@ function keyboardDidHide() {
 	window.keyboardvisible = false;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
 	$('.activeElement').parents('div.instantFooter').removeClass('instantFooterMoveda');
+	$('.activeElement').parents('div.instantFooter').trigger('create');
+	// $('[data-role="footer"]').trigger('create');
 	$('.activeElement').removeClass('activeElement');
 	correctPageSize();
 	// $.mobile.activePage.find('#sendMessage').attr('style','').css('background-color','lightred');

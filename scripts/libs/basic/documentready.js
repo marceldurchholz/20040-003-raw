@@ -260,6 +260,7 @@ $(document).ready(function() {
 			if (!isMobile.any()) {
 				setTimeout(function() {
 					$('.activeElement').parents('div.instantFooter').removeClass('instantFooterMoveda');
+					$('.activeElement').parents('div.instantFooter').trigger('create');
 					$('.activeElement').removeClass('activeElement');
 				},600);
 			}

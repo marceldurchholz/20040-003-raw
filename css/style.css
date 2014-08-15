@@ -70,7 +70,7 @@ div[data-role="contenta"], .ui-contenta, .scrollablea {
 	position: fixed !important;
 	left:0px !important;
 	right:0px !important;
-	bottom:0px !important;
+	bottom:200px !important;
 	height:100px !important;
 	width: 100% !important;
 	text-align: center !important;
