@@ -319,12 +319,6 @@ function PLDR_finalAction() {
 	slideUpLoadingBar();
 	window.ajaxLoader = 1;
 	if (window.pagecreated==1) {
-		// $.mobile.silentScroll(9999999);
-		if ($.mobile.activePage.find('.scrollDownTo').length) {
-			setTimeout(function() {
-				$.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , 1000 );
-			},300);
-		}
 	}
 	window.pagecreated = 0;
 	window.btnBackClicked = 0;
