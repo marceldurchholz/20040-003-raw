@@ -172,7 +172,7 @@ function PLDR_createJqmPage() {
 	
 	$.mobile.activePage.trigger("create");
 
-	correctPageSize();
+	// correctPageSize();
 	
 	// $('.ui-page-active > .ui-content').scrollTo(1000000);
 			
@@ -571,7 +571,6 @@ function keyboardDidHide() {
 	console.log('keyboardDidHide');
 	window.keyboardvisible = false;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
-	alert('bla');
 	// correctPageSize();
 	// $.mobile.activePage.find('#sendMessage').attr('style','').css('background-color','lightred');
 }
