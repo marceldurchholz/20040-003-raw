@@ -921,9 +921,9 @@ function iosModifyStatusBar(){
 }
 
 function correctPageFitIntoWindow() {
-	$('#container').addClass('bodygapclass');
-	$('#panel_left').addClass('bodygapclass');
-	$('#panel_right').addClass('bodygapclass');
+	// $('#container').addClass('bodygapclass');
+	// $('#panel_left').addClass('bodygapclass');
+	// $('#panel_right').addClass('bodygapclass');
 	// $('#body').css('width',$(window).width());
 	// $('#container').css('width',$(window).width());
 	// $('#body').css('width',$(window).width());

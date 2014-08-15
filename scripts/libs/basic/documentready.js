@@ -275,6 +275,10 @@ $(document).ready(function() {
 		}
 		*/
 		
+		// user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi
+		var $viewportMeta = $('meta[name="viewport"]');
+		$viewportMeta.attr('content','user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width, height=device-height,maximum-scale=' + ((e.type == 'blur' || e.type == 'focusout') ? 10 : 1) + ',target-densitydpi=device-dpi');
+		
 		/*
 		console.log("$(document).off('focus focusinmanual blur','input[type=text], input[type=password], select, textarea').on('focus focusinmanual blur','input[type=text], input[type=password], select, textarea',function(e) {...");
 		console.log(e);
