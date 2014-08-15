@@ -172,7 +172,7 @@ function PLDR_createJqmPage() {
 	
 	$.mobile.activePage.trigger("create");
 
-	// correctPageSize();
+	correctPageSize();
 	
 	// $('.ui-page-active > .ui-content').scrollTo(1000000);
 			
@@ -249,6 +249,10 @@ function changePush() {
 }
 
 function correctPageSize() {
+}
+function correctPageSize_xxx() {
+	alert('DOING correctPageSize');
+	console.log('DOING correctPageSize');
 	// console.log(document.body.style.marginTop);
 	/*
 	if (!$('html').attr('resized')) { 
@@ -571,7 +575,7 @@ function keyboardDidHide() {
 	console.log('keyboardDidHide');
 	window.keyboardvisible = false;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
-	// correctPageSize();
+	correctPageSize();
 	// $.mobile.activePage.find('#sendMessage').attr('style','').css('background-color','lightred');
 }
 
