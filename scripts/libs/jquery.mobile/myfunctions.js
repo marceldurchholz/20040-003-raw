@@ -559,7 +559,7 @@ function keyboardDidShow() {
 	
 	$('.activeElement').parents('div.footer').addClass('footerMoveda');
 	
-	var windowHeight = parseInt($('.ui-page-active > .ui-content').height(),0) || parseInt($(document).height(),0);
+	var windowHeight = parseInt($(window).height(),0) || parseInt($(document).height(),0);
 	var footerHeight = $('.activeElement').parents('div.footer').height() || 100;
 	var footerTopOffset = (windowHeight-footerHeight);
 	console.log('windowHeight: '+windowHeight);
@@ -608,7 +608,7 @@ function keyboardDidHide() {
 	var footerOffset = $(".footer").offset() || new Object();
 	console.log(footerOffset);
 
-	var windowHeight = parseInt($('.ui-page-active > .ui-content').height(),0);
+	var windowHeight = parseInt($(window).height(),0) || parseInt($(document).height(),0);
 	var footerHeight = $('.activeElement').parents('div.footer').height();
 	var footerTopOffset = (windowHeight-footerHeight); // window.footerFixHeight-46-16;
 	console.log('windowHeight: '+windowHeight);
