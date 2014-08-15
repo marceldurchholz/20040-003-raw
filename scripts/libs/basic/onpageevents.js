@@ -118,10 +118,10 @@ $(document).off( "pagechange" ).on( "pagechange", function( event ) {
 	/*
 	try {
 		// alert('trying...');
-		$('#container').find('.instantFooter[data-moved="true"]').remove();
-		$('.instantFooter[data-moved="true"]').remove();
-		$('.instantFooter').attr('data-moved','true')
-		$('.instantFooter').appendTo('#container');
+		$('#container').find('.footer[data-moved="true"]').remove();
+		$('.footer[data-moved="true"]').remove();
+		$('.footer').attr('data-moved','true')
+		$('.footer').appendTo('#container');
 	} catch(e) {
 		alert(e);
 	}

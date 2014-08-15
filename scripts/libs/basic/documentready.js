@@ -251,7 +251,7 @@ $(document).ready(function() {
 			$(e.target).addClass('activeElement');
 			if (!isMobile.any()) {
 				setTimeout(function() {
-					$('.activeElement').parents('div.instantFooter').addClass('instantFooterMoveda');
+					$('.activeElement').parents('div.footer').addClass('footerMoveda');
 				},600);
 			}
 		}
@@ -259,8 +259,8 @@ $(document).ready(function() {
 			console.log("$(e.target).removeClass('activeElement');");
 			if (!isMobile.any()) {
 				setTimeout(function() {
-					$('.activeElement').parents('div.instantFooter').removeClass('instantFooterMoveda');
-					$('.activeElement').parents('div.instantFooter').trigger('create');
+					$('.activeElement').parents('div.footer').removeClass('footerMoveda');
+					$('.activeElement').parents('div.footer').trigger('create');
 					$('.activeElement').removeClass('activeElement');
 				},600);
 			}
@@ -269,7 +269,7 @@ $(document).ready(function() {
 		if ($(e.target).attr('id')=='myMsgBox') {
 			if (e.type=="focusin") {
 				// $(e.target).parents('div.myfixedfooter').attr('style','position:fixed !important;top:'+($("#container").height()-100-32-216-46)+'px !important');
-				// $(e.target).parents('div.instantFooter').addClass('instantFooterMoveda');
+				// $(e.target).parents('div.footer').addClass('footerMoveda');
 			}
 			if (e.type=="focusout") {
 				// $(e.target).parents('div.myfixedfooter').attr('style','position:fixed !important;top:'+($("#container").height()-100-32-46)+'px !important');
