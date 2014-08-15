@@ -535,7 +535,7 @@ function loadNativeSpecific() {
 }
 
 function native_keyboard_manipulation() {
-	cordova.plugins.Keyboard.disableScroll(false);
+	cordova.plugins.Keyboard.disableScroll(true);
 	cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 	$('body').on('keyboardWillShow', keyboardWillShow);
 	$('body').on('keyboardDidShow', keyboardDidShow);
@@ -544,7 +544,7 @@ function native_keyboard_manipulation() {
 }
 function keyboardWillShow() {
 	console.log('keyboardWillShow');
-	if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
+	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 }
 function keyboardDidShow() {
 	console.log('keyboardDidShow');
@@ -574,7 +574,7 @@ function keyboardDidShow() {
 	console.log(footerPosition);
 	var footerOffset = $(".footer").offset() || new Object();
 	console.log(footerOffset);
-	if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(true);
+	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(true);
 
 	/*
 	if (isMobile.any()) {
@@ -597,7 +597,7 @@ function keyboardDidShow() {
 }
 function keyboardWillHide() {
 	console.log('keyboardWillHide');
-	if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
+	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 }
 function keyboardDidHide() {
 	console.log('keyboardDidHide');
@@ -632,7 +632,7 @@ function keyboardDidHide() {
 	console.log(footerOffset);
 	
 	correctPageSize();
-	if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(true);
+	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 	// $.mobile.activePage.find('#sendMessage').attr('style','').css('background-color','lightred');
 }
 
