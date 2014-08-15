@@ -549,6 +549,8 @@ function keyboardDidShow() {
 	console.log('keyboardDidShow');
 	window.keyboardvisible = true;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
+	$('.activeElement').parents('div.instantFooter').addClass('instantFooterMoveda');
+
 	/*
 	if (isMobile.any()) {
 		cordova.plugins.Keyboard.disableScroll(false);
@@ -575,6 +577,8 @@ function keyboardDidHide() {
 	console.log('keyboardDidHide');
 	window.keyboardvisible = false;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
+	$('.activeElement').parents('div.instantFooter').removeClass('instantFooterMoveda');
+	$('.activeElement').removeClass('activeElement');
 	correctPageSize();
 	// $.mobile.activePage.find('#sendMessage').attr('style','').css('background-color','lightred');
 }

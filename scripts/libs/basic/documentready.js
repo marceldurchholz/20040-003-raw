@@ -245,14 +245,36 @@ $(document).ready(function() {
 	
 
 	$(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
-		if ($(e.target).attr('id')=='myMsgBox') {
-			if (e.type=="focusin") {
-				$(e.target).parents('div.myfixedfooter').attr('style','position:fixed !important;top:'+($("#container").height()-100-32-216-46)+'px !important');
-			}
-			if (e.type=="focusout") {
-				$(e.target).parents('div.myfixedfooter').attr('style','position:fixed !important;top:'+($("#container").height()-100-32-46)+'px !important');
+		console.log(e.type);
+		if (e.type=="focusin") {
+			console.log("$(e.target).addClass('activeElement');");
+			$(e.target).addClass('activeElement');
+			if (!isMobile.any()) {
+				setTimeout(function() {
+					$('.activeElement').parents('div.instantFooter').addClass('instantFooterMoveda');
+				},600);
 			}
 		}
+		if (e.type=="focusout") {
+			console.log("$(e.target).removeClass('activeElement');");
+			if (!isMobile.any()) {
+				setTimeout(function() {
+					$('.activeElement').parents('div.instantFooter').removeClass('instantFooterMoveda');
+					$('.activeElement').removeClass('activeElement');
+				},600);
+			}
+		}
+		/*
+		if ($(e.target).attr('id')=='myMsgBox') {
+			if (e.type=="focusin") {
+				// $(e.target).parents('div.myfixedfooter').attr('style','position:fixed !important;top:'+($("#container").height()-100-32-216-46)+'px !important');
+				// $(e.target).parents('div.instantFooter').addClass('instantFooterMoveda');
+			}
+			if (e.type=="focusout") {
+				// $(e.target).parents('div.myfixedfooter').attr('style','position:fixed !important;top:'+($("#container").height()-100-32-46)+'px !important');
+			}
+		}
+		*/
 		
 		/*
 		console.log("$(document).off('focus focusinmanual blur','input[type=text], input[type=password], select, textarea').on('focus focusinmanual blur','input[type=text], input[type=password], select, textarea',function(e) {...");
