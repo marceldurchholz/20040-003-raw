@@ -1,4 +1,5 @@
-html, .fixedHeightHtml, body, #container {
+html, .fixedHeightHtmla, bodya, #containera {
+	position:fixed !important;
 	left:0px !important;
 	top:0px !important;
 	bottom:0px !important;
@@ -190,6 +191,10 @@ label {
 	font-size:0.6em !important;
 }
 
+.fixBottom {
+	position: fixed !important;
+}
+
 /*
 #sendMessage > * {
 	z-index:2 !important;
@@ -287,6 +292,7 @@ span[data-pastload-module="simpletext"] {
 
 div[data-role=footer], footer, .instantFooter, .instantFooterMoved {
 	z-index:999 !important;
+	position: fixed !important;
 	left:0px !important;
 	right:0px !important;
 	bottom:0px !important;
