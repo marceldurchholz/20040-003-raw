@@ -544,12 +544,21 @@ function native_keyboard_manipulation() {
 }
 function keyboardWillShow() {
 	console.log('keyboardWillShow');
+
+	window.windowCurrentScrollPosition = $(window).scrollTop();
+	console.log(window.windowCurrentScrollPosition);
+	window.documentCurrentScrollPosition = $(document).scrollTop();
+	console.log(window.documentCurrentScrollPosition);
+
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 }
 function keyboardDidShow() {
 	console.log('keyboardDidShow');
-	window.keyboardvisible = true;
-	console.log('window.keyboardvisible: '+window.keyboardvisible);
+	// window.keyboardvisible = true;
+	// console.log('window.keyboardvisible: '+window.keyboardvisible);
+
+	window.documentCurrentScrollPosition = $(document).scrollTop();
+	console.log(window.documentCurrentScrollPosition);
 	
 	var footerStyle = $(".footer").attr('style') || "";
 	console.log(footerStyle);
@@ -606,9 +615,11 @@ function keyboardWillHide() {
 }
 function keyboardDidHide() {
 	console.log('keyboardDidHide');
-	window.keyboardvisible = false;
-	console.log('window.keyboardvisible: '+window.keyboardvisible);
+	// window.keyboardvisible = false;
+	// console.log('window.keyboardvisible: '+window.keyboardvisible);
 
+	// $.mobile.silentScroll(0);
+	
 	var footerStyle = $(".footer").attr('style') || "";
 	console.log(footerStyle);
 	var footerPosition = $(".footer").position() || new Object();
