@@ -276,17 +276,17 @@ function correctPageSize() {
 	if (window.last_footerFixHeight==undefined) window.last_footerFixHeight=window.footerFixHeight;
 	
 	// console.log($('#container').parent().parent().find('#body').parent().html());
-	$(document).attr("data-style","overflow-y:hidden !important;");
-	$.mobile.activePage.parents('html').attr("data-style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;top:0px !important;left:0px !important;bottom:0px !important;margin:0px !important;padding:0px !important;");
+	$(document).attr("style","overflow-y:hidden !important;");
+	$.mobile.activePage.parents('html').attr("style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;top:0px !important;left:0px !important;bottom:0px !important;margin:0px !important;padding:0px !important;");
 	$.mobile.activePage.parents('html').addClass("fixedHeightHtml");
-	$.mobile.activePage.parents('body').attr("data-style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;top:0px !important;left:0px !important;bottom:0px !important;margin:0px !important;padding:0px !important;");
-	$.mobile.activePage.parents('#container').attr("data-style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;top:0px !important;left:0px !important;bottom:0px !important;margin:0px !important;padding:0px !important;");
+	$.mobile.activePage.parents('body').attr("style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;top:0px !important;left:0px !important;bottom:0px !important;margin:0px !important;padding:0px !important;");
+	$.mobile.activePage.parents('#container').attr("style","overflow-y:hidden !important;position:fixed !important;width:100% !important;height:100% !important;top:0px !important;left:0px !important;bottom:0px !important;margin:0px !important;padding:0px !important;");
 	if (window.pageHeight==undefined || window.last_footerFixHeight!=window.footerFixHeight) window.pageHeight = parseInt($(document).height(),0)-window.footerFixHeight-46-16;
 	if (window.contentHeight==undefined || window.last_footerFixHeight!=window.footerFixHeight) window.contentHeight = parseInt($(document).height(),0)-window.footerFixHeight-46-16;
-	$.mobile.activePage.parents('#container').find('.ui-page-active').attr("data-style","height:"+(window.pageHeight)+"px !important;overflow-y:hidden !important;");
-	$.mobile.activePage.parents('#container').find('.ui-page-active').find('.ui-content').attr("data-style","height:"+window.contentHeight+"px !important;overflow-y:scroll !important;padding:0px 16px !important;top:46px !important;");
-	$.mobile.activePage.parents('#container').find('.ui-page-active').find('.ui-footer').attr("data-style","height:100px !important;max-height:100px !important;margin:0px !important;padding:0px !important;width:100% !important;overflow:hidden !important;position:fixed !important;bottom:0px !important;left:0px !important;right:0px !important;vertical-align: middle !important;z-index:999 !important;text-align:center !important;");
-	// $.mobile.silentScroll(0);
+	$.mobile.activePage.parents('#container').find('.ui-page-active').attr("style","height:"+(window.pageHeight)+"px !important;overflow-y:hidden !important;");
+	$.mobile.activePage.parents('#container').find('.ui-page-active').find('.ui-content').attr("style","height:"+window.contentHeight+"px !important;overflow-y:scroll !important;padding:0px 16px !important;top:46px !important;");
+	$.mobile.activePage.parents('#container').find('.ui-page-active').find('.ui-footer').attr("style","height:100px !important;max-height:100px !important;margin:0px !important;padding:0px !important;width:100% !important;overflow:hidden !important;position:fixed !important;bottom:0px !important;left:0px !important;right:0px !important;vertical-align: middle !important;z-index:999 !important;text-align:center !important;");
+	$.mobile.silentScroll(0);
 	
 	
 	
@@ -571,7 +571,7 @@ function keyboardDidHide() {
 	console.log('keyboardDidHide');
 	window.keyboardvisible = false;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
-	correctPageSize();
+	// correctPageSize();
 	// $.mobile.activePage.find('#sendMessage').attr('style','').css('background-color','lightred');
 }
 
