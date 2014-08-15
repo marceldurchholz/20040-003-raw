@@ -1,5 +1,4 @@
 html, .fixedHeightHtml, body, #container {
-	position:absolute !important;
 	left:0px !important;
 	top:0px !important;
 	bottom:0px !important;
@@ -253,7 +252,7 @@ textarea.myMsgBox {
 	float:none !important;
 	clear:both !important;
 	height:50px !important;
-	/* background-color:yellow !important;; */
+	/* background-color:yellow !important; */
 	background-color:transparent !important;
 }
 
@@ -288,7 +287,6 @@ span[data-pastload-module="simpletext"] {
 
 div[data-role=footer], footer, .instantFooter, .instantFooterMoved {
 	z-index:999 !important;
-	position: absolute !important;
 	left:0px !important;
 	right:0px !important;
 	bottom:0px !important;
@@ -339,7 +337,7 @@ div[data-role=footer], footer, .instantFooter, .instantFooterMoved {
 	top:46px !important;
 	width:100%;
 	height:80px !important;
-	z-index:99999 !important;
+	z-index:999 !important;
 }
 
 .loader { 
