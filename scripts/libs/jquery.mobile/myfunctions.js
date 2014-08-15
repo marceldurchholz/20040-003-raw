@@ -549,14 +549,14 @@ function keyboardDidShow() {
 	console.log('keyboardDidShow');
 	window.keyboardvisible = true;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
+	
 	var footerStyle = $(".footer").attr('style') || "";
 	console.log(footerStyle);
-	/*
-	$('.activeElement').parents('div.footer').addClass('footerMoveda');
-	var footer = $(".footer");
-	console.log(footer.position().top);
-	footer.css({ "top": parseInt(footer.position().top,0)});
-	*/
+	var footerPosition = $(".footer").position() || new Object();
+	console.log(footerPosition);
+	var footerOffset = $(".footer").offset() || new Object();
+	console.log(footerOffset);
+	
 	$('.activeElement').parents('div.footer').addClass('footerMoveda');
 	
 	var windowHeight = parseInt($(window).height(),0) || parseInt($(document).height(),0);
@@ -566,8 +566,13 @@ function keyboardDidShow() {
 	console.log('footerHeight: '+footerHeight);
 	console.log('footerTopOffset: '+footerTopOffset);
 	$(".footer").css({"top":footerTopOffset,"bottom":"auto"});
-	console.log('$(".footer").position().top: '+$(".footer").position().top);
-
+	
+	var footerStyle = $(".footer").attr('style') || "";
+	console.log(footerStyle);
+	var footerPosition = $(".footer").position() || new Object();
+	console.log(footerPosition);
+	var footerOffset = $(".footer").offset() || new Object();
+	console.log(footerOffset);
 
 	/*
 	if (isMobile.any()) {
@@ -589,13 +594,20 @@ function keyboardDidShow() {
 	*/
 }
 function keyboardWillHide() {
-	console.log('keyboardWillShow');
+	console.log('keyboardWillHide');
 }
 function keyboardDidHide() {
 	console.log('keyboardDidHide');
 	window.keyboardvisible = false;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
-	console.log($(".footer").attr('style'));
+
+	var footerStyle = $(".footer").attr('style') || "";
+	console.log(footerStyle);
+	var footerPosition = $(".footer").position() || new Object();
+	console.log(footerPosition);
+	var footerOffset = $(".footer").offset() || new Object();
+	console.log(footerOffset);
+
 	var windowHeight = parseInt($(window).height(),0);
 	var footerHeight = $('.activeElement').parents('div.footer').height();
 	var footerTopOffset = (windowHeight-footerHeight); // window.footerFixHeight-46-16;
@@ -609,7 +621,12 @@ function keyboardDidHide() {
 	// $('[data-role="footer"]').trigger('create');
 	$('.activeElement').removeClass('activeElement');
 	
-	console.log('$(".footer").position().top: '+$(".footer").position().top);
+	var footerStyle = $(".footer").attr('style') || "";
+	console.log(footerStyle);
+	var footerPosition = $(".footer").position() || new Object();
+	console.log(footerPosition);
+	var footerOffset = $(".footer").offset() || new Object();
+	console.log(footerOffset);
 	
 	correctPageSize();
 	// $.mobile.activePage.find('#sendMessage').attr('style','').css('background-color','lightred');
@@ -2975,6 +2992,10 @@ function collectMessageArray(messageid) {
 			} while ( childrenFound==true );
 			_this.messageArray = collectArray.reverse();
 			
+			var first = _this.messageArray;
+			var second = _this.messageArray;
+			_this.messageArray = $.merge( $.merge( [], first ), second );
+
 			// sort by cdate
 			_this.messageArray.sort(function(a, b){
 			 var nameA=a.cdate, nameB=b.cdate
