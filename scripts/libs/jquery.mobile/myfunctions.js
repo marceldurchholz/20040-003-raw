@@ -551,7 +551,8 @@ function keyboardDidShow() {
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
 	$('.activeElement').parents('div.footer').addClass('footerMoveda');
 	var footer = $(".footer");
-	footer.css({ "top": footer.position().top, "bottom": "auto"});
+	console.log(footer.position().top);
+	footer.css({ "top": parseInt(footer.position().top,0)});
 
 	/*
 	if (isMobile.any()) {

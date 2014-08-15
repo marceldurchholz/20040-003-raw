@@ -252,6 +252,9 @@ $(document).ready(function() {
 			if (!isMobile.any()) {
 				setTimeout(function() {
 					$('.activeElement').parents('div.footer').addClass('footerMoveda');
+					var footer = $(".footer");
+					console.log(footer.position().top);
+					footer.css({ "top": parseInt(footer.position().top,0)});
 				},600);
 			}
 		}

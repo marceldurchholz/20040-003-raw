@@ -56,27 +56,33 @@ div[data-role="contenta"] {
 	left:0px !important;
 	right:0px !important;
 }
-div[data-role="contenta"], .ui-contenta, .scrollablea {
+div[data-role="content"], .ui-content, .scrollable {
 	-webkit-overflow-scrolling: touch !important;
 	overflow-y:scroll !important;
 }
 .footer {
 	background-color:#e9e9e9 !important;
 	text-align: center !important;
+	height:100px !important;
 }
 .footerMoveda {
 	background-color:red !important;
-	z-index:999 !important;
-	position: fixed !important;
+	/*
 	left:0px !important;
 	right:0px !important;
 	bottom:0px !important;
-	height:100px !important;
 	width: 100% !important;
+	z-index:999 !important;
+	position: fixed !important;
+	*/
+	height:100px !important;
 	text-align: center !important;
 }
+.ui-footer-fixed {
+	bottom:0px !important;
+}
 
-div[data-role=footera], footera, .footera {
+div[data-role=footeraa], footeraa, .footeraa {
 	background-color:blue !important;
 	z-index:999 !important;
 	position: fixed !important;
