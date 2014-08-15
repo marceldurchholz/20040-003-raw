@@ -553,6 +553,9 @@ function keyboardDidShow() {
 	
 	var footerStyle = $(".footer").attr('style') || "";
 	console.log(footerStyle);
+	$(".footer").attr('style','position:fixed;');
+	var footerStyle = $(".footer").attr('style') || "";
+	console.log(footerStyle);
 	var footerPosition = $(".footer").position() || new Object();
 	console.log(footerPosition);
 	var footerOffset = $(".footer").offset() || new Object();
@@ -626,6 +629,10 @@ function keyboardDidHide() {
 	// $('[data-role="footer"]').trigger('create');
 	$('.activeElement').removeClass('activeElement');
 	
+	var footerStyle = $(".footer").attr('style') || "";
+	console.log(footerStyle);
+	$(".footer").attr('style','');
+	$(".footer").removeAttr('style');
 	var footerStyle = $(".footer").attr('style') || "";
 	console.log(footerStyle);
 	var footerPosition = $(".footer").position() || new Object();
