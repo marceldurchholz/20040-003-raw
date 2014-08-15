@@ -544,7 +544,7 @@ function native_keyboard_manipulation() {
 }
 function keyboardWillShow() {
 	console.log('keyboardWillShow');
-	cordova.plugins.Keyboard.disableScroll(true);
+	cordova.plugins.Keyboard.disableScroll(false);
 }
 function keyboardDidShow() {
 	console.log('keyboardDidShow');
@@ -574,7 +574,7 @@ function keyboardDidShow() {
 	console.log(footerPosition);
 	var footerOffset = $(".footer").offset() || new Object();
 	console.log(footerOffset);
-	cordova.plugins.Keyboard.disableScroll(false);
+	cordova.plugins.Keyboard.disableScroll(true);
 
 	/*
 	if (isMobile.any()) {
