@@ -78,9 +78,6 @@ div[data-role="content"], .ui-content, .scrollable {
 	height:100px !important;
 	text-align: center !important;
 }
-.ui-footer-fixed {
-	bottom:0px !important;
-}
 
 div[data-role=footeraa], footeraa, .footeraa {
 	background-color:blue !important;

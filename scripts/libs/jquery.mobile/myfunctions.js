@@ -549,10 +549,24 @@ function keyboardDidShow() {
 	console.log('keyboardDidShow');
 	window.keyboardvisible = true;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
+	console.log($(".footer").attr('style'));
+	/*
 	$('.activeElement').parents('div.footer').addClass('footerMoveda');
 	var footer = $(".footer");
 	console.log(footer.position().top);
 	footer.css({ "top": parseInt(footer.position().top,0)});
+	*/
+	$('.activeElement').parents('div.footer').addClass('footerMoveda');
+	
+	var windowHeight = parseInt($(window).height(),0);
+	var footerHeight = $('.activeElement').parents('div.footer').height();
+	var footerTopOffset = (windowHeight-footerHeight); // window.footerFixHeight-46-16;
+	console.log('windowHeight: '+windowHeight);
+	console.log('footerHeight: '+footerHeight);
+	console.log('footerTopOffset: '+footerTopOffset);
+	$(".footer").css({"top":footerTopOffset,"bottom":"auto"});
+	console.log('$(".footer").position().top: '+$(".footer").position().top);
+
 
 	/*
 	if (isMobile.any()) {
@@ -580,10 +594,22 @@ function keyboardDidHide() {
 	console.log('keyboardDidHide');
 	window.keyboardvisible = false;
 	console.log('window.keyboardvisible: '+window.keyboardvisible);
+	console.log($(".footer").attr('style'));
+	var windowHeight = parseInt($(window).height(),0);
+	var footerHeight = $('.activeElement').parents('div.footer').height();
+	var footerTopOffset = (windowHeight-footerHeight); // window.footerFixHeight-46-16;
+	console.log('windowHeight: '+windowHeight);
+	console.log('footerHeight: '+footerHeight);
+	console.log('footerTopOffset: '+footerTopOffset);
+	$(".footer").css({"top":footerTopOffset,"bottom":"auto"});
+	
 	$('.activeElement').parents('div.footer').removeClass('footerMoveda');
 	$('.activeElement').parents('div.footer').trigger('create');
 	// $('[data-role="footer"]').trigger('create');
 	$('.activeElement').removeClass('activeElement');
+	
+	console.log('$(".footer").position().top: '+$(".footer").position().top);
+	
 	correctPageSize();
 	// $.mobile.activePage.find('#sendMessage').attr('style','').css('background-color','lightred');
 }
