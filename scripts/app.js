@@ -13,6 +13,9 @@ define(['defvalues','domReady', 'jqmNavigator','jqmNativeSpinnerPlugin','MobileR
 					document.addEventListener('deviceready', function() {
 						//enable cross site script
 						$.support.cors = true;
+						console.log(window.innerHeight);
+						$(document.body).height(window.innerHeight);
+						console.log($(document.body).height());
 						window.runningInCordova = true;
 						if (window.heavyDebug) console.log('MOBILE DEVICE is ready !!!');
 						$.when( _this.deviceSpecificActions(false) ).done(
