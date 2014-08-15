@@ -115,6 +115,7 @@ $(document).off( "pagecreate" ).on( "pagecreate", function( event ) {
 
 $(document).off( "pagechange" ).on( "pagechange", function( event ) {
 	if (window.heavyDebug) console.log('onpageevents.js >> $(document).off( "pagechange" ).on( "pagechange", function( event ) {...');
+	/*
 	try {
 		// alert('trying...');
 		$('#container').find('.instantFooter[data-moved="true"]').remove();
@@ -133,6 +134,7 @@ $(document).off( "pagechange" ).on( "pagechange", function( event ) {
 	} catch(e) {
 		alert(e);
 	}
+	*/
 	$.mobile.defaultPageTransition = window.defaultPageTransition;
 	createLoadingBar();
 	window.ajaxLoader = 0;

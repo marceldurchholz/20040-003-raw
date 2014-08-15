@@ -1,5 +1,5 @@
 html, .fixedHeightHtml, body, #container {
-	position:fixed !important;
+	position:absolute !important;
 	left:0px !important;
 	top:0px !important;
 	bottom:0px !important;
@@ -191,10 +191,6 @@ label {
 	font-size:0.6em !important;
 }
 
-.fixBottom {
-	position: fixed !important;
-}
-
 /*
 #sendMessage > * {
 	z-index:2 !important;
@@ -292,7 +288,7 @@ span[data-pastload-module="simpletext"] {
 
 div[data-role=footer], footer, .instantFooter, .instantFooterMoved {
 	z-index:999 !important;
-	position: fixed !important;
+	position: absolute !important;
 	left:0px !important;
 	right:0px !important;
 	bottom:0px !important;
@@ -343,7 +339,7 @@ div[data-role=footer], footer, .instantFooter, .instantFooterMoved {
 	top:46px !important;
 	width:100%;
 	height:80px !important;
-	z-index:999 !important;
+	z-index:99999 !important;
 }
 
 .loader { 
