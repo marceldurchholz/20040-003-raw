@@ -535,7 +535,7 @@ function loadNativeSpecific() {
 }
 
 function native_keyboard_manipulation() {
-	cordova.plugins.Keyboard.disableScroll(true);
+	cordova.plugins.Keyboard.disableScroll(false);
 	cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 	$('body').on('keyboardWillShow', keyboardWillShow);
 	$('body').on('keyboardDidShow', keyboardDidShow);
@@ -574,6 +574,7 @@ function keyboardDidShow() {
 	console.log(footerPosition);
 	var footerOffset = $(".footer").offset() || new Object();
 	console.log(footerOffset);
+	cordova.plugins.Keyboard.disableScroll(true);
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(true);
 
 	/*
@@ -596,6 +597,7 @@ function keyboardDidShow() {
 	*/
 }
 function keyboardWillHide() {
+	cordova.plugins.Keyboard.disableScroll(false);
 	console.log('keyboardWillHide');
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 }
