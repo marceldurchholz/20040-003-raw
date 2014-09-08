@@ -314,8 +314,8 @@ $(document).ready(function() {
 		*/
 	});
 	
+	/*
 	$(document).off('touchmove','.ui-page-active > .ui-content').on('touchmove','.ui-page-active > .ui-content',function(e) {
-		/*
 		if (isMobile.any()) {
 			if (window.keyboardvisible==true) {
 				console.log("Uhhhhh.. TOUCHMOVED DURING Damn Keyboard Interaction!!!");
@@ -324,7 +324,6 @@ $(document).ready(function() {
 				console.log("cordova.plugins.Keyboard.close();");
 			}
 		}
-		*/
 	});
 	
 	// $(document).off('dblclick','.ui-page-active > .ui-content').on('dblclick','.ui-page-active > .ui-content',function(e) {

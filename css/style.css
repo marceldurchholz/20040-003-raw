@@ -67,7 +67,7 @@ div[data-role="contenta"] {
 }
 div[data-role="content"], .ui-content, .scrollable {
 	-webkit-overflow-scrolling: touch !important;
-	overflow-y:scroll !important;
+	overflow-y:hidden !important;
 }
 .footer {
 	background-color:#e9e9e9 !important;
