@@ -1,10 +1,10 @@
 define(['collections/sidemenusCollection', 'selfies/navigation/PanelrightView', 'selfies/navigation/PanelfunctionsView', 'selfies/navigation/TestView', 'views/template/TemplateView', 'views/noaccess/NoaccessView'
-			, 'views/users/UsersView', 'views/userdetails/UserdetailsView', 'views/videos/VideosView', 'views/cards/CardsView', 'parser/simpletext/simpletextView', 'views/restore/RestoreView', 'views/learningstream/LearningstreamView', 'views/messages/MessagesView'
+			, 'views/users/UsersView', 'views/userdetails/UserdetailsView', 'views/videos/VideosView', 'views/videodetails/VideodetailsView', 'views/cards/CardsView', 'parser/simpletext/simpletextView', 'views/restore/RestoreView', 'views/learningstream/LearningstreamView', 'views/messages/MessagesView'
 			, 'views/message/MessageView'
 			, 'jqm'],
 
     function(sidemenusCollection, panelrightView, panelfunctionsView, testView, templateView, noaccessView
-			, usersView, userdetailsView, videosView, cardsView, simpletextView, restoreView, learningstreamView, messagesView
+			, usersView, userdetailsView, videosView, videodetailsView, cardsView, simpletextView, restoreView, learningstreamView, messagesView
 			, messageView
 			) {
 

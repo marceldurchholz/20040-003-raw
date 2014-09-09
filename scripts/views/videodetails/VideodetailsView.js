@@ -1,6 +1,6 @@
-define(['jquery', 'underscore', 'Backbone', 'text!views/template/LearningstreamView.html'],
-    function ($, _, Backbone, learningstreamTemplate) {
-        var LearningstreamViewVar = Backbone.View.extend({
+define(['jquery', 'underscore', 'Backbone', 'text!views/template/VideodetailsView.html'],
+    function ($, _, Backbone, videodetailsTemplate) {
+        var VideodetailsViewVar = Backbone.View.extend({
 
 			events:{
                 'click a':global_a_clickHandler,
@@ -13,10 +13,11 @@ define(['jquery', 'underscore', 'Backbone', 'text!views/template/LearningstreamV
 				$(_this.el).undelegate('a', 'click');
 				_this.options.streamData = _this.options.streamData || new Object();
 				_this.options.streamData.userArray = _this.options.streamData.userArray || new Array();
-				_this.options.streamData.learningstreamArray = _this.options.streamData.learningstreamArray || new Array();
+				_this.options.streamData.videoArray = _this.options.streamData.videoArray || new Array();
 				_this.options.query_vars = _this.options.query_vars || new Object();
 				window.me = window.me || new Object();
 				_this.options.query_vars.userid = _this.options.query_vars.userid || window.me.id  || "";
+				_this.options.query_vars.videoid = _this.options.query_vars.videoid || "";
 			},
 			
 			fetchData:function(options) {
@@ -24,12 +25,10 @@ define(['jquery', 'underscore', 'Backbone', 'text!views/template/LearningstreamV
 				var _this = this;
 				_this.options = options;
 				if (_this.options.query_vars.userid!=undefined && _this.options.query_vars.userid!="") {
-					// console.log('collecting videodata with userid '+_this.options.query_vars.userid);
-					$.when(collectUserData(_this.options.query_vars.userid) , collectLearningstreamArray(_this.options.query_vars.userid)).done(
-						function(userArray,learningstreamArray) {
-							// console.log(learningstreamArray);
+					$.when(collectUserData(_this.options.query_vars.userid) , collectVideoArray(_this.options.query_vars.videoid)).done(
+						function(userArray,videoArray) {
 							_this.options.streamData.userArray = new Array(userArray);
-							_this.options.streamData.learningstreamArray = learningstreamArray;
+							_this.options.streamData.videoArray = videoArray;
 							d.resolve(_this);
 						}
 					);
@@ -51,7 +50,7 @@ define(['jquery', 'underscore', 'Backbone', 'text!views/template/LearningstreamV
 								$(_this.$el).trigger('create');
 								d.resolve(_this);
 							} catch (e) {
-								require(['text!views/template/LearningstreamView.html'], function(_foundTemplateContent) {
+								require(['text!views/template/VideodetailsView.html'], function(_foundTemplateContent) {
 									var _finalContent = _.template(_foundTemplateContent,{page_vars:_this.options}).replace('	','').replace(/\n|\r|\t/g, "");
 									_this.$el.html(_finalContent);
 									$(_this.$el).trigger('create');
@@ -71,5 +70,5 @@ define(['jquery', 'underscore', 'Backbone', 'text!views/template/LearningstreamV
 			}
 
         });
-        return LearningstreamViewVar;
+        return VideodetailsViewVar;
     });

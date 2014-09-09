@@ -32,6 +32,51 @@ function slideUpLoadingBar() {
 }
 /********************** END: Top Loading Bar **********************/
 
+function startBuildVideos(selector) {
+	selector.find('[data-pastload-javascript]').each(function() {
+		var __this = $(this);
+		var _this = $(this).children(":first");
+		// console.log(_this);
+		// var placeholder = $(_this).attr('data-placeholder');
+		// if(placeholder==undefined) placeholder="";
+		// $(__this).attr('data-postedittype')
+		// var val = (m<=9 ? '0' + m : m);
+		var postedittype = ($(__this).attr('data-postedittype')!=undefined ? $(__this).attr('data-postedittype') : "text");
+		// if (window.heavyDebug) console.log(postedittype);
+		$(_this).editable(function(value, settings) { 
+			 // console.log(this);
+			 // console.log(value);
+			 // console.log(settings);
+			 var postObj = new Object();
+			 postObj.value = value;
+			 postObj.settings = settings;
+			 // postObj.settings.posturl = $(this).attr('data-posturl');
+			 // postObj.settings.postfield = $(this).attr('data-postfield');
+			 saveUserValue(postObj);
+			 return(value);
+		  }, { 
+			 type:postedittype,
+			 // id:'users.slogan.userid',
+			 // posturl:$(this), // dpd_server+'users/?id='+me.id,
+			 width:'100%',
+			 // height:'100px',
+			 // style: 'max-height: 100px',
+			 // name: 'slogan',
+			 // style: "inherit",
+			 pastloadfield: $(_this).attr('data-pastload-field'),
+			 placeholder: $(__this).attr('data-placeholder'),
+			 posturl: $(__this).attr('data-posturl'),
+			 postfield: $(__this).attr('data-postfield'),
+			 onblur: "submit",
+			 // onblur: function() { }, // "submit",
+			 onerror: function (settings, original, xhr) {
+				original.reset();
+				//do whatever you want with the error msg here
+				// if (window.heavyDebug) console.log(xhr.responseText);
+			 }  
+		});
+	});
+}
 
 function startBuildEditables(selector) {
 	selector.find('[data-posteditable]').each(function() {
@@ -331,7 +376,6 @@ function PLDR_finalAction() {
 	// if (window.heavyDebug) console.log('doing PLDR_finalAction');
 	slideUpLoadingBar();
 	window.ajaxLoader = 1;
-	scrollDownOrUp(1000,300);
 	/*
 	if (window.pagecreated==1) {
 		scrollDownOrUp(1000,300);
@@ -347,7 +391,9 @@ function PLDR_finalAction() {
 	window.btnBackClicked = 0;
 	PLDR_createJqmPage();
 	startBuildEditables($.mobile.activePage);
+	startBuildVideos($.mobile.activePage);
 	PLDR_resetCreated($.mobile.activePage);
+	scrollDownOrUp(1000,300);
 	// if (window.pagecreated==1 || window.btnBackClicked==1) {
 	// $.mobile.activePage.scrollTo( '0px', 1000 );
 	// $.mobile.activePage.scrollTo( $('ul').get(2).childNodes[20], 800 );

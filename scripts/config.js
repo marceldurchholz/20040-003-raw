@@ -37,6 +37,7 @@ require.config({
 		Backbone:'libs/backbone/backbone.1.1.2',
 		MobileRouter: "routers/MobileRouter",
 		openfb: "libs/openfb/openfb",
+		videojs: "libs/videojs/video",
 		app: "app"
 		// facebook: '//connect.facebook.net/en_US/all'
     },

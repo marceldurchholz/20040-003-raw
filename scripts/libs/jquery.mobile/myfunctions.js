@@ -3026,9 +3026,11 @@ function collectMessageArray(messageid) {
 			} while ( childrenFound==true );
 			_this.messageArray = collectArray.reverse();
 			
+			/*
 			var first = _this.messageArray;
 			var second = _this.messageArray;
 			_this.messageArray = $.merge( $.merge( [], first ), second );
+			*/
 
 			// sort by cdate
 			_this.messageArray.sort(function(a, b){
@@ -3042,6 +3044,92 @@ function collectMessageArray(messageid) {
 			$.when( lao.save_local('message',_this.messageArray), dao.save_local('message',_this.messageArray) ).done(
 				function( lao_result, dao_result ) {
 					d.resolve(_this.messageArray);
+					// if (window.heavyDebug) console.log('end deleteFlowClicked');
+				}
+			);
+		});
+	}
+	return d.promise();
+}
+
+function collectVideoArrayAjax(messageid) {
+	/*
+	var d = $.Deferred();
+	var query = dpd_server+"messages?active=true&deleted=false&include=all";
+	if (window.me.master==false && window.system.owner.master==false) query = query + "&uploader="+owner.id;
+	// console.log(query);	
+	$.ajax({url: query, async: false }).done(function(messageData) {
+		d.resolve(messageData);
+	});
+	return d.promise();
+	*/
+}
+function collectVideoArrayDpd(videoid) {
+	var d = $.Deferred();
+	// var query = { $sort : { cdate : -1 } , $or:[ {"sender":videoid} , {"receiver":videoid} ] , deleted:false , include:['all'] , $limit:10 };
+	// var query = { $sort : { cdate : -1 } , $or:[ {"sender":userid} , {"receiver":userid} ] , deleted:false , includeall:true };
+	console.log('collecting now for '+videoid);
+	// var query = { id:videoid , $sort : { cdate : 1 } , deleted:false , includeall:true , $limitRecursion: 99999};
+	// var query = {id:videoid,$or:[{"sender":videoid},{"receiver":videoid}],deleted:false};
+	// console.log(query);
+	dpd.videos.get( {id:videoid,videoflow:true,deleted:false,includeall:true,markreadby:true,me:window.me} , function (videoData) {
+	// dpd.videos.get( {id:videoid} , function (videoData) {
+		console.log('videoData');
+		console.log(videoData);
+		d.resolve(videoData);
+	});
+	return d.promise();
+}
+function collectVideoArray(videoid) {
+	var _this = this;
+	var d = $.Deferred();
+	_this.videoArray = new Array();
+	var video = lao.get_local('video');
+	if (video!=undefined) {
+		_this.videoArray = video;
+		d.resolve(_this.videoArray);
+	} else {
+		// $.when( collectVideoArrayAjax(videoid) ).done( function( videoData ) {
+		$.when( collectVideoArrayDpd(videoid) ).done( function( videoData ) {
+			_this.videoArray = [videoData];
+			var collectArray = [];
+			var checkObj = _this.videoArray[0];
+
+			var ytcheck = new Object();
+			// ytcheck = checkYoutubeUrl(this._videosCollection.models[0].attributes.videourl);
+			ytcheck = checkYoutubeUrl(checkObj.videourl);
+			checkObj['ytcheck'] = ytcheck;
+
+			do {
+				var childrenFound = false;
+				if (checkObj) {
+					collectArray.push(checkObj);
+					if (checkObj.videoArray && checkObj.videoArray.length) {
+						checkObj = checkObj.videoArray[0];
+						var childrenFound = true;
+					}
+				}
+			} while ( childrenFound==true );
+			_this.videoArray = collectArray.reverse();
+			
+			/*
+			var first = _this.videoArray;
+			var second = _this.videoArray;
+			_this.videoArray = $.merge( $.merge( [], first ), second );
+			*/
+
+			// sort by cdate
+			_this.videoArray.sort(function(a, b){
+			 var nameA=a.cdate, nameB=b.cdate
+			 if (nameA < nameB) //sort cdate ascending
+			  return -1 
+			 if (nameA > nameB)
+			  return 1
+			 return 0 
+			});
+			$.when( lao.save_local('video',_this.videoArray), dao.save_local('video',_this.videoArray) ).done(
+				function( lao_result, dao_result ) {
+					d.resolve(_this.videoArray);
 					// if (window.heavyDebug) console.log('end deleteFlowClicked');
 				}
 			);
