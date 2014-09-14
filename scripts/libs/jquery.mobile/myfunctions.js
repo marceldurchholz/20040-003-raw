@@ -595,7 +595,7 @@ function native_keyboard_manipulation() {
 	Keyboard.shrinkView(true);
 	Keyboard.hideFormAccessoryBar(false);
 	Keyboard.disableScrollingInShrinkView(true);
-	Keyboard.automaticScrollToTopOnHiding = false;
+	Keyboard.automaticScrollToTopOnHiding = true;
 	// Keyboard.onshow
 	// Keyboard.onhide
 	// Keyboard.onshowing
