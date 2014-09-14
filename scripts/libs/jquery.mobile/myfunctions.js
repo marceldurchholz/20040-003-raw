@@ -551,24 +551,31 @@ function scrollDownOrUp(duration,delaytime) {
 
 function disablescrolling() {
 	console.log('disablescrolling');
-	// $.mobile.activePage.find('.ui-content').css('width',$.mobile.activePage.find('.ui-content').width()+'px');
-	$.mobile.activePage.find('.ui-header').addClass('hidden');
-	$.mobile.activePage.find('.ui-content').css('width','200px');
-	$.mobile.activePage.find('.ui-content').addClass('disablescrolling');
-	$.mobile.activePage.find('.ui-page').addClass('disablescrolling');
-	$.mobile.activePage.parents('container').addClass('disablescrolling');
-	$.mobile.activePage.parents('body').addClass('disablescrolling');
+	var breite = $.mobile.activePage.find('.ui-content').width();
+	var hoehe = $.mobile.activePage.find('.ui-content').height();
+	// alert(breite);
 	$.mobile.activePage.parents('html').addClass('disablescrolling');
+	$.mobile.activePage.parents('body').addClass('disablescrolling');
+	$.mobile.activePage.parents('container').addClass('disablescrolling');
+	$.mobile.activePage.find('.ui-page').addClass('disablescrolling');
+	$.mobile.activePage.parent().find('.ui-page').css('width',$.mobile.activePage.parent().find('.ui-page').width()+'px');
+	$.mobile.activePage.parent().find('.ui-page').css('height',$.mobile.activePage.parent().find('.ui-page').width()+'px');
+	$.mobile.activePage.find('.ui-content').addClass('disablescrolling');
+	$.mobile.activePage.find('.ui-content').removeAttr('style');
+	$.mobile.activePage.removeAttr('style');
+	$.mobile.activePage.find('.ui-content').css('width',breite+'px');
+	$.mobile.activePage.find('.ui-content').css('height',hoehe+'px');
+	// $.mobile.activePage.find('.ui-content').css('height',$.mobile.activePage.find('.ui-page').width()+'px');
 }
 function enablescrolling() {
 	console.log('enablescrolling');
-	$.mobile.activePage.find('.ui-content').removeAttr('style');
-	$.mobile.activePage.find('.ui-header').removeClass('hidden');
 	$.mobile.activePage.parents('html').removeClass('disablescrolling');
 	$.mobile.activePage.parents('body').removeClass('disablescrolling');
 	$.mobile.activePage.parents('container').removeClass('disablescrolling');
-	$.mobile.activePage.find('.ui-page').removeClass('disablescrolling');
+	$.mobile.activePage.parent().find('.ui-page').removeClass('disablescrolling');
+	$.mobile.activePage.parent().find('.ui-page').removeAttr('style');
 	$.mobile.activePage.find('.ui-content').removeClass('disablescrolling');
+	$.mobile.activePage.find('.ui-content').removeAttr('style');
 }
 
 function native_keyboard_manipulation() {
@@ -582,6 +589,7 @@ function native_keyboard_manipulation() {
 function keyboardWillShow(e) {
 	console.log('keyboardWillShow');
 	
+	$.mobile.activePage.find('.ui-header').addClass('hidden');
 	scrollDownOrUp(1,1);
 	
 	// window.windowCurrentScrollPosition = $(window).scrollTop();
@@ -663,6 +671,7 @@ function keyboardWillHide(e) {
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 	console.log('keyboardWillHide');
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
+	$.mobile.activePage.find('.ui-header').removeClass('hidden');
 }
 function keyboardDidHide(e) {
 	console.log('keyboardDidHide');
