@@ -551,12 +551,13 @@ function scrollDownOrUp(duration,delaytime) {
 
 function disablescrolling() {
 	console.log('disablescrolling');
-	$.mobile.activePage.find('.ui-content').css('width',$.mobile.activePage.find('.ui-content').width()+'px');	
+	// $.mobile.activePage.find('.ui-content').css('width',$.mobile.activePage.find('.ui-content').width()+'px');
 	$.mobile.activePage.find('.ui-header').addClass('hidden');
-	$.mobile.activePage.parents('html').addClass('disablescrolling');
-	$.mobile.activePage.parents('body').addClass('disablescrolling');
+	$.mobile.activePage.find('.ui-content').css('width','200px');
 	$.mobile.activePage.find('.ui-content').addClass('disablescrolling');
 	$.mobile.activePage.find('.ui-page').addClass('disablescrolling');
+	$.mobile.activePage.parents('body').addClass('disablescrolling');
+	$.mobile.activePage.parents('html').addClass('disablescrolling');
 }
 function enablescrolling() {
 	console.log('enablescrolling');
@@ -564,8 +565,8 @@ function enablescrolling() {
 	$.mobile.activePage.find('.ui-header').removeClass('hidden');
 	$.mobile.activePage.parents('html').removeClass('disablescrolling');
 	$.mobile.activePage.parents('body').removeClass('disablescrolling');
-	$.mobile.activePage.find('.ui-content').removeClass('disablescrolling');
 	$.mobile.activePage.find('.ui-page').removeClass('disablescrolling');
+	$.mobile.activePage.find('.ui-content').removeClass('disablescrolling');
 }
 
 function native_keyboard_manipulation() {

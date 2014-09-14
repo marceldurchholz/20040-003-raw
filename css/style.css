@@ -424,12 +424,16 @@ span[data-pastload-module="simpletext"] {
 }
 
 .disablescrolling {
-	border:5px solid red;
-	height:200px !important;
-	overflow:hidden !important;
 	position:fixed !important;
-	top:0px !important;
+	top:200px !important;
 	left:0px !important;
+	border:5px solid red;
+	height:300px !important;
+	width:300px !important;
+	overflow:hidden !important;
+	border:none !important;
+	padding:none !important;
+	margin:none !important;
 	/*
 	position:fixed !important;
 	width:100% !important;
