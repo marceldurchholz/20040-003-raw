@@ -705,7 +705,7 @@ function keyboardWillHide(e) {
 }
 function keyboardDidHide(e) {
 	console.log('keyboardDidHide');
-	// enablescrolling();
+	enablescrolling();
 	cordova.plugins.Keyboard.disableScroll(false);
 	// scrollDownOrUp(1000,300);
 	// window.keyboardvisible = false;
