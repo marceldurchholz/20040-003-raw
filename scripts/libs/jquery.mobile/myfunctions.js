@@ -551,10 +551,12 @@ function scrollDownOrUp(duration,delaytime) {
 
 function disablescrolling() {
 	console.log('disablescrolling');
-	// var breite = $.mobile.activePage.find('.ui-content').width();
-	// var hoehe = $.mobile.activePage.find('.ui-content').height();
-	var breite = "300";
-	var hoehe = "300";
+	var breitep = $.mobile.activePage.parents('#container').find('.ui-page-active').width();
+	var hoehep = $.mobile.activePage.parents('#container').find('.ui-page-active').height()-300;
+	var breitec = $.mobile.activePage.find('.ui-content').width();
+	var hoehec = $.mobile.activePage.find('.ui-content').height()-300;
+	// var breite = "300";
+	// var hoehe = "300";
 	// alert(breite);
 	$.mobile.activePage.removeAttr('style');
 	$.mobile.activePage.find('.ui-content').removeAttr('style');
@@ -562,8 +564,8 @@ function disablescrolling() {
 	$.mobile.activePage.parents('body').removeAttr('style');
 	$.mobile.activePage.parents('#container').removeAttr('style');
 	
-	$.mobile.activePage.parents('#container').find('.ui-page-active').attr('style','width:'+breite+'px;height:'+hoehe+'px;');
-	$.mobile.activePage.find('.ui-content').attr('style','width:'+breite+'px;height:'+hoehe+'px;');
+	$.mobile.activePage.parents('#container').find('.ui-page-active').attr('style','width:'+breitep+'px;height:'+hoehep+'px;');
+	$.mobile.activePage.find('.ui-content').attr('style','width:'+breitec+'px;height:'+hoehec+'px;');
 	
 	$.mobile.activePage.parents('html').addClass('disablescrolling');
 	$.mobile.activePage.parents('body').addClass('disablescrolling');
@@ -598,7 +600,7 @@ function keyboardWillShow(e) {
 	console.log('keyboardWillShow');
 	
 	$.mobile.activePage.find('.ui-header').addClass('hidden');
-	scrollDownOrUp(1,1);
+	// scrollDownOrUp(1,1);
 	
 	// window.windowCurrentScrollPosition = $(window).scrollTop();
 	// console.log('window.windowCurrentScrollPosition: '+window.windowCurrentScrollPosition);
@@ -684,7 +686,7 @@ function keyboardWillHide(e) {
 function keyboardDidHide(e) {
 	console.log('keyboardDidHide');
 	enablescrolling();
-	scrollDownOrUp(1000,300);
+	// scrollDownOrUp(1000,300);
 	// window.keyboardvisible = false;
 	// console.log('window.keyboardvisible: '+window.keyboardvisible);
 

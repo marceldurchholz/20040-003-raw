@@ -429,8 +429,8 @@ span[data-pastload-module="simpletext"] {
 	left:0px !important;
 	b/order:none !important;
 	b/order:5px solid red;
-	height:300px !important;
-	width:300px !important;
+	min-height:250px !important;
+	min-width:250px !important;
 	m/in-width:0px !important;
 	m/in-height:0px !important;
 	overflow:hidden !important;
