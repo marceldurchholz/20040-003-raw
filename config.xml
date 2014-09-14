@@ -75,11 +75,11 @@
 	
 	<gap:plugin name="com.phonegap.plugin.statusbar" />
 
+	<!--
 	<gap:plugin name="com.wizardlogic.cordova.ios_keyboard" />
 	<gap:plugin name="com.ionic.keyboard" />
-	<!--
-	<gap:plugin name="dk.vertica.keyboard"/>
 	-->
+	<gap:plugin name="dk.vertica.keyboard"/>
 	
 	<!--
 	<gap:plugin name="com.phonegap.plugin.keyboard" />
@@ -127,8 +127,10 @@
 	<preference name="webviewbounce" value="false" />
 	<preference name="UIWebViewBounce" value="false" />
 	
+	<!--
 	<preference name="KeyboardShrinksView" value="true" />
 	<preference name="HideKeyboardFormAccessoryBar" value="false" />
+	-->
 
 	<preference name="SuppressesIncrementalRendering" value="true" />
 	<preference name="TopActivityIndicator" value="white" />

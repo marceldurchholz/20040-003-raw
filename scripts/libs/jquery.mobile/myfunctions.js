@@ -592,10 +592,16 @@ function enablescrolling() {
 }
 
 function native_keyboard_manipulation() {
-	Keyboard.shrinkView(true);
+	Keyboard.shrinkView(false);
 	Keyboard.hideFormAccessoryBar(false);
 	Keyboard.disableScrollingInShrinkView(true);
-	Keyboard.automaticScrollToTopOnHiding = true;
+	Keyboard.onshow = function () {
+		// Describe your logic which will be run each time keyboard is shown.
+	}
+	Keyboard.onhide = function () {
+		// Describe your logic which will be run each time keyboard is closed.
+	}
+	// Keyboard.automaticScrollToTopOnHiding = true;
 	// Keyboard.onshow
 	// Keyboard.onhide
 	// Keyboard.onshowing
@@ -636,7 +642,7 @@ function keyboardDidShow(e) {
 		// $.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , 0 );
 	}
 
-	disablescrolling();
+	// disablescrolling();
 	cordova.plugins.Keyboard.disableScroll(true);
 
 	// scrollDownOrUp(1000,300);
@@ -707,7 +713,7 @@ function keyboardDidShow(e) {
 function keyboardWillHide(e) {
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 	console.log('keyboardWillHide');
-	enablescrolling();
+	// enablescrolling();
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 	// $.mobile.activePage.find('.ui-header').removeClass('hidden');
 }
