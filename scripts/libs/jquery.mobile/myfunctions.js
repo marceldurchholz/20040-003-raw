@@ -602,13 +602,10 @@ function native_keyboard_manipulation() {
 function keyboardWillShow(e) {
 	console.log('keyboardWillShow');
 	
-	if ($.mobile.activePage.find('.scrollDownTo').length) {
-		$.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , 0 );
-		$.mobile.silentScroll(9999999);
-		console.log('scrolling down...');
-	}
+	$.mobile.silentScroll(9999999);
 	disablescrolling();
-	
+	cordova.plugins.Keyboard.disableScroll(true);
+
 	// scrollDownOrUp(0,0);
 	// $.mobile.activePage.find('.ui-header').addClass('hidden');
 	// scrollDownOrUp(1,1);
@@ -624,6 +621,7 @@ function keyboardWillShow(e) {
 }
 function keyboardDidShow(e) {
 	console.log('keyboardDidShow');
+	
 	/*
 	if ($.mobile.activePage.find('.scrollDownTo').length) {
 		$.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , 0 );
@@ -631,7 +629,6 @@ function keyboardDidShow(e) {
 		console.log('scrolling down...');
 	}
 	*/
-	cordova.plugins.Keyboard.disableScroll(true);
 	// scrollDownOrUp(1000,300);
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 	// $.mobile.silentScroll(0);
@@ -700,12 +697,12 @@ function keyboardDidShow(e) {
 function keyboardWillHide(e) {
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 	console.log('keyboardWillHide');
+	enablescrolling();
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 	// $.mobile.activePage.find('.ui-header').removeClass('hidden');
 }
 function keyboardDidHide(e) {
 	console.log('keyboardDidHide');
-	enablescrolling();
 	cordova.plugins.Keyboard.disableScroll(false);
 	// scrollDownOrUp(1000,300);
 	// window.keyboardvisible = false;
