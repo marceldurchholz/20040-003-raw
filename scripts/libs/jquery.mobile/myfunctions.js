@@ -247,6 +247,7 @@ function changePush() {
 
 function enablescrolling() {
 	console.log('enablescrolling');
+	// $('#body').css('height',$(window).height());
 	$.mobile.activePage.parents('html').removeClass('disablescrolling');
 	$.mobile.activePage.parents('body').removeClass('disablescrolling');
 	$.mobile.activePage.find('.ui-content').removeClass('disablescrolling');

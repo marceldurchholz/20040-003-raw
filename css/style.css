@@ -425,6 +425,7 @@ span[data-pastload-module="simpletext"] {
 
 .disablescrolling {
 	overflow-y:hidden !important;
+	height:200px !important;
 	/*
 	position:fixed !important;
 	width:100% !important;
