@@ -559,8 +559,8 @@ function disablescrolling() {
 	$.mobile.activePage.parents('html').addClass('disablescrolling');
 	$.mobile.activePage.parents('body').addClass('disablescrolling');
 	$.mobile.activePage.parents('container').addClass('disablescrolling');
-	$.mobile.activePage.find('.ui-content').removeAttr('style');
-	$.mobile.activePage.removeAttr('style');
+	// $.mobile.activePage.find('.ui-content').removeAttr('style');
+	// $.mobile.activePage.removeAttr('style');
 	$.mobile.activePage.find('.ui-page').addClass('disablescrolling');
 	// $.mobile.activePage.parent().find('.ui-page').css('width',$.mobile.activePage.parent().find('.ui-page').width()+'px');
 	// $.mobile.activePage.parent().find('.ui-page').css('height',$.mobile.activePage.parent().find('.ui-page').width()+'px');
@@ -577,9 +577,9 @@ function enablescrolling() {
 	$.mobile.activePage.parents('body').removeClass('disablescrolling');
 	$.mobile.activePage.parents('container').removeClass('disablescrolling');
 	$.mobile.activePage.parent().find('.ui-page').removeClass('disablescrolling');
-	$.mobile.activePage.parent().find('.ui-page').removeAttr('style');
+	// $.mobile.activePage.parent().find('.ui-page').removeAttr('style');
 	$.mobile.activePage.find('.ui-content').removeClass('disablescrolling');
-	$.mobile.activePage.find('.ui-content').removeAttr('style');
+	// $.mobile.activePage.find('.ui-content').removeAttr('style');
 }
 
 function native_keyboard_manipulation() {
