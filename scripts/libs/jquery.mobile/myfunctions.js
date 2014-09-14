@@ -607,7 +607,8 @@ function keyboardWillShow(e) {
 		$.mobile.silentScroll(9999999);
 		console.log('scrolling down...');
 	}
-
+	disablescrolling();
+	
 	// scrollDownOrUp(0,0);
 	// $.mobile.activePage.find('.ui-header').addClass('hidden');
 	// scrollDownOrUp(1,1);
@@ -633,7 +634,6 @@ function keyboardDidShow(e) {
 	cordova.plugins.Keyboard.disableScroll(true);
 	// scrollDownOrUp(1000,300);
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
-	// disablescrolling();
 	// $.mobile.silentScroll(0);
 	// window.keyboardvisible = true;
 	// console.log('window.keyboardvisible: '+window.keyboardvisible);
