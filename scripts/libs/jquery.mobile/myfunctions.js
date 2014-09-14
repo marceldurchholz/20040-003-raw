@@ -574,11 +574,6 @@ function native_keyboard_manipulation() {
 	$('body').on('keyboardDidHide', keyboardDidHide);
 }
 function keyboardWillShow(e) {
-	if (isMobile.any()) {
-		console.log(e);
-		e.prependDefault();
-		e.stopPropagation();
-	}
 	console.log('keyboardWillShow');
 
 	window.windowCurrentScrollPosition = $(window).scrollTop();
@@ -591,11 +586,6 @@ function keyboardWillShow(e) {
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 }
 function keyboardDidShow(e) {
-	if (isMobile.any()) {
-		console.log(e);
-		e.prependDefault();
-		e.stopPropagation();
-	}
 	console.log('keyboardDidShow');
 	// $.mobile.silentScroll(0);
 	// window.keyboardvisible = true;
@@ -663,21 +653,11 @@ function keyboardDidShow(e) {
 	*/
 }
 function keyboardWillHide(e) {
-	if (isMobile.any()) {
-		console.log(e);
-		e.prependDefault();
-		e.stopPropagation();
-	}
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 	console.log('keyboardWillHide');
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 }
 function keyboardDidHide(e) {
-	if (isMobile.any()) {
-		console.log(e);
-		e.prependDefault();
-		e.stopPropagation();
-	}
 	console.log('keyboardDidHide');
 	enablescrolling();
 	scrollDownOrUp(1000,300);
