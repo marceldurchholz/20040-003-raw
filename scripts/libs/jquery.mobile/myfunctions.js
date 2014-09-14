@@ -603,7 +603,7 @@ function keyboardWillShow(e) {
 	console.log('keyboardWillShow');
 	
 	if ($.mobile.activePage.find('.scrollDownTo').length) {
-		$.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , duration );
+		$.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , 0 );
 		$.mobile.silentScroll(9999999);
 		console.log('scrolling down...');
 	}
@@ -624,7 +624,7 @@ function keyboardWillShow(e) {
 function keyboardDidShow(e) {
 	console.log('keyboardDidShow');
 	if ($.mobile.activePage.find('.scrollDownTo').length) {
-		$.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , duration );
+		$.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , 0 );
 		$.mobile.silentScroll(9999999);
 		console.log('scrolling down...');
 	}
