@@ -601,8 +601,14 @@ function native_keyboard_manipulation() {
 }
 function keyboardWillShow(e) {
 	console.log('keyboardWillShow');
-	scrollDownOrUp(0,0);
 	
+	if ($.mobile.activePage.find('.scrollDownTo').length) {
+		$.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , duration );
+		$.mobile.silentScroll(9999999);
+		console.log('scrolling down...');
+	}
+
+	// scrollDownOrUp(0,0);
 	// $.mobile.activePage.find('.ui-header').addClass('hidden');
 	// scrollDownOrUp(1,1);
 	
@@ -617,7 +623,11 @@ function keyboardWillShow(e) {
 }
 function keyboardDidShow(e) {
 	console.log('keyboardDidShow');
-	scrollDownOrUp(0,0);
+	if ($.mobile.activePage.find('.scrollDownTo').length) {
+		$.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , duration );
+		$.mobile.silentScroll(9999999);
+		console.log('scrolling down...');
+	}
 	cordova.plugins.Keyboard.disableScroll(true);
 	// scrollDownOrUp(1000,300);
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
