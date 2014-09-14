@@ -601,7 +601,7 @@ function native_keyboard_manipulation() {
 }
 function keyboardWillShow(e) {
 	console.log('keyboardWillShow');
-	// scrollDownOrUp(1,1);
+	scrollDownOrUp(1,1);
 	
 	// $.mobile.activePage.find('.ui-header').addClass('hidden');
 	// scrollDownOrUp(1,1);
