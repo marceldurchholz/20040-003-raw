@@ -429,13 +429,13 @@ span[data-pastload-module="simpletext"] {
 	left:0px !important;
 	b/order:none !important;
 	b/order:5px solid red;
-	h/eight:300px !important;
-	w/idth:300px !important;
+	height:300px !important;
+	width:300px !important;
 	m/in-width:0px !important;
 	m/in-height:0px !important;
 	overflow:hidden !important;
-	padding:none !important;
-	margin:none !important;
+	p/adding:none !important;
+	m/argin:none !important;
 	/*
 	position:fixed !important;
 	width:100% !important;

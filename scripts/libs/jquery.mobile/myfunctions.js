@@ -556,30 +556,34 @@ function disablescrolling() {
 	var breite = "300";
 	var hoehe = "300";
 	// alert(breite);
-	$.mobile.activePage.find('.ui-content').removeAttr('style');
 	$.mobile.activePage.removeAttr('style');
+	$.mobile.activePage.find('.ui-content').removeAttr('style');
+	$.mobile.activePage.parents('html').removeAttr('style');
+	$.mobile.activePage.parents('body').removeAttr('style');
+	$.mobile.activePage.parents('#container').removeAttr('style');
+	
+	$.mobile.activePage.parents('#container').find('.ui-page-active').attr('style','width:'+breite+'px;height:'+hoehe+'px;');
+	$.mobile.activePage.find('.ui-content').attr('style','width:'+breite+'px;height:'+hoehe+'px;');
+	
 	$.mobile.activePage.parents('html').addClass('disablescrolling');
 	$.mobile.activePage.parents('body').addClass('disablescrolling');
-	$.mobile.activePage.parents('container').addClass('disablescrolling');
-	$.mobile.activePage.find('.ui-page').addClass('disablescrolling');
-	// $.mobile.activePage.parent().find('.ui-page').css('width',$.mobile.activePage.parent().find('.ui-page').width()+'px');
-	// $.mobile.activePage.parent().find('.ui-page').css('height',$.mobile.activePage.parent().find('.ui-page').width()+'px');
-	$.mobile.activePage.find('.ui-page').css('width',breite+'px');
-	$.mobile.activePage.find('.ui-page').css('height',hoehe+'px');
+	$.mobile.activePage.parents('#container').addClass('disablescrolling');
+	$.mobile.activePage.parents('#container').find('.ui-page-active').addClass('disablescrolling');
 	$.mobile.activePage.find('.ui-content').addClass('disablescrolling');
-	$.mobile.activePage.find('.ui-content').css('width',breite+'px');
-	$.mobile.activePage.find('.ui-content').css('height',hoehe+'px');
-	// $.mobile.activePage.find('.ui-content').css('height',$.mobile.activePage.find('.ui-page').width()+'px');
 }
 function enablescrolling() {
 	console.log('enablescrolling');
 	$.mobile.activePage.parents('html').removeClass('disablescrolling');
 	$.mobile.activePage.parents('body').removeClass('disablescrolling');
-	$.mobile.activePage.parents('container').removeClass('disablescrolling');
-	$.mobile.activePage.parent().find('.ui-page').removeClass('disablescrolling');
+	$.mobile.activePage.parents('#container').removeClass('disablescrolling');
+	$.mobile.activePage.parents('#container').find('.ui-page-active').removeClass('disablescrolling');
 	$.mobile.activePage.find('.ui-content').removeClass('disablescrolling');
-	$.mobile.activePage.parent().find('.ui-page').removeAttr('style');
+
+	$.mobile.activePage.removeAttr('style');
 	$.mobile.activePage.find('.ui-content').removeAttr('style');
+	$.mobile.activePage.parents('html').removeAttr('style');
+	$.mobile.activePage.parents('body').removeAttr('style');
+	$.mobile.activePage.parents('#container').removeAttr('style');
 }
 
 function native_keyboard_manipulation() {
