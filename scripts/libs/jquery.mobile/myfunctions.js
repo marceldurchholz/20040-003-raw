@@ -551,8 +551,10 @@ function scrollDownOrUp(duration,delaytime) {
 
 function disablescrolling() {
 	console.log('disablescrolling');
-	var breite = $.mobile.activePage.find('.ui-content').width();
-	var hoehe = $.mobile.activePage.find('.ui-content').height();
+	// var breite = $.mobile.activePage.find('.ui-content').width();
+	// var hoehe = $.mobile.activePage.find('.ui-content').height();
+	var breite = "300";
+	var hoehe = "300";
 	// alert(breite);
 	$.mobile.activePage.parents('html').addClass('disablescrolling');
 	$.mobile.activePage.parents('body').addClass('disablescrolling');
