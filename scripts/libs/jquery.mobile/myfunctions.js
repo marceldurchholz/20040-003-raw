@@ -552,10 +552,10 @@ function scrollDownOrUp(duration,delaytime) {
 function disablescrolling() {
 	console.log('disablescrolling');
 	var breitep = $.mobile.activePage.parents('#container').find('.ui-page-active').width();
-	var hoehep = $.mobile.activePage.parents('#container').find('.ui-page-active').height()-300;
+	var hoehep = $.mobile.activePage.parents('#container').find('.ui-page-active').height();
 	var breitec = $.mobile.activePage.find('.ui-content').width();
-	var hoehec = $.mobile.activePage.find('.ui-content').height()-300;
-	var hoeheb = $.mobile.activePage.parents('#body').height()-300;
+	var hoehec = $.mobile.activePage.find('.ui-content').height();
+	var hoeheb = $.mobile.activePage.parents('#body').height();
 	// var breite = "300";
 	// var hoehe = "300";
 	// alert(breite);
