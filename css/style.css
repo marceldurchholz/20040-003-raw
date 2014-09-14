@@ -433,7 +433,7 @@ span[data-pastload-module="simpletext"] {
 	min-width:250px !important;
 	m/in-width:0px !important;
 	m/in-height:0px !important;
-	overflow:hidden !important;
+	overflow:visible !important;
 	p/adding:none !important;
 	m/argin:none !important;
 	/*
