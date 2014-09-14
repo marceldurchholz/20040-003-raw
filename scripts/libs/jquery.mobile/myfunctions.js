@@ -618,7 +618,7 @@ function keyboardWillShow(e) {
 function keyboardDidShow(e) {
 	console.log('keyboardDidShow');
 	cordova.plugins.Keyboard.disableScroll(true);
-	scrollDownOrUp(1000,300);
+	// scrollDownOrUp(1000,300);
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 	// disablescrolling();
 	// $.mobile.silentScroll(0);
