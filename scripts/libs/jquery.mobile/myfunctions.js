@@ -178,7 +178,6 @@ function PLDR_createJqmPage() {
 			
 }
 
-/*
 // height first header, content, last footer
 window.dheight = $('html').height(); 
 window.wheight = $(window).height();
@@ -187,7 +186,6 @@ window.cbody = $('div[data-role="page"]:first-child div[data-role="content"]:fir
 window.overBottom = $('div[data-role="page"]:first-child div[data-role="footer"]:last-child').height();
 window.correct = window.overTop + window.overBottom;
 window.cheight = window.wheight - window.dheight + window.cbody;
-*/
 
 function stretchScreen () {
 	//correction 
@@ -237,7 +235,6 @@ function noscroll() {
 	} else {
 	}
 }
-
 function changePush() {
 	if (window.wheight > window.dheight) {
 	  $('div[data-role="content"]:first-child').css({'min-height' : window.wheight-window.correct+'px'});
@@ -246,6 +243,21 @@ function changePush() {
 		$('div[data-role="content"]:first-child').css({'min-height' : window.dheight-window.correct+'px'});
 		$.mobile.silentScroll(0);
 	  }
+}
+
+function enablescrolling() {
+	console.log('enablescrolling');
+	$.mobile.activePage.parents('html').removeClass('disablescrolling');
+	$.mobile.activePage.parents('body').removeClass('disablescrolling');
+	$.mobile.activePage.find('.ui-content').removeClass('disablescrolling');
+	$.mobile.activePage.find('.ui-page').removeClass('disablescrolling');
+}
+function disablescrolling() {
+	console.log('disablescrolling');
+	$.mobile.activePage.parents('html').addClass('disablescrolling');
+	$.mobile.activePage.parents('body').addClass('disablescrolling');
+	$.mobile.activePage.find('.ui-content').addClass('disablescrolling');
+	$.mobile.activePage.find('.ui-page').addClass('disablescrolling');
 }
 
 function correctPageSize() {
@@ -534,6 +546,24 @@ function loadNativeSpecific() {
 	}
 }
 
+function scrollDownOrUp(duration,delaytime) {
+	if ($.mobile.activePage.find('.scrollDownTo').length) {
+		setTimeout(function() {
+			// alert(duration,delaytime);
+			$.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , duration );
+			$.mobile.silentScroll(9999999);
+		} , delaytime);
+	} else {
+		setTimeout(function() {
+			// alert(duration,delaytime);
+			// $('div[data-role="content"]:first-child').css({'min-height' : window.wheight-window.correct+'px'});
+			console.log($.mobile.activePage.find('.ui-content').children(":first"));
+			$.mobile.activePage.find('.ui-content').scrollTo( $.mobile.activePage.find('.ui-content').children(":first") , duration );
+			$.mobile.silentScroll(0);
+		} , delaytime);	
+	}
+}
+
 function native_keyboard_manipulation() {
 	cordova.plugins.Keyboard.disableScroll(false);
 	cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -542,19 +572,29 @@ function native_keyboard_manipulation() {
 	$('body').on('keyboardWillHide', keyboardWillHide);
 	$('body').on('keyboardDidHide', keyboardDidHide);
 }
-function keyboardWillShow() {
+function keyboardWillShow(e) {
+	if (isMobile.any()) {
+		console.log(e);
+		e.prependDefault();
+		e.stopPropagation();
+	}
 	console.log('keyboardWillShow');
 
 	window.windowCurrentScrollPosition = $(window).scrollTop();
-	console.log(window.windowCurrentScrollPosition);
+	console.log('window.windowCurrentScrollPosition: '+window.windowCurrentScrollPosition);
 	window.documentCurrentScrollPosition = $(document).scrollTop();
-	console.log(window.documentCurrentScrollPosition);
+	console.log('window.documentCurrentScrollPosition: '+window.documentCurrentScrollPosition);
 
 	window.windowHeight = parseInt($(window).height(),0) || parseInt($(document).height(),0) || parseInt($('body').height(),0) || parseInt($('#container').height(),0);
 	console.log('window.windowHeight: '+window.windowHeight);
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 }
-function keyboardDidShow() {
+function keyboardDidShow(e) {
+	if (isMobile.any()) {
+		console.log(e);
+		e.prependDefault();
+		e.stopPropagation();
+	}
 	console.log('keyboardDidShow');
 	// $.mobile.silentScroll(0);
 	// window.keyboardvisible = true;
@@ -566,10 +606,13 @@ function keyboardDidShow() {
 	window.documentCurrentScrollPosition = $(document).scrollTop();
 	console.log(window.documentCurrentScrollPosition);
 	*/
-	$(document).scrollTop(window.documentCurrentScrollPosition);
-	$(window).scrollTop(window.documentCurrentScrollPosition);
-
+	// $(document).scrollTop(window.documentCurrentScrollPosition);
+	// $(window).scrollTop(window.documentCurrentScrollPosition);
+	// $.mobile.activePage.find('.ui-content').scrollTo( );
+	scrollDownOrUp(1000,300);
+	disablescrolling();
 	
+	/*
 	var footerStyle = $(".footer").attr('style') || "";
 	console.log(footerStyle);
 	$(".footer").attr('style','position:fixed;');
@@ -595,9 +638,10 @@ function keyboardDidShow() {
 	console.log(footerPosition);
 	var footerOffset = $(".footer").offset() || new Object();
 	console.log(footerOffset);
-	if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(true);
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(true);
-
+	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(true);
+	*/
+	
 	/*
 	if (isMobile.any()) {
 		cordova.plugins.Keyboard.disableScroll(false);
@@ -617,20 +661,33 @@ function keyboardDidShow() {
 	}
 	*/
 }
-function keyboardWillHide() {
-	if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
+function keyboardWillHide(e) {
+	if (isMobile.any()) {
+		console.log(e);
+		e.prependDefault();
+		e.stopPropagation();
+	}
+	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 	console.log('keyboardWillHide');
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 }
-function keyboardDidHide() {
+function keyboardDidHide(e) {
+	if (isMobile.any()) {
+		console.log(e);
+		e.prependDefault();
+		e.stopPropagation();
+	}
 	console.log('keyboardDidHide');
+	enablescrolling();
+	scrollDownOrUp(1000,300);
 	// window.keyboardvisible = false;
 	// console.log('window.keyboardvisible: '+window.keyboardvisible);
 
 	// $.mobile.silentScroll(0);
-	$(document).scrollTop(window.documentCurrentScrollPosition);
-	$(window).scrollTop(window.documentCurrentScrollPosition);
+	// $(document).scrollTop(window.documentCurrentScrollPosition);
+	// $(window).scrollTop(window.documentCurrentScrollPosition);
 	
+	/*
 	var footerStyle = $(".footer").attr('style') || "";
 	console.log(footerStyle);
 	var footerPosition = $(".footer").position() || new Object();
@@ -664,6 +721,7 @@ function keyboardDidHide() {
 	correctPageSize();
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 	// $.mobile.activePage.find('#sendMessage').attr('style','').css('background-color','lightred');
+	*/
 }
 
 function fb_desktop_init() {

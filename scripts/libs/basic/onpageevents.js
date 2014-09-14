@@ -354,23 +354,6 @@ function foreach_async(PLDR_array,PLDR_foreach,PLDR_arraywalkDone) {
 		},0);
 	}, PLDR_arraywalkDone);
 }
-function scrollDownOrUp(duration,delaytime) {
-	if ($.mobile.activePage.find('.scrollDownTo').length) {
-		setTimeout(function() {
-			// alert(duration,delaytime);
-			$.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , duration );
-			$.mobile.silentScroll(9999999);
-		} , delaytime);
-	} else {
-		setTimeout(function() {
-			// alert(duration,delaytime);
-			// $('div[data-role="content"]:first-child').css({'min-height' : window.wheight-window.correct+'px'});
-			console.log($.mobile.activePage.find('.ui-content').children(":first"));
-			$.mobile.activePage.find('.ui-content').scrollTo( $.mobile.activePage.find('.ui-content').children(":first") , duration );
-			$.mobile.silentScroll(0);
-		} , delaytime);	
-	}
-}
 
 function PLDR_finalAction() {
 	// if (window.heavyDebug) console.log('doing PLDR_finalAction');
