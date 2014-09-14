@@ -559,12 +559,14 @@ function disablescrolling() {
 	$.mobile.activePage.parents('html').addClass('disablescrolling');
 	$.mobile.activePage.parents('body').addClass('disablescrolling');
 	$.mobile.activePage.parents('container').addClass('disablescrolling');
-	$.mobile.activePage.find('.ui-page').addClass('disablescrolling');
-	$.mobile.activePage.parent().find('.ui-page').css('width',$.mobile.activePage.parent().find('.ui-page').width()+'px');
-	$.mobile.activePage.parent().find('.ui-page').css('height',$.mobile.activePage.parent().find('.ui-page').width()+'px');
-	$.mobile.activePage.find('.ui-content').addClass('disablescrolling');
 	$.mobile.activePage.find('.ui-content').removeAttr('style');
 	$.mobile.activePage.removeAttr('style');
+	$.mobile.activePage.find('.ui-page').addClass('disablescrolling');
+	// $.mobile.activePage.parent().find('.ui-page').css('width',$.mobile.activePage.parent().find('.ui-page').width()+'px');
+	// $.mobile.activePage.parent().find('.ui-page').css('height',$.mobile.activePage.parent().find('.ui-page').width()+'px');
+	$.mobile.activePage.find('.ui-page').css('width',breite+'px');
+	$.mobile.activePage.find('.ui-page').css('height',hoehe+'px');
+	$.mobile.activePage.find('.ui-content').addClass('disablescrolling');
 	$.mobile.activePage.find('.ui-content').css('width',breite+'px');
 	$.mobile.activePage.find('.ui-content').css('height',hoehe+'px');
 	// $.mobile.activePage.find('.ui-content').css('height',$.mobile.activePage.find('.ui-page').width()+'px');
