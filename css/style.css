@@ -425,7 +425,7 @@ span[data-pastload-module="simpletext"] {
 
 .disablescrolling {
 	position:fixed !important;
-	top:200px !important;
+	top:0px !important;
 	left:0px !important;
 	border:5px solid red;
 	height:300px !important;

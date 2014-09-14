@@ -556,6 +556,7 @@ function disablescrolling() {
 	$.mobile.activePage.find('.ui-content').css('width','200px');
 	$.mobile.activePage.find('.ui-content').addClass('disablescrolling');
 	$.mobile.activePage.find('.ui-page').addClass('disablescrolling');
+	$.mobile.activePage.parents('container').addClass('disablescrolling');
 	$.mobile.activePage.parents('body').addClass('disablescrolling');
 	$.mobile.activePage.parents('html').addClass('disablescrolling');
 }
@@ -565,6 +566,7 @@ function enablescrolling() {
 	$.mobile.activePage.find('.ui-header').removeClass('hidden');
 	$.mobile.activePage.parents('html').removeClass('disablescrolling');
 	$.mobile.activePage.parents('body').removeClass('disablescrolling');
+	$.mobile.activePage.parents('container').removeClass('disablescrolling');
 	$.mobile.activePage.find('.ui-page').removeClass('disablescrolling');
 	$.mobile.activePage.find('.ui-content').removeClass('disablescrolling');
 }
