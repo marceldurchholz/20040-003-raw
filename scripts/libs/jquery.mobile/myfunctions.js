@@ -580,7 +580,6 @@ function keyboardWillShow(e) {
 	console.log('keyboardWillShow');
 	
 	scrollDownOrUp(1,1);
-	disablescrolling();
 	
 	// window.windowCurrentScrollPosition = $(window).scrollTop();
 	// console.log('window.windowCurrentScrollPosition: '+window.windowCurrentScrollPosition);
@@ -592,6 +591,7 @@ function keyboardWillShow(e) {
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
 }
 function keyboardDidShow(e) {
+	disablescrolling();
 	console.log('keyboardDidShow');
 	// $.mobile.silentScroll(0);
 	// window.keyboardvisible = true;
