@@ -623,11 +623,13 @@ function keyboardWillShow(e) {
 }
 function keyboardDidShow(e) {
 	console.log('keyboardDidShow');
+	/*
 	if ($.mobile.activePage.find('.scrollDownTo').length) {
 		$.mobile.activePage.find('.ui-content').scrollTo( $('.scrollDownTo') , 0 );
 		$.mobile.silentScroll(9999999);
 		console.log('scrolling down...');
 	}
+	*/
 	cordova.plugins.Keyboard.disableScroll(true);
 	// scrollDownOrUp(1000,300);
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
