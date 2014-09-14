@@ -601,6 +601,7 @@ function native_keyboard_manipulation() {
 }
 function keyboardWillShow(e) {
 	console.log('keyboardWillShow');
+	if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(true);
 	
 	// $.mobile.activePage.find('.ui-header').addClass('hidden');
 	// scrollDownOrUp(1,1);
@@ -616,7 +617,7 @@ function keyboardWillShow(e) {
 }
 function keyboardDidShow(e) {
 	console.log('keyboardDidShow');
-	disablescrolling();
+	// disablescrolling();
 	// $.mobile.silentScroll(0);
 	// window.keyboardvisible = true;
 	// console.log('window.keyboardvisible: '+window.keyboardvisible);
