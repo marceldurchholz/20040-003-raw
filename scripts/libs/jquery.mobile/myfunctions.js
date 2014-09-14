@@ -511,7 +511,7 @@ function loadNativeSpecific() {
 		preventScreenSleep();
 		
 		if (window.iosShowStatusBar==true) iosModifyStatusBar();
-		native_keyboard_manipulation();
+		native_keyboard_manipulation_ionic();
 		
 		// fb_mobile_init();
 		fb_desktop_init();
@@ -592,6 +592,17 @@ function enablescrolling() {
 }
 
 function native_keyboard_manipulation() {
+	Keyboard.shrinkView(true);
+	Keyboard.hideFormAccessoryBar(false);
+	Keyboard.disableScrollingInShrinkView(true);
+	Keyboard.automaticScrollToTopOnHiding = false;
+	// Keyboard.onshow
+	// Keyboard.onhide
+	// Keyboard.onshowing
+	// Keyboard.onhiding
+}
+
+function native_keyboard_manipulation_ionic() {
 	cordova.plugins.Keyboard.disableScroll(false);
 	// cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 	$('body').off('keyboardWillShow').on('keyboardWillShow', keyboardWillShow);
