@@ -511,7 +511,7 @@ function loadNativeSpecific() {
 		preventScreenSleep();
 		
 		if (window.iosShowStatusBar==true) iosModifyStatusBar();
-		native_keyboard_manipulation_ionic();
+		native_keyboard_manipulation();
 		
 		// fb_mobile_init();
 		fb_desktop_init();
@@ -602,14 +602,14 @@ function native_keyboard_manipulation() {
 		// Describe your logic which will be run each time keyboard is closed.
 	}
 	*/
-	window.addEventListener('Keyboard.onshow', keyboardHideHandler);
+	window.addEventListener('Keyboard.onshow', keyboardShowHandler);
 	// Keyboard.automaticScrollToTopOnHiding = true;
 	// Keyboard.onshow
 	// Keyboard.onhide
 	// Keyboard.onshowing
 	// Keyboard.onhiding
 }
-function keyboardHideHandler(e,o) {
+function keyboardShowHandler(e,o) {
 	// ...
 	console.log(e);
 	console.log(o);
