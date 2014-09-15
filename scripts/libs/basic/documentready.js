@@ -270,9 +270,11 @@ $(document).ready(function() {
 		},1000);
 		*/
 		
+		/*
 		window.scrollTo(0,99999);
 		$.mobile.activePage.find('.ui-content').scrollTo( 99999 );
 		$.mobile.activePage.find('.ui-content').scrollTo( 99999 , {offset: {top:99999, left:0}} );
+		*/
 		
 		// window.scrollTo( $('.scrollDownTo') , 0 );
 		/*

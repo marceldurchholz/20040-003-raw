@@ -1,4 +1,4 @@
-<div data-role="header" data-theme="h" data-position="fixed"  data-tap-toggle="false">
+<div data-role="header" data-theme="h" data-hide-during-focus="false" data-position="fixed"  data-tap-toggle="false">
     <a data-ajax="true" href="#panel_left" data-icon="grid" data-iconpos="notext">Menü</a>
     <h1><%= window.system.owner.companyname %></h1>
     <% if(checkRole("user")==true) { %>
@@ -144,10 +144,12 @@
 			<div style="font-size:12px;" class="resizetext"><%= window.system.app.options.calltoaction %></div>
 		</div>
 
+		<!--
 		<div style="float:none;clear:both;height:15px;"></div>
 		<div id="debugdiv" style="font-size:9px;width:100%;height:50px;overflow:scroll;">
 			aaa
 		</div>
+		-->
 
 	</div>
 	
@@ -255,7 +257,6 @@
 		<textarea placeholder="Nachricht..." data-id="myMsgBox" id="myMsgBox" class="myMsgBox" name="message" data-role="none"></textarea>
 		<a name="sendLink" class="sendLink" data-mini="true" data-enhance="false" data-shadow="false" data-role="none" href="#" data-ajax="true">Senden</a>
 	</form>
-	<div class="scrollDownToFooter">scrollDownToFooter</div>
 </div>
 
 <!--
