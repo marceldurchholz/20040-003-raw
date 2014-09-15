@@ -257,7 +257,7 @@ $(document).ready(function() {
 	// $("input[type=text], textarea").bind("blur", function(e) {
 	// $(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
 	$(document).off('blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
-		window.scrollTo(0,0);
+		window.scrollTo(0,99999);
 		console.log(e);
 		$('#debugdiv').append('<p><hr></p>');
 		$('#debugdiv').append('<p>e:</p><p>');
