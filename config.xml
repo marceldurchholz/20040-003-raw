@@ -127,10 +127,8 @@
 	<preference name="webviewbounce" value="false" />
 	<preference name="UIWebViewBounce" value="false" />
 	
-	<!--
 	<preference name="KeyboardShrinksView" value="true" />
-	<preference name="HideKeyboardFormAccessoryBar" value="false" />
-	-->
+	<preference name="HideKeyboardFormAccessoryBar" value="true" />
 
 	<preference name="SuppressesIncrementalRendering" value="true" />
 	<preference name="TopActivityIndicator" value="white" />
