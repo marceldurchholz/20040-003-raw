@@ -591,9 +591,9 @@ function enablescrolling() {
 }
 
 function native_keyboard_manipulation() {
-	Keyboard.shrinkView(false);
-	Keyboard.hideFormAccessoryBar(false);
-	Keyboard.disableScrollingInShrinkView(true);
+	// Keyboard.shrinkView(false);
+	// Keyboard.hideFormAccessoryBar(false);
+	// Keyboard.disableScrollingInShrinkView(true);
 	/*
 	Keyboard.onshow = function () {
 		// Describe your logic which will be run each time keyboard is shown.
@@ -602,7 +602,7 @@ function native_keyboard_manipulation() {
 		// Describe your logic which will be run each time keyboard is closed.
 	}
 	*/
-	window.addEventListener('Keyboard.onshow', keyboardShowHandler);
+	// window.addEventListener('Keyboard.onshow', keyboardShowHandler);
 	// Keyboard.automaticScrollToTopOnHiding = true;
 	// Keyboard.onshow
 	// Keyboard.onhide
@@ -610,7 +610,6 @@ function native_keyboard_manipulation() {
 	// Keyboard.onhiding
 }
 function keyboardShowHandler(e,o) {
-	// ...
 	console.log(e);
 	console.log(o);
 }
