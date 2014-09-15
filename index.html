@@ -5,8 +5,7 @@
 		<title>APPinaut</title>
 		<meta name="description" content="Der APPinaut ist eine Mobile Learning App. Im Multimediaformat kann den wissensdurstigen Nutzern des APPinaut Wissen angeboten werden." />
 		<!-- WARNING: for iOS 7 with iPad, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-		<!-- width=device-width, -->
-		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, height=device-height, target-densitydpi=device-dpi">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		<meta name="apple-itunes-app" content="app-id=812298702, app-argument=20040">
@@ -26,6 +25,12 @@
 	</head>
 	<body id="body">
 		<div id="container"></div>
+		<div data-role="panel" class="fixedmessagefooter">
+			<form class="messageForm resizetext" data-inset="false">
+				<textarea placeholder="Nachricht..." data-id="myMsgBox" id="myMsgBox" class="myMsgBox" name="message" data-role="none"></textarea>
+				<a name="sendLink" class="sendLink" data-mini="true" data-enhance="false" data-shadow="false" data-role="none" href="#" data-ajax="true">Senden</a>
+			</form>
+		</div>		
 		<div id="panel_left" data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="b"></div>
 		<div id="panel_right" data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a"></div>
 	</body>
