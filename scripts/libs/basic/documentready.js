@@ -257,17 +257,18 @@ $(document).ready(function() {
 	// $("input[type=text], textarea").bind("blur", function(e) {
 	// $(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
 	// $(document).off('blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
-	$(document).off('focus blur','textarea').on('focus blur','textarea',function(e) {
+	$(document).off('focus','textarea').on('focus','textarea',function(e) {
 		
+		/*
 		console.log(e);
 		var postop = $(window).scrollTop();
-		console.log($(window).scrollTop());
-		console.log($(document).scrollTop());
+		console.log(postop);
 		// window.scrollTo(0,99999);
-		window.scrollTo(0,99999);
+		window.scrollTo(0,postop);
 		setTimeout(function() {
-			window.scrollTo(0,postop);
+			window.scrollTo(0,99999);
 		},1000);
+		*/
 		
 		// window.scrollTo( $('.scrollDownTo') , 0 );
 		/*
