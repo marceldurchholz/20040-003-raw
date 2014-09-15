@@ -548,7 +548,6 @@ function scrollDownOrUp(duration,delaytime) {
 		} , delaytime);	
 	}
 }
-
 function disablescrolling() {
 	console.log('disablescrolling');
 	var breitep = $.mobile.activePage.parents('#container').find('.ui-page-active').width();

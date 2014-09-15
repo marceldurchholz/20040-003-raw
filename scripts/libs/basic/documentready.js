@@ -260,10 +260,18 @@ $(document).ready(function() {
 	$(document).off('focus blur','textarea').on('focus blur','textarea',function(e) {
 		
 		console.log(e);
-		
+		var postop = $(window).scrollTop();
+		console.log($(window).scrollTop());
+		console.log($(document).scrollTop());
 		// window.scrollTo(0,99999);
+		window.scrollTo(0,99999);
+		setTimeout(function() {
+			window.scrollTo(0,postop);
+		},1000);
+		
 		// window.scrollTo( $('.scrollDownTo') , 0 );
-		$.mobile.activePage.find('.ui-content').scrollTo( $('.ui-page-active > .ui-content').find('.scrollDownTo') , {offset: {top:0, left:0} , onAfter:function(o){
+		/*
+		$.mobile.activePage.find('.ui-content').scrollTo( $('.ui-page-active > .ui-footer').find('.scrollDownToFooter') , {offset: {top:0, left:0} , onAfter:function(o){
 			// console.log('scrolling to '+o.offset().top+'-43='+o.offset().top-43);
 			console.log('scrolling');
 			console.log(Math.round(o.offset().top));
@@ -271,10 +279,13 @@ $(document).ready(function() {
 			console.log(Math.round(o.offset().top)-43);
 			$.mobile.silentScroll(Math.round(o.offset().top)-43);
 		}});
+		*/
+		/*
 		$('#debugdiv').append('<p><hr></p>');
 		$('#debugdiv').append('<p>e:</p><p>');
 		$('#debugdiv').append(objToString(e));
 		$('#debugdiv').append('</p>');
+		*/
 	});
 	
 	function keyboardLoaded() {
