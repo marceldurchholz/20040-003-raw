@@ -270,6 +270,10 @@ $(document).ready(function() {
 		},1000);
 		*/
 		
+		window.scrollTo(0,99999);
+		$.mobile.activePage.find('.ui-content').scrollTo( 99999 );
+		$.mobile.activePage.find('.ui-content').scrollTo( 99999 , {offset: {top:99999, left:0}} );
+		
 		// window.scrollTo( $('.scrollDownTo') , 0 );
 		/*
 		$.mobile.activePage.find('.ui-content').scrollTo( $('.ui-page-active > .ui-footer').find('.scrollDownToFooter') , {offset: {top:0, left:0} , onAfter:function(o){
