@@ -256,9 +256,21 @@ $(document).ready(function() {
 
 	// $("input[type=text], textarea").bind("blur", function(e) {
 	// $(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
-	$(document).off('blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
-		window.scrollTo(0,99999);
+	// $(document).off('blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
+	$(document).off('focus blur','textarea').on('focus blur','textarea',function(e) {
+		
 		console.log(e);
+		
+		// window.scrollTo(0,99999);
+		// window.scrollTo( $('.scrollDownTo') , 0 );
+		$.mobile.activePage.find('.ui-content').scrollTo( $('.ui-page-active > .ui-content').find('.scrollDownTo') , {offset: {top:0, left:0} , onAfter:function(o){
+			// console.log('scrolling to '+o.offset().top+'-43='+o.offset().top-43);
+			console.log('scrolling');
+			console.log(Math.round(o.offset().top));
+			console.log('-43=');
+			console.log(Math.round(o.offset().top)-43);
+			$.mobile.silentScroll(Math.round(o.offset().top)-43);
+		}});
 		$('#debugdiv').append('<p><hr></p>');
 		$('#debugdiv').append('<p>e:</p><p>');
 		$('#debugdiv').append(objToString(e));
