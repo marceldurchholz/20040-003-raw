@@ -594,17 +594,25 @@ function native_keyboard_manipulation() {
 	Keyboard.shrinkView(false);
 	Keyboard.hideFormAccessoryBar(false);
 	Keyboard.disableScrollingInShrinkView(true);
+	/*
 	Keyboard.onshow = function () {
 		// Describe your logic which will be run each time keyboard is shown.
 	}
 	Keyboard.onhide = function () {
 		// Describe your logic which will be run each time keyboard is closed.
 	}
+	*/
+	window.addEventListener('Keyboard.onshow', keyboardHideHandler);
 	// Keyboard.automaticScrollToTopOnHiding = true;
 	// Keyboard.onshow
 	// Keyboard.onhide
 	// Keyboard.onshowing
 	// Keyboard.onhiding
+}
+function keyboardHideHandler(e,o) {
+	// ...
+	console.log(e);
+	console.log(o);
 }
 
 function native_keyboard_manipulation_ionic() {
