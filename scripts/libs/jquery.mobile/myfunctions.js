@@ -615,7 +615,7 @@ function native_keyboard_manipulation_ionic() {
 	$('body').off('keyboardDidShow').on('keyboardDidShow', keyboardDidShow);
 	$('body').off('keyboardWillHide').on('keyboardWillHide', keyboardWillHide);
 	$('body').off('keyboardDidHide').on('keyboardDidHide', keyboardDidHide);
-}
+	}
 function keyboardWillShow(e) {
 	console.log('keyboardWillShow');
 	

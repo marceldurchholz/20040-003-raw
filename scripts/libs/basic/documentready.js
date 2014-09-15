@@ -228,7 +228,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		alert('submitting messageForm...');
 		// if (!isMobile.any()) $('.ui-page-active > .ui-content').scrollTo( $(e.target) , 0, {offset: {top:-250, left:0}} );
-		hideKeyboard();
+		// hideKeyboard();
 		return(false);
 	});
 
@@ -244,8 +244,34 @@ $(document).ready(function() {
 	*/
 	
 
-	$(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
+	function objToString (obj) {
+		var str = '';
+		for (var p in obj) {
+			if (obj.hasOwnProperty(p)) {
+				str += p + '::' + obj[p] + '\n';
+			}
+		}
+		return str;
+	}
+
+	// $("input[type=text], textarea").bind("blur", function(e) {
+	// $(document).off('focus focusinmanual blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
+	$(document).off('blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
+		window.scrollTo(0,0);
+		console.log(e);
+		$('#debugdiv').append('<p><hr></p>');
+		$('#debugdiv').append('<p>e:</p><p>');
+		$('#debugdiv').append(objToString(e));
+		$('#debugdiv').append('</p>');
+	});
+	
+	function keyboardLoaded() {
+		alert('keyboardLoaded');
+	}
+	
+	$('a').off('focus focusinmanual blur','input[type="text"], input[type="password"], textarea').on('focus focusinmanual blur','input[type="text"], input[type="password"], textarea',function(e) {
 		console.log(e.type);
+		/*
 		if (e.type=="focusin") {
 			console.log("$(e.target).addClass('activeElement');");
 			$(e.target).addClass('activeElement');
@@ -278,8 +304,8 @@ $(document).ready(function() {
 		*/
 		
 		// user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi
-		var $viewportMeta = $('meta[name="viewport"]');
-		$viewportMeta.attr('content','user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width, height=device-height,maximum-scale=' + ((e.type == 'blur' || e.type == 'focusout') ? 10 : 1) + ',target-densitydpi=device-dpi');
+		// var $viewportMeta = $('meta[name="viewport"]');
+		// $viewportMeta.attr('content','user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width, height=device-height,maximum-scale=' + ((e.type == 'blur' || e.type == 'focusout') ? 10 : 1) + ',target-densitydpi=device-dpi');
 		
 		/*
 		console.log("$(document).off('focus focusinmanual blur','input[type=text], input[type=password], select, textarea').on('focus focusinmanual blur','input[type=text], input[type=password], select, textarea',function(e) {...");
