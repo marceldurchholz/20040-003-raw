@@ -74,7 +74,9 @@ define(['defvalues','domReady', 'jqmNavigator','jqmNativeSpinnerPlugin','MobileR
 							}
 							d.resolve(result);
 						}
-					);			
+					).fail(function(err) {
+						alert('error');
+					});
 				// }
 				return d.promise();
 			},
@@ -83,31 +85,22 @@ define(['defvalues','domReady', 'jqmNavigator','jqmNativeSpinnerPlugin','MobileR
 				var _this = this;
 				var d = $.Deferred();
 				if (window.heavyDebug) console.log('main.js >> doing initApp() with '+window.system.owner.kdnr);
+				// alert('ownerByKdnr');
 				$.when( getOwnerData(window.system.owner.kdnr) ).done(
 					function( ownerByKdnr ) {
-						if (window.heavyDebug) console.log('$.when( getOwnerData('+window.system.owner.kdnr+') ).done() {...');
-						if (window.heavyDebug) console.log(ownerByKdnr);
-						if (ownerByKdnr==undefined && isConnectedToInternet()!=true && isDesktop==true) {
-							/***** START: SIMULATED STATIC DESKTOP VARS MODE *****/
-							if (window.heavyDebug) console.log('simulated desktop offline mode via static vars setted');
-							var ownerJsonString = '[{"active":true,"appviews":["cards","wall","videos","messages","users"],"city":"Ahlerstedt","companyname":"Superfirma AG","credits":0,"deleted":false,"followers":[],"following":[],"fullname":"aRoswitha Neitzel","interests":["Gedächtnistraining","Kundengewinnung"],"kdnr":"20040","lastModified":"20140707175616","logincount":0,"master":false,"messageble":true,"perstext":"","purchases":[],"registered":"20140620090350","roles":["user","seeker","provider"],"show":false,"slogan":"Mein Slogan!!!","sponsor":"042cb1572ffbea5d","street":"Pappelallee 1234","usergroups":[],"username":"rneitzel","zip":"55555","id":"8d1ed958fe65c8ff"}]';
-							var ownerByKdnr = JSON.parse(ownerJsonString);
-							/***** ENDE: SIMULATED STATIC DESKTOP VARS MODE *****/
-						}
-						if (ownerByKdnr==undefined) {
-							if (window.heavyDebug) console.log('unknown error in main.js - absolutely no owner found: sorry - could not get any app setup informations...');
-							d.resolve(false);
-						}
-						if (window.heavyDebug) console.log('we got an app owner!!! fullname is: '+ownerByKdnr.fullname);
-						window.system.owner = ownerByKdnr;
-						d.resolve(true);
+						handle_getOwnerData(d,ownerByKdnr);
 					}
 				).fail(
 					function(err) {
 						if (err.statusText=="timeout") {
-							doAlert('Es besteht wahrscheintlich keine Verbindung zum Server.','Ohh nohh...');
+							doAlert('Der Verbindungsaufbau zum Server dauerte wahrscheintlich zu lange...','Ohh nohh...');
 						} else {
+							// eventuell ist der server down...
 							doAlert('Es ist ein unbekannter Fehler aufgetreten.','Entschuldigung...');
+							if (window.heavyDebug) console.log('simulated desktop offline mode via static vars setted');
+							var ownerJsonString = '[{"active":true,"appviews":["cards","wall","videos","messages","users"],"city":"Ahlerstedt","companyname":"Superfirma AG","credits":0,"deleted":false,"followers":[],"following":[],"fullname":"OfflineRoswitha OfflineNeitzel","interests":["Gedächtnistraining","Kundengewinnung"],"kdnr":"20040","lastModified":"20140707175616","logincount":0,"master":false,"messageble":true,"perstext":"","purchases":[],"registered":"20140620090350","roles":["user","seeker","provider"],"show":false,"slogan":"Mein Slogan!!!","sponsor":"042cb1572ffbea5d","street":"Pappelallee 1234","usergroups":[],"username":"rneitzel","zip":"55555","id":"8d1ed958fe65c8ff"}]';
+							var ownerByKdnr = JSON.parse(ownerJsonString);
+							handle_getOwnerData(d,ownerByKdnr);
 						}
 					}
 				);

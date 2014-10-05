@@ -5,6 +5,7 @@ require.config({
 		foreach:'libs/jquery.mobile/foreach',
 		accounting:'libs/basic/accounting',
 		fastclick:'libs/jquery.mobile/fastclick',
+		ios:'libs/iosjs/ios.min',
 		dpd: "libs/deployd/dpd",
 		// dpd: "http://s15944029.onlinehome-server.info:5000/dpd",
 		jquery:'libs/jquery/jquery-2.1.1',
@@ -56,7 +57,7 @@ require.config({
         },
 		
 		domReady:{
-			deps:['dpd','foreach','javascript','fastclick','jquery','jqm','jquerysetup','jqparseparams','accounting','jqueryhotkeys','jqueryautosize','jqueryage','jEditable','jScrollTo','openfb','myfunctions','documentready','putcursoratend','onpageevents']
+			deps:['dpd','foreach','javascript','ios','fastclick','jquery','jqm','jquerysetup','jqparseparams','accounting','jqueryhotkeys','jqueryautosize','jqueryage','jEditable','jScrollTo','openfb','myfunctions','documentready','putcursoratend','onpageevents']
 		}
     }
 });

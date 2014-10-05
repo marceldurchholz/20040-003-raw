@@ -246,6 +246,13 @@ function changePush() {
 }
 
 function correctPageSize() {
+	var ios_nws = iOS_normalGetWindowSize();
+	var ios_ws = iOS_getWindowSize();
+	var ios_vs = iOS_getViewportSize();
+	var ios_ps = iOS_getPageSize();
+	console.log(ios_ws);
+	console.log(ios_vs);
+	console.log(ios_ps);
 }
 function correctPageSize_xxx() {
 	alert('DOING correctPageSize');
@@ -603,20 +610,31 @@ function native_keyboard_manipulation() {
 	}
 	*/
 	window.addEventListener('Keyboard.onshowing', keyboardOnshowingHandler);
+	window.addEventListener('Keyboard.onhiding', keyboardOnhidingHandler);
 	// Keyboard.automaticScrollToTopOnHiding = true;
 	// Keyboard.onshow
 	// Keyboard.onhide
 	// Keyboard.onshowing
 	// Keyboard.onhiding
 }
+function keyboardOnhidingHandler(e,o) {
+	alert('onhiding keyboard');
+	iOS_enableScrolling();
+}
+
 function keyboardOnshowingHandler(e,o) {
 	alert('onshowing keyboard');
+	// iOS_disableScrolling(); 
+	// and to enable it again 
+	// iOS_enableScrolling();
+	iOS_disableScrolling();
 	console.log(e);
 	console.log(o);
 }
 
 function native_keyboard_manipulation_ionic() {
-	cordova.plugins.Keyboard.disableScroll(false);
+	// cordova.plugins.Keyboard.disableScroll(false);
+	iOS_enableScrolling();
 	// cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 	$('body').off('keyboardWillShow').on('keyboardWillShow', keyboardWillShow);
 	$('body').off('keyboardDidShow').on('keyboardDidShow', keyboardDidShow);
@@ -650,7 +668,8 @@ function keyboardDidShow(e) {
 	}
 
 	// disablescrolling();
-	cordova.plugins.Keyboard.disableScroll(true);
+	// cordova.plugins.Keyboard.disableScroll(true);
+	iOS_disableScrolling();
 
 	// scrollDownOrUp(1000,300);
 	// if (isMobile.any()) cordova.plugins.Keyboard.disableScroll(false);
@@ -726,7 +745,8 @@ function keyboardWillHide(e) {
 }
 function keyboardDidHide(e) {
 	console.log('keyboardDidHide');
-	cordova.plugins.Keyboard.disableScroll(false);
+	// cordova.plugins.Keyboard.disableScroll(false);
+	iOS_enableScrolling();
 	// scrollDownOrUp(1000,300);
 	// window.keyboardvisible = false;
 	// console.log('window.keyboardvisible: '+window.keyboardvisible);
@@ -3553,6 +3573,25 @@ function collectUserdetailsData(userid) {
 	return d.promise();
 }
 
+function handle_getOwnerData(d,ownerByKdnr) {
+	if (window.heavyDebug) console.log('$.when( getOwnerData('+window.system.owner.kdnr+') ).done() {...');
+	if (window.heavyDebug) console.log(ownerByKdnr);
+	if (ownerByKdnr==undefined && isConnectedToInternet()!=true && isDesktop==true) {
+		/***** START: SIMULATED STATIC DESKTOP VARS MODE *****/
+		if (window.heavyDebug) console.log('simulated desktop offline mode via static vars setted');
+		var ownerJsonString = '[{"active":true,"appviews":["cards","wall","videos","messages","users"],"city":"Ahlerstedt","companyname":"Superfirma AG","credits":0,"deleted":false,"followers":[],"following":[],"fullname":"aRoswitha Neitzel","interests":["Gedächtnistraining","Kundengewinnung"],"kdnr":"20040","lastModified":"20140707175616","logincount":0,"master":false,"messageble":true,"perstext":"","purchases":[],"registered":"20140620090350","roles":["user","seeker","provider"],"show":false,"slogan":"Mein Slogan!!!","sponsor":"042cb1572ffbea5d","street":"Pappelallee 1234","usergroups":[],"username":"rneitzel","zip":"55555","id":"8d1ed958fe65c8ff"}]';
+		var ownerByKdnr = JSON.parse(ownerJsonString);
+		/***** ENDE: SIMULATED STATIC DESKTOP VARS MODE *****/
+	}
+	if (ownerByKdnr==undefined) {
+		if (window.heavyDebug) console.log('unknown error in main.js - absolutely no owner found: sorry - could not get any app setup informations...');
+		d.resolve(false);
+	}
+	if (window.heavyDebug) console.log('we got an app owner!!! fullname is: '+ownerByKdnr.fullname);
+	window.system.owner = ownerByKdnr;
+	d.resolve(true);
+}
+
 function getOwnerData(kdnr) {
 	var d = $.Deferred();
 	// get owner data and roles
@@ -3584,6 +3623,8 @@ function getOwnerData(kdnr) {
 			}).always(function() {
 			});
 		} else {
+			var err = "error: internet connection timed out during getOwnerData() - resolving data from window.localStorage";
+			d.reject(err);
 			/*
 			// console.log('getOwnerData('+kdnr+') >> isConnectedToInternet()!=true >> no web connection >> cannot pull data from server! >> using local database - but only when is native mobile devices...');
 			$.when( dao.get_local('owner') ).done(

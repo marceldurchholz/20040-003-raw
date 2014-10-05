@@ -148,6 +148,8 @@
 	<preference name="PaginationMode" value="unpaginated"/>
 	-->
 	
+	<!-- iOS icons: http://ivomynttinen.com/blog/the-ios-7-design-cheat-sheet/ -->
+	<!-- Windows Phone icons: http://devndesign.fr/wp-content/uploads/2013/12/WindowsPhoneDESIGNGUIDELINESCheatSheet.pdf -->
     <icon src="icon.png" />
     <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
     <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:density="mdpi" />
